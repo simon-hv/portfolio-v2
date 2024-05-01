@@ -10,7 +10,7 @@ import '@/styles/globals.css'
 
 <Layout title="Simon Haïoun-Viet - Portfolio">
   <main
-    class="relative m-auto grid w-full max-w-6xl gap-2 overflow-hidden p-2 sm:gap-2 sm:p-4 md:grid-cols-2 md:gap-3 md:p-2 lg:grid-cols-4 lg:grid-rows-fr lg:gap-4"
+    class="lg:grid-rows-fr relative m-auto grid w-full max-w-6xl gap-2 overflow-hidden p-2 sm:gap-2 sm:p-4 md:grid-cols-2 md:gap-3 md:p-2 lg:grid-cols-4 lg:gap-4"
   >
     <Me />
     <Skills />
@@ -19,6 +19,26 @@ import '@/styles/globals.css'
     <Education />
   </main>
 </Layout>
+
+<script is:inline>
+  const cards = document.querySelectorAll('.card-animate')
+
+  cards?.forEach((card, idx) => {
+    card.animate(
+      [
+        { transform: 'translateY(20px)', opacity: 0 },
+        { transform: 'translateY(-10px)', opacity: 0.8 },
+        { transform: 'translateY(0)', opacity: 1 },
+      ],
+      {
+        duration: 1000,
+        easing: 'ease-in-out',
+        delay: idx * 300,
+        fill: 'both',
+      },
+    )
+  })
+</script>
 
 <style>
   main {
