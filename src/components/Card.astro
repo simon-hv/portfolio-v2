@@ -11,7 +11,7 @@ const hasTitle = Astro.slots.has('title')
 ---
 
 <ShadcnCard
-  className={`card-animate align-start group relative col-span-1 flex h-auto w-full transform flex-col justify-start overflow-hidden rounded-2xl shadow-lg transition duration-75 ease-in-out ${
+  className={`card-animate animate-fade align-start relative col-span-1 flex h-auto w-full transform flex-col justify-start overflow-hidden rounded-2xl shadow-lg ${
     colSpan || 'md:col-span-2'
   } ${rowSpan || ''}`}
 >
@@ -30,7 +30,7 @@ const hasTitle = Astro.slots.has('title')
 <script>
   const cards = document.querySelectorAll('.card-animate')
 
-  cards.forEach((card, idx) => {
+  cards?.forEach((card, idx) => {
     card.animate(
       [
         { transform: 'translateY(20px)', opacity: 0 },
