@@ -1,0 +1,69 @@
+---
+import Card from '@/components/Card.astro'
+import Outline from '@/components/Outline.astro'
+import { buttonVariants } from '@/components/ui/button'
+import { CardContent } from '@/components/ui/card'
+import { Contact, Linkedin, Mail } from 'lucide-react'
+---
+
+<Card colSpan="md:col-span-3" rowSpan="md:row-span-4">
+  <Fragment slot="title">
+    <Contact /> Présentation
+  </Fragment>
+
+  <CardContent className="flex flex-col gap-6 text-justify">
+    <div>
+      <div>
+        Bonjour ! Je m’appelle Simon, je suis développeur web depuis 2015. Je me
+        suis aujourd'hui spécialisé sur <Outline text="React" /> et
+        <Outline text="Angular" />.
+      </div>
+      <div class="mt-4">
+        Je m'intéresse également à l'architecture et au déploiement
+        d'applications. En effet, j’utilise régulièrement <Outline text="AWS" />
+        afin de déployer des applications sur EC2, des sites statiques sur S3 ou
+        encore mettre en place des applications serverless. J’utilise
+        <Outline text="Gitlab CI/CD" /> pour builder, tester et déployer mes applications
+        ainsi que terraform pour créer/maintenir toute l’infrastructure.
+      </div>
+      <div class="mt-4">
+        Afin d'avoir une vision complète, j'aime travailler quand c'est possible
+        sur le backend. Je crée des applications principalement avec <Outline
+          text="Node.js"
+        />
+        et plus précisément Express.js. Je suis également en train de me former à
+        Elixir.
+      </div>
+    </div>
+
+    <div class="flex gap-3">
+      <a
+        href="https://www.linkedin.com/in/simonhaiounviet/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class={buttonVariants({ variant: 'outline', size: 'icon' })}
+        title="Linkedin"
+      >
+        <Linkedin className="h-4 w-4" />
+      </a>
+      <a
+        href="mailto:simon.haioun-viet@gmail.com"
+        class={buttonVariants({ variant: 'outline', size: 'icon' })}
+        title="Mail"
+      >
+        <Mail className="h-4 w-4" />
+      </a>
+    </div>
+  </CardContent>
+</Card>
+
+<style>
+  a {
+    border-bottom-style: groove;
+    transition: all 0.4s ease;
+  }
+  a:hover {
+    background-color: #fff;
+    color: #000;
+  }
+</style>
