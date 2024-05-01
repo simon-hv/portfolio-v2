@@ -1,0 +1,44 @@
+---
+import Card from '@/components/Card.astro'
+import { CardContent } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
+import { GraduationCap } from 'lucide-react'
+
+const educations = [
+  {
+    school: 'Polytech Montpellier',
+    diploma: "Diplôme d'ingénieur en Informatique et Gestion",
+    begin: '2012',
+    end: '2015',
+  },
+  {
+    school: 'IUT de Montpellier',
+    diploma: 'DUT Informatique',
+    begin: '2010',
+    end: '2012',
+  },
+]
+---
+
+<Card colSpan="md:col-span-1" rowSpan="md:row-span-2">
+  <Fragment slot="title">
+    <GraduationCap /> Formations
+  </Fragment>
+
+  <CardContent className="flex flex-grow flex-col justify-evenly gap-4">
+    {
+      educations.map((education, idx) => (
+        <>
+          <div class="flex flex-col gap-2">
+            <h3 class="text-lg font-bold">{education.school}</h3>
+            <p class="text-sm text-muted-foreground">{education.diploma}</p>
+            <p class="text-sm">
+              {education.begin} - {education.end}
+            </p>
+          </div>
+          {idx < educations.length - 1 && <Separator />}
+        </>
+      ))
+    }
+  </CardContent>
+</Card>
