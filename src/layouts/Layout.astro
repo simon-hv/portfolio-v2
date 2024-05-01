@@ -1,51 +1,64 @@
 ---
+import NavBar from '@/components/blocks/NavBar.astro'
+import { ViewTransitions } from 'astro:transitions'
+
 interface Props {
-	title: string;
+  title: string
 }
 
-const { title } = Astro.props;
+const { title } = Astro.props
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Portfolio de Simon Haïoun-Viet, développeur frontend"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/jpeg" href="/favicon.jpeg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta
+      name="description"
+      content="Portfolio of Simon Haïoun-Viet, senior frontend developer."
+    />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <div
+      class="after:my-O fixed bottom-0 left-2 right-auto z-50 hidden w-10 text-sm after:mx-auto after:block after:h-20 after:w-px after:bg-slate-400 after:content-[''] xl:block"
+    >
+      <a
+        class="email-link p-2.5 tracking-widest hover:scale-105 hover:cursor-pointer hover:text-white"
+        href="mailto:simon.haiounviet@gmail.com"
+      >
+        simon.haiounviet@gmail.com
+      </a>
+    </div>
+    <NavBar />
+    <slot />
+    <style is:global>
+      :root {
+        --accent: 136, 58, 234;
+        --accent-light: 224, 204, 250;
+        --accent-dark: 49, 10, 101;
+        --accent-gradient: linear-gradient(
+          45deg,
+          rgb(var(--accent)),
+          rgb(var(--accent-light)) 30%,
+          white 60%
+        );
+      }
+      html {
+        font-family: system-ui, sans-serif;
+      }
+      .email-link {
+        -webkit-writing-mode: vertical-rl;
+        writing-mode: vertical-rl;
+      }
+    </style>
+  </body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>
