@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets'
+
+export interface Props {
+  company: string
+  companyLogo: ImageMetadata
+  duration: string
+  stack: string[]
+  description: string
+  isLast?: boolean
+}
+
+const { company, companyLogo, duration, stack, description, isLast } =
+  Astro.props
+---
+
+<li class="mt-5">
+  <div class="relative pb-8">
+    {
+      !isLast && (
+        <span
+          class="absolute left-4 top-4 -ml-px h-full w-0.5 bg-gray-200"
+          aria-hidden="true"
+        />
+      )
+    }
+    <div class="relative flex space-x-6">
+      <div>
+        <span
+          class="flex h-8 w-8 items-center justify-center rounded-full bg-white ring-8 ring-white"
+        >
+          <Image src={companyLogo} alt={company} />
+        </span>
+      </div>
+      <div class="flex-1 space-y-2 text-left">
+        <div class="flex items-center justify-between">
+          <h1 class="text-2xl font-bold text-white">{company}</h1>
+          <p class="text-sm">{duration}</p>
+        </div>
+        <p>
+          <Fragment set:html={description} />
+          <p class="text-muted-foreground">
+            <span class="font-medium">Stack technique :</span>
+            <span class="tracking-wide">
+              {stack.join(', ')}
+            </span>
+          </p>
+        </p>
+      </div>
+    </div>
+  </div>
+</li>

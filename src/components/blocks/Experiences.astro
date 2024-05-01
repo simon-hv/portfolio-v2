@@ -1,0 +1,47 @@
+---
+import Card from '@/components/Card.astro'
+import ExperienceItem from '@/components/ExperienceItem.astro'
+import { Badge } from '@/components/ui/badge'
+import { buttonVariants } from '@/components/ui/button'
+import { CardContent } from '@/components/ui/card'
+import { experiences, fullExperiences } from '@/constants'
+import { cn } from '@/lib/utils'
+import { BriefcaseBusiness } from 'lucide-react'
+---
+
+<Card colSpan="md:col-span-3" rowSpan="md:row-span-4">
+  <Fragment slot="title">
+    <BriefcaseBusiness /> Expériences
+  </Fragment>
+
+  <CardContent
+    className="flex flex-grow flex-col items-center justify-evenly gap-6 text-justify"
+  >
+    <ul role="list">
+      {
+        experiences.map((experience, idx) => (
+          <ExperienceItem
+            company={experience.company}
+            companyLogo={experience.companyLogo}
+            duration={experience.duration}
+            description={experience.description}
+            isLast={idx === experiences.length - 1}
+            stack={experience.stack}
+          />
+        ))
+      }
+    </ul>
+
+    <a
+      href="/xp"
+      class={cn(
+        buttonVariants({ variant: 'default', size: 'lg' }),
+        'flex gap-2 items-center',
+      )}
+    >
+      Voir plus <Badge variant="secondary"
+        >+ {fullExperiences.length - experiences.length}</Badge
+      >
+    </a>
+  </CardContent>
+</Card>
