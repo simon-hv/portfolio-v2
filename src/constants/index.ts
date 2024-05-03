@@ -3,6 +3,8 @@ import cgiLogo from '@/assets/cgi.png'
 import hawkLogo from '@/assets/hawk.svg'
 import welcomeLogo from '@/assets/welcome.png'
 
+export const emailAddress = 'simon.haiounviet@gmail.com'
+
 export const experiences = [
   {
     company: 'Welcome to the Jungle',

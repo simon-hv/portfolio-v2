@@ -1,31 +1,33 @@
 ---
 import { Avatar } from '@/components/Avatar'
-import { Mail } from 'lucide-react'
-
 import { buttonVariants } from '@/components/ui/button'
+import { emailAddress } from '@/constants'
+import { Mail } from 'lucide-react'
 ---
 
-<header
-  class="mb-10 flex flex-col items-center gap-5 border-b px-8 py-4 sm:flex-row"
->
-  <Avatar client:load />
-  <div class="flex flex-grow flex-row items-center gap-2">
-    <div class="flex flex-col">
-      <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight">
-        Simon Haïoun-Viet
-      </h3>
-      <span class="text-center text-sm text-muted-foreground sm:text-left">
-        Senior Software Engineer
-      </span>
+<header class="mb-10 flex justify-center border-b py-4">
+  <div
+    class="flex max-w-6xl flex-grow flex-col items-center gap-5 p-2 sm:flex-row sm:p-4 md:p-2"
+  >
+    <Avatar client:load />
+    <div class="flex flex-grow flex-row items-center gap-2">
+      <div class="flex flex-col">
+        <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight">
+          Simon Haïoun-Viet
+        </h3>
+        <span class="text-center text-sm text-muted-foreground sm:text-left">
+          Senior Software Engineer
+        </span>
+      </div>
     </div>
-  </div>
 
-  <div class="flex justify-end">
-    <a
-      href="mailto:simon.haioun-viet@gmail.com"
-      class={buttonVariants({ variant: 'default' })}
-    >
-      <Mail className="mr-2 h-4 w-4" />Contact</a
-    >
+    <div class="flex justify-end">
+      <a
+        href={`mailto:${emailAddress}`}
+        class={buttonVariants({ variant: 'default' })}
+      >
+        <Mail className="mr-2 h-4 w-4" />Contact</a
+      >
+    </div>
   </div>
 </header>

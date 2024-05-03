@@ -3,7 +3,8 @@ import Card from '@/components/Card.astro'
 import Outline from '@/components/Outline.astro'
 import { buttonVariants } from '@/components/ui/button'
 import { CardContent } from '@/components/ui/card'
-import { Contact, Linkedin, Mail } from 'lucide-react'
+import { emailAddress } from '@/constants'
+import { Contact, Github, Linkedin, Mail } from 'lucide-react'
 ---
 
 <Card colSpan="md:col-span-3" rowSpan="md:row-span-4">
@@ -47,11 +48,20 @@ import { Contact, Linkedin, Mail } from 'lucide-react'
         <Linkedin className="h-4 w-4" />
       </a>
       <a
-        href="mailto:simon.haioun-viet@gmail.com"
+        href={`mailto:${emailAddress}`}
         class={buttonVariants({ variant: 'outline', size: 'icon' })}
         title="Mail"
       >
         <Mail className="h-4 w-4" />
+      </a>
+      <a
+        href="https://github.com/simon-hv"
+        target="_blank"
+        rel="noopener noreferrer"
+        class={buttonVariants({ variant: 'outline', size: 'icon' })}
+        title="Github"
+      >
+        <Github className="h-4 w-4" />
       </a>
     </div>
   </CardContent>

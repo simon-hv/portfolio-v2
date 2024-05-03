@@ -20,26 +20,6 @@ import '@/styles/globals.css'
   </main>
 </Layout>
 
-<script is:inline>
-  const cards = document.querySelectorAll('.card-animate')
-
-  cards?.forEach((card, idx) => {
-    card.animate(
-      [
-        { transform: 'translateY(20px)', opacity: 0 },
-        { transform: 'translateY(-10px)', opacity: 0.8 },
-        { transform: 'translateY(0)', opacity: 1 },
-      ],
-      {
-        duration: 1000,
-        easing: 'ease-in-out',
-        delay: idx * 300,
-        fill: 'both',
-      },
-    )
-  })
-</script>
-
 <style>
   main {
     margin: auto;
