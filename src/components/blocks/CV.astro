@@ -14,7 +14,7 @@ import { FileSpreadsheet } from 'lucide-react'
     className="flex flex-grow flex-col items-center justify-evenly gap-4"
   >
     <object data="/cv.pdf" type="application/pdf" width="100%" height="250px">
-      <a href="/cv.pdf">cv.pdf</a>
+      <img src="/cv.png" alt="CV" />
     </object>
 
     <a
@@ -28,3 +28,14 @@ import { FileSpreadsheet } from 'lucide-react'
     </a>
   </CardContent>
 </Card>
+
+<style>
+  object {
+    display: flex;
+    justify-content: center;
+
+    > img {
+      height: 250px;
+    }
+  }
+</style>
