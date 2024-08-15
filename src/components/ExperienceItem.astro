@@ -1,17 +1,15 @@
 ---
 import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
 
 export interface Props {
-  company: string
-  companyLogo: ImageMetadata
-  duration: string
-  stack: string[]
-  description: string
+  experience: CollectionEntry<'experiences'>
   isLast?: boolean
 }
 
-const { company, companyLogo, duration, stack, description, isLast } =
-  Astro.props
+const { experience, isLast } = Astro.props
+const { company, companyLogo, duration, stack } = experience.data
+const { Content } = await experience.render()
 ---
 
 <li class="mt-5">
@@ -29,7 +27,7 @@ const { company, companyLogo, duration, stack, description, isLast } =
         <span
           class="flex h-8 w-8 items-center justify-center rounded-full bg-white ring-8 ring-white"
         >
-          <Image src={companyLogo} alt={company} />
+          <Image src={companyLogo} alt={company} width={32} height={32} />
         </span>
       </div>
       <div class="flex-1 space-y-2 text-left">
@@ -38,7 +36,7 @@ const { company, companyLogo, duration, stack, description, isLast } =
           <p class="text-sm">{duration}</p>
         </div>
         <p>
-          <Fragment set:html={description} />
+          <Content />
           <p class="text-muted-foreground">
             <span class="font-medium">Stack technique :</span>
             <span class="tracking-wide">

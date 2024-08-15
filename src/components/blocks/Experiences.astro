@@ -4,9 +4,15 @@ import ExperienceItem from '@/components/ExperienceItem.astro'
 import { Badge } from '@/components/ui/badge'
 import { buttonVariants } from '@/components/ui/button'
 import { CardContent } from '@/components/ui/card'
-import { experiences, fullExperiences } from '@/constants'
 import { cn } from '@/lib/utils'
 import { BriefcaseBusiness } from 'lucide-react'
+import { getCollection } from 'astro:content'
+
+const allExperiences = await getCollection('experiences')
+
+const displayedExperiences = allExperiences
+  .filter((entry) => entry.data.inPreview)
+  .sort((a, b) => b.data.id - a.data.id)
 ---
 
 <Card colSpan="md:col-span-3" rowSpan="md:row-span-4">
@@ -19,15 +25,13 @@ import { BriefcaseBusiness } from 'lucide-react'
   >
     <ul role="list">
       {
-        experiences.map((experience, idx) => (
-          <ExperienceItem
-            company={experience.company}
-            companyLogo={experience.companyLogo}
-            duration={experience.duration}
-            description={experience.description}
-            isLast={idx === experiences.length - 1}
-            stack={experience.stack}
-          />
+        displayedExperiences.map((experience, idx) => (
+          <>
+            <ExperienceItem
+              experience={experience}
+              isLast={idx === displayedExperiences.length - 1}
+            />
+          </>
         ))
       }
     </ul>
@@ -40,7 +44,7 @@ import { BriefcaseBusiness } from 'lucide-react'
       )}
     >
       Voir plus <Badge variant="secondary"
-        >+ {fullExperiences.length - experiences.length}</Badge
+        >+ {allExperiences.length - displayedExperiences.length}</Badge
       >
     </a>
   </CardContent>

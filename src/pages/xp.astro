@@ -1,11 +1,15 @@
 ---
 import ExperienceItem from '@/components/ExperienceItem.astro'
 import { buttonVariants } from '@/components/ui/button'
-import { fullExperiences } from '@/constants'
 import Layout from '@/layouts/Layout.astro'
 import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
+import { getCollection } from 'astro:content'
 import { ArrowLeft } from 'lucide-react'
+
+const experiences = (await getCollection('experiences')).sort(
+  (a, b) => b.data.id - a.data.id,
+)
 ---
 
 <Layout title="Simon Haïoun-Viet - Expériences">
@@ -18,14 +22,10 @@ import { ArrowLeft } from 'lucide-react'
     </a>
     <ul role="list">
       {
-        fullExperiences.map((experience, idx) => (
+        experiences.map((experience, idx) => (
           <ExperienceItem
-            company={experience.company}
-            companyLogo={experience.companyLogo}
-            duration={experience.duration}
-            description={experience.description}
-            isLast={idx === fullExperiences.length - 1}
-            stack={experience.stack}
+            experience={experience}
+            isLast={idx === experiences.length - 1}
           />
         ))
       }
