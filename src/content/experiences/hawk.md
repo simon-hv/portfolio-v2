@@ -1,10 +1,9 @@
 ---
 id: 6
 company: 'Hawk'
-companyLogo: './hawk.svg'
+companyLogo: '@/assets/xp/hawk.svg'
 duration: 'Février 2017 - Mai 2023'
 stack: ['Angular', 'React', 'Redux / NgRx', 'RxJS', 'Nx', 'Node.js', 'AWS']
-inPreview: true
 ---
 
 Développement d'une plateforme web programmatique (système d'enchères automatique en temps réel dans le domaine de la publicité).\

@@ -8,7 +8,6 @@ const experienceCollection = defineCollection({
       companyLogo: image(),
       duration: z.string(),
       stack: z.array(z.string()),
-      inPreview: z.boolean(),
     }),
 })
 

@@ -11,8 +11,8 @@ import { getCollection } from 'astro:content'
 const allExperiences = await getCollection('experiences')
 
 const displayedExperiences = allExperiences
-  .filter((entry) => entry.data.inPreview)
   .sort((a, b) => b.data.id - a.data.id)
+  .slice(0, 3)
 ---
 
 <Card colSpan="md:col-span-3" rowSpan="md:row-span-4">

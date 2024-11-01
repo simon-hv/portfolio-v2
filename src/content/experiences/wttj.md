@@ -1,10 +1,9 @@
 ---
 id: 8
 company: 'Welcome to the Jungle'
-companyLogo: './welcome.png'
+companyLogo: '@/assets/xp/welcome.png'
 duration: "Juin 2023 - Aujourd'hui"
 stack: ['React', 'GraphQL', 'Node.js', 'AWS']
-inPreview: true
 ---
 
 Développement du site web principal ainsi que de l'ATS (Applicant Tracking System) de Welcome to The Jungle.\
