@@ -4,7 +4,6 @@ import Experiences from '@/components/blocks/Experiences.astro'
 import Me from '@/components/blocks/Me.astro'
 import Skills from '@/components/blocks/Skills.astro'
 import Layout from '@/layouts/Layout.astro'
-import '@/styles/globals.css'
 ---
 
 <Layout title="Simon Haïoun-Viet - Portfolio">
@@ -17,3 +16,33 @@ import '@/styles/globals.css'
     <Education />
   </main>
 </Layout>
+
+<script>
+  const cards = document.querySelectorAll('.card-animate')
+  cards?.forEach((card, idx) => {
+    card.animate(
+      [
+        { transform: 'translateY(20px)', opacity: 0 },
+        { transform: 'translateY(-10px)', opacity: 0.8 },
+        { transform: 'translateY(0)', opacity: 1 },
+      ],
+      {
+        duration: 1000,
+        easing: 'ease-in-out',
+        delay: idx * 300,
+        fill: 'both',
+      },
+    )
+  })
+
+  // we do not want to re trigger animations on page change
+  document.addEventListener('astro:after-swap', () => {
+    const emailContainer = document.querySelector('.email-container')
+    const cardContainers = document.querySelectorAll('.card-animate')
+
+    emailContainer?.classList?.remove('animate-appear')
+    cardContainers?.forEach((card) => {
+      card.classList.remove('opacity-0')
+    })
+  })
+</script>

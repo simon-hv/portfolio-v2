@@ -61,6 +61,10 @@ export default {
           '0%': { opacity: 0, transform: 'translateY(400px)' },
           '100%': { opacity: 1, transform: 'translateY(0)' },
         },
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
         heartbeat: {
           '0%': { transform: 'scale(1)' },
           '50%': { transform: 'scale(1.1)' },
@@ -68,13 +72,15 @@ export default {
         },
       },
       animation: {
-        heartbeat: 'heartbeat 1.5s ease-in-out infinite',
         appear: 'appear 1s ease-in-out both',
+        fadeIn: 'fadeIn 1s ease-in-out both',
+        heartbeat: 'heartbeat 1.5s ease-in-out infinite',
       },
       typography: {
         DEFAULT: {
           css: {
             color: 'hsl(var(--default-color))',
+            maxWidth: '70ch',
           },
         },
       },

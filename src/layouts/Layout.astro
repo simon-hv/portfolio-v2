@@ -1,17 +1,21 @@
 ---
 import NavBar from '@/components/blocks/NavBar.astro'
 import { emailAddress } from '@/constants'
+import '@/styles/globals.css'
 import { ViewTransitions } from 'astro:transitions'
 
 interface Props {
+  description?: string
   title: string
 }
 
-const { title } = Astro.props
+const { description, title } = Astro.props
+const formattedDescription =
+  `${description || ''} Simon Haïoun-Viet, senior frontend developer.`.trimStart()
 ---
 
 <!doctype html>
-<html class="dark font-mono leading-7" lang="en">
+<html class="dark font-mono leading-7 mb-10" lang="en">
   <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFEVWFGTDK"
@@ -29,10 +33,7 @@ const { title } = Astro.props
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/jpeg" href="/favicon.jpeg" />
     <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content="Simon Haïoun-Viet, senior frontend developer."
-    />
+    <meta name="description" content={formattedDescription} />
     <title>{title}</title>
     <ViewTransitions />
   </head>
@@ -59,35 +60,5 @@ const { title } = Astro.props
         color: #4f4f4e;
       }
     </style>
-
-    <script>
-      const cards = document.querySelectorAll('.card-animate')
-      cards?.forEach((card, idx) => {
-        card.animate(
-          [
-            { transform: 'translateY(20px)', opacity: 0 },
-            { transform: 'translateY(-10px)', opacity: 0.8 },
-            { transform: 'translateY(0)', opacity: 1 },
-          ],
-          {
-            duration: 1000,
-            easing: 'ease-in-out',
-            delay: idx * 300,
-            fill: 'both',
-          },
-        )
-      })
-
-      // we do not want to re trigger animations on page change
-      document.addEventListener('astro:after-swap', () => {
-        const emailContainer = document.querySelector('.email-container')
-        const cardContainers = document.querySelectorAll('.card-animate')
-
-        emailContainer?.classList?.remove('animate-appear')
-        cardContainers?.forEach((card) => {
-          card.classList.remove('opacity-0')
-        })
-      })
-    </script>
   </body>
 </html>
