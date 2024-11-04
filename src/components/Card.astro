@@ -2,18 +2,19 @@
 import { CardHeader, CardTitle, Card as ShadcnCard } from '@/components/ui/card'
 
 interface Props {
+  className?: string
   colSpan?: string
   rowSpan?: string
 }
 
-const { colSpan, rowSpan } = Astro.props
+const { className, colSpan, rowSpan } = Astro.props
 const hasTitle = Astro.slots.has('title')
 ---
 
 <ShadcnCard
   className={`card-animate align-start relative col-span-1 flex h-auto w-full transform flex-col justify-start overflow-hidden rounded-2xl opacity-0 shadow-lg ${
     colSpan || 'md:col-span-2'
-  } ${rowSpan || ''}`}
+  } ${rowSpan || ''} ${className || ''}`}
 >
   {
     hasTitle && (
