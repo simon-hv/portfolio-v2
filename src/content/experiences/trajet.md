@@ -1,9 +1,9 @@
 ---
 id: 2
-company: 'Auto-Entrepreneur'
-companyLogo: '@/assets/xp/ae.png'
+company: 'Self-Employed'
+companyLogo: '@/assets/ae.png'
 duration: '2016'
 stack: ['Wordpress']
 ---
 
-Développement d'un site web pour une association spécialisée dans la formation continue des salariés du secteur hospitalier, des structures médico-sociales et des collectivités territoriales
+Development of a website for an association specializing in continuing education for employees in the hospital sector, social and local structures.

@@ -1,9 +1,9 @@
 ---
 id: 4
-company: 'Auto-Entrepreneur'
-companyLogo: '@/assets/xp/ae.png'
+company: 'Self-Employed'
+companyLogo: '@/assets/ae.png'
 duration: '2018'
 stack: ['Angular5', 'Sails.js']
 ---
 
-Développement d'un site web pour une agence de communication spécialisée dans les contenus bien-être
+Development of a website for a communication agency specializing in wellness content.

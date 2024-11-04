@@ -46,11 +46,15 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        prose: 'hsl(var(--tw-prose-body))',
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+      },
+      fontFamily: {
+        mono: ['Red Hat Mono Variable', 'monospace'],
       },
       keyframes: {
         appear: {
@@ -67,7 +71,14 @@ export default {
         heartbeat: 'heartbeat 1.5s ease-in-out infinite',
         appear: 'appear 1s ease-in-out both',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: 'hsl(var(--default-color))',
+          },
+        },
+      },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 }

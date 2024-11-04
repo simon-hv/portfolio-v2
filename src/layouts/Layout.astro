@@ -11,7 +11,7 @@ const { title } = Astro.props
 ---
 
 <!doctype html>
-<html class="dark" lang="en">
+<html class="dark font-mono leading-7" lang="en">
   <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFEVWFGTDK"
@@ -41,7 +41,7 @@ const { title } = Astro.props
       class="email-container after:my-O fixed bottom-0 left-2 right-auto z-50 hidden w-10 animate-appear text-sm after:mx-auto after:block after:h-20 after:w-px after:bg-slate-400 after:content-[''] xl:block"
     >
       <a
-        class="email-link p-2.5 tracking-widest hover:animate-heartbeat hover:cursor-pointer hover:text-white"
+        class="email-link p-2.5 tracking-widest no-underline hover:animate-heartbeat hover:cursor-pointer hover:text-white"
         href={`mailto:${emailAddress}`}
       >
         {emailAddress}
@@ -50,20 +50,6 @@ const { title } = Astro.props
     <NavBar />
     <slot />
     <style is:global>
-      :root {
-        --accent: 136, 58, 234;
-        --accent-light: 224, 204, 250;
-        --accent-dark: 49, 10, 101;
-        --accent-gradient: linear-gradient(
-          45deg,
-          rgb(var(--accent)),
-          rgb(var(--accent-light)) 30%,
-          white 60%
-        );
-      }
-      html {
-        font-family: system-ui, sans-serif;
-      }
       .email-link {
         -webkit-writing-mode: vertical-rl;
         writing-mode: vertical-rl;

@@ -1,7 +1,7 @@
 export default {
   singleQuote: true,
   semi: false,
-  printWidth: 80,
+  printWidth: 120,
   plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
   pluginSearchDirs: false,
 };

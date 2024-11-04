@@ -1,10 +1,21 @@
 ---
 id: 6
 company: 'Hawk'
-companyLogo: '@/assets/xp/hawk.svg'
-duration: 'Février 2017 - Mai 2023'
-stack: ['Angular', 'React', 'Redux / NgRx', 'RxJS', 'Nx', 'Node.js', 'AWS']
+companyLogo: '@/assets/hawk.svg'
+duration: 'February 2017 - May 2023'
+stack:
+  [
+    'React',
+    'Typescript',
+    'Angular',
+    'Redux / NgRx',
+    'RxJS',
+    'Nx',
+    'Node.js',
+    'AWS',
+  ]
 ---
 
-Développement d'une plateforme web programmatique (système d'enchères automatique en temps réel dans le domaine de la publicité).\
-J’ai eu l’occasion de travailler sur des projets from scratch mais aussi de maintenir des projets legacy. En tant que Tech Lead, j’ai pu mettre en place et suivre les bonnes pratiques de développement sur l'ensemble des projets.
+Development of a programmatic web platform (real-time automated bidding system in the advertising industry).\
+I had the opportunity to work on projects from scratch as well as maintain legacy projects.\
+In my role as Tech Lead, I collaborated with the team to establish and maintain development best practices across our projects.

@@ -1,9 +1,9 @@
 ---
 id: 3
-company: 'Auto-Entrepreneur'
-companyLogo: '@/assets/xp/ae.png'
+company: 'Self-Employed'
+companyLogo: '@/assets/ae.png'
 duration: '2016'
 stack: ['AngularJS', 'Sails.js']
 ---
 
-Développement d'un site intranet pour Fruition Sciences leur permettant de gérer des arduinos via une interface web
+Development of an intranet website for <a href='https://www.fruitionsciences.com/' target='_blank' rel='noopener noreferrer'>Fruition Sciences</a> allowing them to manage arduinos via a web interface.

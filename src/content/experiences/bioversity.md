@@ -1,9 +1,9 @@
 ---
 id: 1
-company: 'Auto-Entrepreneur'
-companyLogo: '@/assets/xp/ae.png'
+company: 'Self-Employed'
+companyLogo: '@/assets/ae.png'
 duration: '2012-2014'
 stack: ['PHP 5', 'JQuery']
 ---
 
-Développement d'un moteur de recherche multicritère pour Bioversity International. Ce site permet à des scientifiques d'accéder à des références (livres, articles de journaux...) sur le thème de la banane : <a href='https://www.musalit.org/' class='text-blue-500' target='_blank'>Musalit</a>
+Development of a multi-criteria search engine for <a href='https://alliancebioversityciat.org/' target='_blank' rel='noopener noreferrer'>Bioversity International</a>. This search engine allows scientists to access references (books, journal articles...) on the topic of bananas: <a href='https://www.musalit.org/' target='_blank' rel='noopener noreferrer'>Musalit</a>

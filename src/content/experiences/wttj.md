@@ -1,10 +1,10 @@
 ---
 id: 8
 company: 'Welcome to the Jungle'
-companyLogo: '@/assets/xp/welcome.png'
-duration: "Juin 2023 - Aujourd'hui"
-stack: ['React', 'GraphQL', 'Node.js', 'AWS']
+companyLogo: '@/assets/welcome.png'
+duration: 'June 2023 - Present'
+stack: ['React', 'Typescript', 'Node.js', 'GraphQL', 'AWS']
 ---
 
-Développement du site web principal ainsi que de l'ATS (Applicant Tracking System) de Welcome to The Jungle.\
-J’ai pu participer à la refonte de la page présentant les jobs ainsi que de l’espace membre (page profil / espace candidat).
+Development of the main website and the ATS (Applicant Tracking System) for Welcome to The Jungle.\
+I contributed to the redesign of numerous pages, including the jobs page, the homepage, and the member area (profile page / candidate space).

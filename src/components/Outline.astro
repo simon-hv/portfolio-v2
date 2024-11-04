@@ -1,17 +1,14 @@
 ---
 export interface Props {
-  text: string;
-  classNames?: string;
+  text: string
+  classNames?: string
 }
 
-const { text, classNames } = Astro.props;
+const { text, classNames } = Astro.props
 ---
 
-<span class={`outline-bg text-black font-medium p-0.5 inline-flex -skew-x-[10deg] ${classNames}`}>
+<span
+  class={`bg-white text-black font-medium p-0.5 inline-flex -skew-x-[10deg] ${classNames}`}
+>
   {text}
 </span>
-<style>
-  .outline-bg {
-    background-color: #fff;
-  }
-</style>

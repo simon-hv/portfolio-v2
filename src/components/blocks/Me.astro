@@ -4,76 +4,82 @@ import Outline from '@/components/Outline.astro'
 import { buttonVariants } from '@/components/ui/button'
 import { CardContent } from '@/components/ui/card'
 import { emailAddress } from '@/constants'
-import { Contact, Github, Linkedin, Mail } from 'lucide-react'
+import { Github, Linkedin, Mail } from 'lucide-react'
 ---
 
-<Card colSpan="md:col-span-3" rowSpan="md:row-span-4">
-  <Fragment slot="title">
-    <Contact /> Présentation
-  </Fragment>
+<Card colSpan="md:col-span-4" rowSpan="md:row-span-4">
+  <Fragment slot="title">Hello 👋</Fragment>
 
   <CardContent className="flex flex-col gap-6 text-justify">
-    <div>
-      <div>
-        Bonjour ! Je m’appelle Simon, je suis développeur web depuis 2015. Je me
-        suis aujourd'hui spécialisé sur <Outline text="React" /> et
-        <Outline text="Angular" />.
-      </div>
-      <div class="mt-4">
-        Je m'intéresse également à l'architecture et au déploiement
-        d'applications. En effet, j’utilise régulièrement <Outline text="AWS" />
-        afin de déployer des applications sur EC2, des sites statiques sur S3 ou
-        encore mettre en place des applications serverless. J’utilise
-        <Outline text="Gitlab CI/CD" /> pour builder, tester et déployer mes applications
-        ainsi que terraform pour créer/maintenir toute l’infrastructure.
-      </div>
-      <div class="mt-4">
-        Afin d'avoir une vision complète, j'aime travailler quand c'est possible
-        sur le backend. Je crée des applications principalement avec <Outline
-          text="Node.js"
+    <div class="prose prose-invert max-w-none">
+      <p>
+        I'm Simon, a web developer since 2015, with a focus on <Outline
+          text="React"
+        />. Currently based in Montpellier, France, I work remotely for
+        <a
+          href="https://www.welcometothejungle.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Welcome to the Jungle</a
+        >.
+      </p>
+      <p>
+        In the past, I’ve worked with <Outline text="Angular" /> and <Outline
+          text="Vue"
+        />. I'm also into app architecture and deployment. I regularly use <Outline
+          text="AWS"
         />
-        et plus précisément Express.js. Je suis également en train de me former à
-        Elixir.
-      </div>
-    </div>
+        to deploy applications on EC2, host static sites on S3, and set up serverless
+        applications. I have extensive experience with continuous integration and
+        deployment pipelines, primarily using <Outline text="GitLab CI/CD" />.
+      </p>
+      <p>
+        I like to work on the backend when I can to get a full view of the
+        project. My go-to tools for backend development are
+        <Outline text="Node.js" />, specifically with
+        <Outline text="Express.js" />.
+      </p>
 
-    <div class="flex gap-3">
-      <a
-        href="https://www.linkedin.com/in/simonhaiounviet/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class={buttonVariants({ variant: 'outline', size: 'icon' })}
-        title="Linkedin"
-      >
-        <Linkedin className="h-4 w-4" />
-      </a>
-      <a
-        href={`mailto:${emailAddress}`}
-        class={buttonVariants({ variant: 'outline', size: 'icon' })}
-        title="Mail"
-      >
-        <Mail className="h-4 w-4" />
-      </a>
-      <a
-        href="https://github.com/simon-hv"
-        target="_blank"
-        rel="noopener noreferrer"
-        class={buttonVariants({ variant: 'outline', size: 'icon' })}
-        title="Github"
-      >
-        <Github className="h-4 w-4" />
-      </a>
+      <div class="flex gap-3">
+        <a
+          href="https://www.linkedin.com/in/simonhaiounviet/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class={`${buttonVariants({ variant: 'outline', size: 'icon' })} button-icon`}
+          title="Linkedin"
+        >
+          <Linkedin className="h-4 w-4" />
+        </a>
+        <a
+          href={`mailto:${emailAddress}`}
+          class={`${buttonVariants({ variant: 'outline', size: 'icon' })} button-icon`}
+          title="Mail"
+        >
+          <Mail className="h-4 w-4" />
+        </a>
+        <a
+          href="https://github.com/simon-hv"
+          target="_blank"
+          rel="noopener noreferrer"
+          class={`${buttonVariants({ variant: 'outline', size: 'icon' })} button-icon`}
+          title="Github"
+        >
+          <Github className="h-4 w-4" />
+        </a>
+      </div>
     </div>
   </CardContent>
-</Card>
 
-<style>
-  a {
-    border-bottom-style: groove;
-    transition: all 0.4s ease;
-  }
-  a:hover {
-    background-color: #fff;
-    color: #000;
-  }
-</style>
+  <style>
+    /* Regular text links */
+    .text-link {
+      @apply border-b border-neutral-400 transition-colors duration-300 hover:border-neutral-100;
+    }
+
+    /* Icon buttons already use buttonVariants, just need hover styles */
+    :global(.button-icon) {
+      @apply transition-colors duration-300 hover:bg-neutral-100 hover:text-neutral-900;
+    }
+  </style>
+</Card>

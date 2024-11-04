@@ -1,96 +1,42 @@
 ---
-import angular from '@/assets/angular.png'
-import aws from '@/assets/aws.png'
-import circle from '@/assets/circle.png'
-import docker from '@/assets/docker.webp'
-import git from '@/assets/git.png'
-import gitlab from '@/assets/gitlab.png'
-import graphql from '@/assets/graphql.png'
-import js from '@/assets/js.png'
-import next from '@/assets/next.svg'
-import node from '@/assets/node.png'
-import nx from '@/assets/nx.png'
-import react from '@/assets/react.png'
-import redux from '@/assets/redux.png'
-import rxjs from '@/assets/rxjs.png'
-import ts from '@/assets/ts.png'
 import Card from '@/components/Card.astro'
-import SkillBadge from '@/components/SkillBadge.astro'
+import { Badge } from '@/components/ui/badge'
 import { CardContent } from '@/components/ui/card'
 import { TestTubeDiagonal } from 'lucide-react'
 
 const skills = [
-  {
-    title: 'React',
-    image: react,
-  },
-  {
-    title: 'Next',
-    image: next,
-  },
-  {
-    title: 'Angular',
-    image: angular,
-  },
-  {
-    title: 'Typescript',
-    image: ts,
-  },
-  {
-    title: 'Javascript',
-    image: js,
-  },
-  {
-    title: 'Node.js',
-    image: node,
-  },
-  {
-    title: 'Redux / NgRx',
-    image: redux,
-  },
-  {
-    title: 'RxJS',
-    image: rxjs,
-  },
-  {
-    title: 'Nx',
-    image: nx,
-  },
-  {
-    title: 'Git',
-    image: git,
-  },
-  {
-    title: 'AWS',
-    image: aws,
-  },
-  {
-    title: 'GraphQL',
-    image: graphql,
-  },
-  {
-    title: 'Docker',
-    image: docker,
-  },
-  {
-    title: 'Gitlab CI/CD',
-    image: gitlab,
-  },
-  {
-    title: 'CircleCI',
-    image: circle,
-  },
+  'React',
+  'Typescript',
+  'Javascript',
+  'Next',
+  'Node.js',
+  'Angular',
+  'Redux / NgRx',
+  'RxJS',
+  'Nx',
+  'Git',
+  'AWS',
+  'GraphQL',
+  'Docker',
+  'Gitlab CI/CD',
+  'CircleCI',
 ]
 ---
 
-<Card colSpan="md:col-span-1" rowSpan="md:row-span-4">
-  <Fragment slot="title"> <TestTubeDiagonal /> Compétences </Fragment>
+<Card colSpan="md:col-span-1" rowSpan="md:row-span-4 lg:row-span-2">
+  <Fragment slot="title">
+    <TestTubeDiagonal /> Skills
+  </Fragment>
 
-  <CardContent className="flex flex-wrap justify-center gap-x-3 gap-y-5 p-2">
-    {
-      skills.map((skill) => (
-        <SkillBadge title={skill.title} image={skill.image} />
-      ))
-    }
+  <CardContent className="h-full">
+    <ul class="flex h-full flex-wrap justify-center gap-3">
+      {
+        skills.map((skill) => (
+          <li>
+            <Badge>{skill}</Badge>
+          </li>
+        ))
+      }
+    </ul>
   </CardContent>
 </Card>

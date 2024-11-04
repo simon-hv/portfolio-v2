@@ -2,7 +2,7 @@
 import { Avatar } from '@/components/Avatar'
 import { buttonVariants } from '@/components/ui/button'
 import { emailAddress } from '@/constants'
-import { Mail } from 'lucide-react'
+import { FileText, Mail } from 'lucide-react'
 ---
 
 <header class="mb-10 flex justify-center border-b py-4">
@@ -21,12 +21,12 @@ import { Mail } from 'lucide-react'
       </div>
     </div>
 
-    <div class="flex justify-end">
-      <a
-        href={`mailto:${emailAddress}`}
-        class={buttonVariants({ variant: 'default' })}
-      >
+    <div class="flex justify-end gap-3">
+      <a class={buttonVariants()} href={`mailto:${emailAddress}`}>
         <Mail className="mr-2 h-4 w-4" />Contact</a
+      >
+      <a href="/resume.pdf" class={buttonVariants()} target="_blank">
+        <FileText className="mr-2 h-4 w-4" />Resume</a
       >
     </div>
   </div>
