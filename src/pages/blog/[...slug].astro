@@ -1,0 +1,35 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { humanizeDate } from '@/lib/utils'
+import { getCollection, type CollectionEntry } from 'astro:content'
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blog')
+  return blogPosts.map((post) => {
+    const { slug } = post
+
+    return {
+      params: { slug },
+      props: post,
+    }
+  })
+}
+
+type Props = CollectionEntry<'blog'>
+
+const blogPost: Props = Astro.props
+const { Content } = await blogPost.render()
+const { title, description, date } = blogPost.data
+---
+
+<Layout description={description} title={`${title} - Simon Haïoun-Viet`}>
+  <main class="m-auto min-h-screen max-w-6xl px-5" transition:animate="fade">
+    <article class="prose prose-invert mx-auto">
+      <header>
+        <p class="text-muted-foreground">{humanizeDate(date)}</p>
+        <h1>{title}</h1>
+      </header>
+      <Content />
+    </article>
+  </main>
+</Layout>

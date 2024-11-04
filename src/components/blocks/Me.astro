@@ -4,56 +4,69 @@ import Outline from '@/components/Outline.astro'
 import { buttonVariants } from '@/components/ui/button'
 import { CardContent } from '@/components/ui/card'
 import { emailAddress } from '@/constants'
+import { humanizeDate } from '@/lib/utils'
+import { getCollection } from 'astro:content'
 import { Github, Linkedin, Mail } from 'lucide-react'
+
+const blogPosts = (await getCollection('blog'))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3)
 ---
 
-<Card className='order-1' colSpan="md:col-span-4" rowSpan="md:row-span-4">
+<Card className="order-1" colSpan="md:col-span-4" rowSpan="md:row-span-4">
   <Fragment slot="title">Hello 👋</Fragment>
 
   <CardContent className="flex flex-col gap-6 text-justify">
     <div class="prose prose-invert max-w-none">
       <p>
-        I'm Simon, a web developer since 2015, with a focus on <Outline
-          text="React"
-        />. Currently based in Montpellier, France, I work remotely for
-        <a
-          href="https://www.welcometothejungle.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Welcome to the Jungle</a
+        I'm Simon, a web developer since 2015, with a focus on <Outline text="React" />. Currently based in Montpellier,
+        France, I work remotely for
+        <a href="https://www.welcometothejungle.com/" target="_blank" rel="noopener noreferrer">Welcome to the Jungle</a
         >.
       </p>
       <p>
-        In the past, I’ve worked with <Outline text="Angular" /> and <Outline
-          text="Vue"
-        />. I'm also into app architecture and deployment. I regularly use <Outline
-          text="AWS"
-        />
-        to deploy applications on EC2, host static sites on S3, and set up serverless
-        applications. I have extensive experience with continuous integration and
-        deployment pipelines, primarily using <Outline text="GitLab CI/CD" />.
+        In the past, I’ve worked with <Outline text="Angular" /> and <Outline text="Vue" />. I'm also into app
+        architecture and deployment. I regularly use <Outline text="AWS" />
+        to deploy applications on EC2, host static sites on S3, and set up serverless applications. I have extensive experience
+        with continuous integration and deployment pipelines, primarily using <Outline text="GitLab CI/CD" />.
       </p>
       <p>
-        I like to work on the backend when I can to get a full view of the
-        project. My go-to tools for backend development are
+        I like to work on the backend when I can to get a full view of the project. My go-to tools for backend
+        development are
         <Outline text="Node.js" />, specifically with
         <Outline text="Express.js" />.
       </p>
 
-      <div class="flex gap-3">
+      <div>
+        <h2 class="before:mr-4 before:border-r-4 before:content-['']">My latest articles</h2>
+        <ul>
+          {
+            blogPosts.map((post) => (
+              <li>
+                <a href={`/blog/${post.slug}`}>{post.data.title}</a> - {humanizeDate(post.data.date)}
+              </li>
+            ))
+          }
+        </ul>
+        <a class={`${buttonVariants({ variant: 'ghost' })} group mt-2 gap-2 p-2`} href="/blog">
+          View all articles
+          <span class="transition-transform group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+
+      <div class="mt-5 flex gap-3">
         <a
           href="https://www.linkedin.com/in/simonhaiounviet/"
           target="_blank"
           rel="noopener noreferrer"
-          class={`${buttonVariants({ variant: 'outline', size: 'icon' })} button-icon`}
+          class={`${buttonVariants({ variant: 'outline', size: 'icon' })} animate-fadeIn`}
           title="Linkedin"
         >
           <Linkedin className="h-4 w-4" />
         </a>
         <a
           href={`mailto:${emailAddress}`}
-          class={`${buttonVariants({ variant: 'outline', size: 'icon' })} button-icon`}
+          class={`${buttonVariants({ variant: 'outline', size: 'icon' })} animate-fadeIn`}
           title="Mail"
         >
           <Mail className="h-4 w-4" />
@@ -62,7 +75,7 @@ import { Github, Linkedin, Mail } from 'lucide-react'
           href="https://github.com/simon-hv"
           target="_blank"
           rel="noopener noreferrer"
-          class={`${buttonVariants({ variant: 'outline', size: 'icon' })} button-icon`}
+          class={`${buttonVariants({ variant: 'outline', size: 'icon' })} animate-fadeIn`}
           title="Github"
         >
           <Github className="h-4 w-4" />
@@ -70,16 +83,4 @@ import { Github, Linkedin, Mail } from 'lucide-react'
       </div>
     </div>
   </CardContent>
-
-  <style>
-    /* Regular text links */
-    .text-link {
-      @apply border-b border-neutral-400 transition-colors duration-300 hover:border-neutral-100;
-    }
-
-    /* Icon buttons already use buttonVariants, just need hover styles */
-    :global(.button-icon) {
-      @apply transition-colors duration-300 hover:bg-neutral-100 hover:text-neutral-900;
-    }
-  </style>
 </Card>

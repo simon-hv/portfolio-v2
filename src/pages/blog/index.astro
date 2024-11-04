@@ -1,0 +1,38 @@
+---
+import Card from '@/components/Card.astro'
+import { CardContent } from '@/components/ui/card'
+import Layout from '@/layouts/Layout.astro'
+import { humanizeDate } from '@/lib/utils'
+import { getCollection } from 'astro:content'
+
+const blogPosts = (await getCollection('blog')).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+)
+---
+
+<Layout description="All articles from my tech blog." title="Blog - Simon Haïoun-Viet">
+  <main class="m-auto px-5" transition:animate="fade">
+    <Card className="order-2 lg:order-3" colSpan="md:col-span-4 lg:col-span-3" rowSpan="md:row-span-4">
+      <Fragment slot="title">👋 Welcome to my blog</Fragment>
+
+      <CardContent className="prose prose-invert max-w-none">
+        <p>I write stuff sometimes. Probably about web development, design, and other things.</p>
+
+        <section aria-labelledby="articles-heading">
+          <h2 id="articles-heading">Articles</h2>
+          <nav aria-label="Blog posts">
+            <ul>
+              {
+                blogPosts.map((post) => (
+                  <li>
+                    <a href={`/blog/${post.slug}`}>{post.data.title}</a> - {humanizeDate(post.data.date)}
+                  </li>
+                ))
+              }
+            </ul>
+          </nav>
+        </section>
+      </CardContent>
+    </Card>
+  </main>
+</Layout>
