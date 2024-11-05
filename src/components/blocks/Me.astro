@@ -4,16 +4,10 @@ import Outline from '@/components/Outline.astro'
 import { buttonVariants } from '@/components/ui/button'
 import { CardContent } from '@/components/ui/card'
 import { emailAddress } from '@/constants'
-import { humanizeDate } from '@/lib/utils'
-import { getCollection } from 'astro:content'
 import { Github, Linkedin, Mail } from 'lucide-react'
-
-const blogPosts = (await getCollection('blog'))
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
-  .slice(0, 3)
 ---
 
-<Card className="order-1" colSpan="md:col-span-4" rowSpan="md:row-span-4">
+<Card className="order-1" colSpan="md:col-span-4 lg:col-span-3" rowSpan="md:row-span-4">
   <Fragment slot="title">Hello 👋</Fragment>
 
   <CardContent className="flex flex-col gap-6 text-justify">
@@ -36,23 +30,6 @@ const blogPosts = (await getCollection('blog'))
         <Outline text="Node.js" />, specifically with
         <Outline text="Express.js" />.
       </p>
-
-      <div>
-        <h2 class="before:mr-4 before:border-r-4 before:content-['']">My latest articles</h2>
-        <ul>
-          {
-            blogPosts.map((post) => (
-              <li>
-                <a href={`/blog/${post.slug}`}>{post.data.title}</a> - {humanizeDate(post.data.date)}
-              </li>
-            ))
-          }
-        </ul>
-        <a class={`${buttonVariants({ variant: 'ghost' })} group mt-2 gap-2 p-2`} href="/blog">
-          View all articles
-          <span class="transition-transform group-hover:translate-x-1">→</span>
-        </a>
-      </div>
 
       <div class="mt-5 flex gap-3">
         <a

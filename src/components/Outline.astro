@@ -7,8 +7,4 @@ export interface Props {
 const { text, classNames } = Astro.props
 ---
 
-<span
-  class={`bg-white text-black font-medium p-0.5 inline-flex -skew-x-[10deg] ${classNames}`}
->
-  {text}
-</span>
+<span class={`bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-pink-500 ${classNames}`}>{text}</span>

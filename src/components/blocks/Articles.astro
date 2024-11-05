@@ -1,0 +1,47 @@
+---
+import Card from '@/components/Card.astro'
+import { buttonVariants } from '@/components/ui/button'
+import { CardContent } from '@/components/ui/card'
+import { humanizeDate } from '@/lib/utils'
+import { getCollection } from 'astro:content'
+import { Newspaper } from 'lucide-react'
+
+const blogPosts = (await getCollection('blog'))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3)
+---
+
+<Card className="order-2" colSpan="md:col-span-4 lg:col-span-1" rowSpan="row-span-4">
+  <Fragment slot="title">
+    <Newspaper /> Blog
+  </Fragment>
+
+  <CardContent className="flex h-full">
+    <div class="prose prose-invert flex max-w-none flex-col justify-between">
+      <nav aria-label="Blog posts">
+        <ul class="mt-0 space-y-4 p-0">
+          {
+            blogPosts.map((post) => (
+              <li>
+                <article aria-labelledby={`article-${post.slug}`}>
+                  <div class="flex flex-col gap-1">
+                    <a id={`article-${post.slug}`} href={`/blog/${post.slug}`} class="text-sm">
+                      {post.data.title}
+                    </a>
+                    <span class="text-xs text-muted-foreground/80">
+                      <time datetime={post.data.date.toDateString()}>{humanizeDate(post.data.date)}</time>
+                    </span>
+                  </div>
+                </article>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <a class={`${buttonVariants({ variant: 'ghost' })} group mt-4 gap-2 p-2 self-start lg:self-center`} href="/blog">
+        View all articles
+        <span class="transition-transform group-hover:translate-x-1">→</span>
+      </a>
+    </div>
+  </CardContent>
+</Card>
