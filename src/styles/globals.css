@@ -89,6 +89,7 @@
 
   code:not(pre code) {
     @apply text-white;
+    @apply break-words;
   }
 
   code:not(pre code)::before,
