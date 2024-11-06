@@ -91,9 +91,36 @@
     @apply text-white;
     @apply break-words;
   }
-
   code:not(pre code)::before,
   code:not(pre code)::after {
     content: '`';
+  }
+
+  code[data-line-numbers] {
+    counter-reset: line;
+  }
+  code[data-line-numbers] > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+    @apply mr-4 inline-block w-4 text-right text-gray-500;
+  }
+  pre [data-line] {
+    @apply border-l-2 border-l-transparent px-2;
+  }
+
+  [data-highlighted-line] {
+    @apply bg-zinc-600/30;
+    @apply border-l-blue-400;
+  }
+  [data-highlighted-chars] {
+    @apply rounded bg-zinc-600/50;
+    box-shadow: 0 0 0 4px rgb(82 82 91 / 0.5);
+  }
+  pre {
+    box-shadow: 0px 0px 16px rgba(100, 151, 177, 0.3);
+  }
+  code,
+  pre {
+    @apply overflow-x-auto px-2 py-1;
   }
 }
