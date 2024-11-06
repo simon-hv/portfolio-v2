@@ -162,21 +162,19 @@ Let's see how we can rewrite the previous example using the `Either` monad. Firs
 
 Here's how `getIncidents` might look like:
 
-```typescript
+```typescript {8}
 function getIncidents(workspaceId: string): Either<Error, Incident[]> {
-  return Either.fromNullable(fetchIncidents(workspaceId))
-    .mapRight((incidents) => {
-      console.log("incidents fetched", incidents);
-      return incidents;
-    })
-    .mapLeft((_) => new Error("Error fetching incidents"));
+  const incidents = fetchIncidents(workspaceId);
+
+  if (incidents) {
+    return Either.Right(incidents);
+  }
+
+  return Either.Left(new Error("Error fetching incidents"));
 }
 ```
 
-Let's break down what's happening here:
-
-`Either.fromNullable(fetchIncidents(workspaceId))` returns an `Either<Error, Incident[]>`. If `fetchIncidents` returns `null` or `undefined`, `fromNullable` will create a `Left` value, and we'll execute the `mapLeft` operation to transform it into our custom error message. The `mapRight` operation will be skipped.\
-However, if `fetchIncidents` returns a valid array of incidents, `fromNullable` will create a `Right` value, and we'll execute the `mapRight` operation.
+You may have noticed that the code is very similar to the `Option` monad example. The only difference is that instead of returning `None`, we return `Left` containing an error message.
 
 We can then modify our main function `getIncidentUpdatedView` to use the `Either` monad:
 
@@ -186,12 +184,10 @@ function getIncidentUpdatedView(id: string): Either<Error, string> {
     .rightAndThen(getIncidents)
     .rightAndThen(updateView);
 
-  const message = result.match({
-    left: (value) => `error: ${value}`,
-    right: (value) => `success: ${value}`,
+  result.match({
+    left: (value) => console.error("error", value),
+    right: (value) => console.log("success", value),
   });
-
-  console.log(message);
 
   return result;
 }
