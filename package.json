@@ -48,6 +48,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.8",
     "serve": "^14.2.4",
+    "shikiji-transformers": "^0.10.2",
     "wait-on": "^8.0.1"
   },
   "packageManager": "pnpm@9.12.3"
