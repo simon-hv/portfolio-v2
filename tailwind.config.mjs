@@ -61,6 +61,11 @@ export default {
           "0%": { opacity: 0, transform: "translateY(400px)" },
           "100%": { opacity: 1, transform: "translateY(0)" },
         },
+        cardAppear: {
+          "0%": { transform: "translateY(20px)", opacity: 0 },
+          "50%": { transform: "translateY(-10px)", opacity: 0.8 },
+          "100%": { transform: "translateY(0)", opacity: 1 },
+        },
         fadeIn: {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
@@ -73,6 +78,7 @@ export default {
       },
       animation: {
         appear: "appear 1s ease-in-out both",
+        cardAppear: "cardAppear 1s ease-in-out both",
         fadeIn: "fadeIn 1s ease-in-out both",
         heartbeat: "heartbeat 1.5s ease-in-out infinite",
       },

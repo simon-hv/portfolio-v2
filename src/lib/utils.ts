@@ -5,8 +5,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function humanizeDate(date: Date) {
-  return date.toLocaleDateString(undefined, {
+export function humanizeDate(date: Date, lang = "en") {
+  return date.toLocaleDateString(lang, {
     year: "numeric",
     month: "long",
     day: "numeric",

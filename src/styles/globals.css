@@ -123,4 +123,11 @@
   pre {
     @apply overflow-x-auto px-2 py-1;
   }
+
+  /* Delay our 5 cards on the homepage */
+  @for $i from 0 to 5 {
+    .animate-cardAppear:nth-of-type($i) {
+      animation-delay: calc(calc($i - 1) * 150ms);
+    }
+  }
 }
