@@ -10,16 +10,13 @@ interface Props {
 }
 
 const { description, title } = Astro.props
-const formattedDescription =
-  `${description || ''} Simon Haïoun-Viet, senior frontend developer.`.trimStart()
 ---
 
 <!doctype html>
-<html class="dark font-mono leading-7 mb-10" lang="en">
+<html class="dark mb-10 font-mono leading-7" lang="en">
   <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFEVWFGTDK"
-    ></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFEVWFGTDK"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || []
       function gtag() {
@@ -33,7 +30,8 @@ const formattedDescription =
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/jpeg" href="/favicon.jpeg" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={formattedDescription} />
+    <meta name="description" content={description} />
+    <slot name="head" />
     <title>{title}</title>
     <ViewTransitions />
   </head>

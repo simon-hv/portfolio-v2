@@ -10,19 +10,36 @@ export async function getStaticPaths() {
 
     return {
       params: { slug },
-      props: post,
+      props: { ...post, ogImage: `/blog/${slug}/og.png` },
     }
   })
 }
 
-type Props = CollectionEntry<'blog'>
+type Props = CollectionEntry<'blog'> & { ogImage: string }
 
 const blogPost: Props = Astro.props
 const { Content } = await blogPost.render()
 const { title, description, date } = blogPost.data
+
+const permalink = new URL(Astro.url.pathname, Astro.site).href
+const ogImageURL = new URL(blogPost.ogImage, Astro.site).href
 ---
 
 <Layout description={description} title={`${title} - Simon Haïoun-Viet`}>
+  <Fragment slot="head">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={permalink} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={permalink} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImageURL} />
+  </Fragment>
+
   <main class="mx-auto max-w-6xl p-2" transition:animate="fade">
     <article class="prose prose-invert mx-auto">
       <header>

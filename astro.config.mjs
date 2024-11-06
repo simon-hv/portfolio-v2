@@ -30,4 +30,5 @@ export default defineConfig({
       ],
     ],
   },
+  site: 'https://www.simon-hv.fr/'
 })
