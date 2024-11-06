@@ -36,9 +36,9 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
     "install": "^0.13.0",
-    "npm": "^10.9.0",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.8"
-  }
+  },
+  "packageManager": "pnpm@9.12.3"
 }
