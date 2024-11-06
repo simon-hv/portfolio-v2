@@ -1,5 +1,5 @@
 ---
-import { Avatar } from '@/components/Avatar'
+import Avatar from '@/components/Avatar.astro'
 import { buttonVariants } from '@/components/ui/button'
 import { emailAddress } from '@/constants'
 import { FileText, Mail, Newspaper } from 'lucide-react'
@@ -8,7 +8,7 @@ import { FileText, Mail, Newspaper } from 'lucide-react'
 <header class="mb-10 flex justify-center border-b py-4">
   <div class="flex max-w-6xl flex-grow flex-col items-center gap-5 p-2 sm:flex-row sm:p-4 md:p-2">
     <a aria-hidden="true" href="/">
-      <Avatar client:load />
+      <Avatar />
     </a>
     <div class="flex flex-grow flex-row items-center gap-2">
       <div class="flex flex-col">
