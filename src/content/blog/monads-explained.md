@@ -30,9 +30,9 @@ This might perhaps make you think of a `Functor`, and you're right, monads are f
 
 Before diving deeper into monads, let's understand what a functor is. A functor is a simpler concept that serves as a foundation for understanding monads.
 
-**A functor is any type that implements a `map` operation**. This `map` operation allows us to transform the value inside the container without changing the container itself. The most familiar functor might be JavaScript's `Array`, which has a `map` method:
+**A functor is any type that implements a `map` operation**, allowing us to apply a function to each item inside the container, producing a new container with the transformed values. For example, JavaScript’s Array is often seen as a functor because its `map` method applies a function to each element, returning a new array without altering the original:
 
-```typescript
+```typescript /map/
 const numbers = [1, 2, 3]
 const doubled = numbers.map((x) => x * 2) // [2, 4, 6]
 ```
@@ -41,17 +41,20 @@ const doubled = numbers.map((x) => x * 2) // [2, 4, 6]
 
 Here's a quick comparison:
 
-```typescript
+```typescript showLineNumbers /map/ /flatMap/
 // Functor: transforms a value
 const maybeNumber = Maybe.of(5)
 const doubled = maybeNumber.map((x) => x * 2) // Maybe(10)
 
 // Monad: chains operations that return monadic values
 const maybeUser = Maybe.of({ id: 1 })
-const maybePosts = maybeUser.flatMap((user) => fetchPosts(user.id)) // fetchPosts returns Maybe<Post[]>
+const maybePosts = maybeUser.flatMap((user) => fetchPosts(user.id))
+// fetchPosts returns Maybe<Post[]>
 ```
 
 The key difference is that monads can handle nested structures of the same type and flatten them, which is particularly useful when dealing with sequences of operations that might fail or have side effects.
+
+Notice that if we used `map` instead of `flatMap` (line 7), we would have ended up with a nested Maybe - `Maybe<Maybe<Post[]>>` instead of a `Maybe<Post[]>`.
 
 ## Why is this useful
 
@@ -153,7 +156,7 @@ This is exactly what we did in the example above. The `Option` monad manages the
 
 If we make a parallel with the `Option` monad, `Right` is typically used for success cases (like `Some`) and `Left` for failure cases (like `None`), but both `Left` and `Right` can contain values.
 
-It is convenient to use the `Either` monad when you want to return an error message. If an exception is thrown, you can return an `Either.left(error)`. The `flatMap` doesn't go further in the chain if the previous operation returned a `Left`.
+It is convenient to use the `Either` monad when you want to return an error message. If an exception is thrown, you can return an `Either.left(error)`. When using `flatMap`, if any operation in the chain returns a `Left`, the subsequent operations are skipped and the error value is preserved.
 
 Let's see how we can rewrite the previous example using the `Either` monad. First, we have to modify our `getIncidents` and `getWorkspaceFromTeam` functions to return an `Either<Error, T>`.
 
@@ -172,8 +175,8 @@ function getIncidents(workspaceId: string): Either<Error, Incident[]> {
 
 Let's break down what's happening here:
 
-`Either.fromNullable(fetchIncidents(workspaceId))` returns an `Either<Error, Incident[]>`. If `fetchIncidents` returns `Left` because of an error for example, we will then execute the `mapLeft` operation and return an error message. In this case, we will not execute the `mapRight` operation.\
-However, if `fetchIncidents` returns an array of incidents, it returns `Right` and we then execute the `mapRight` operation.
+`Either.fromNullable(fetchIncidents(workspaceId))` returns an `Either<Error, Incident[]>`. If `fetchIncidents` returns `null` or `undefined`, `fromNullable` will create a `Left` value, and we'll execute the `mapLeft` operation to transform it into our custom error message. The `mapRight` operation will be skipped.\
+However, if `fetchIncidents` returns a valid array of incidents, `fromNullable` will create a `Right` value, and we'll execute the `mapRight` operation.
 
 We can then modify our main function `getIncidentUpdatedView` to use the `Either` monad:
 
@@ -192,7 +195,7 @@ function getIncidentUpdatedView(id: string): Either<Error, string> {
 }
 ```
 
-Notice how we used the `rightAndThen` method to chain the operations. This method enables us to chain operations on the unwrapped `Right` value of the previous operation. If an operation in this flow returns a `Left`, the chain is interrupted and the `Left` value is returned.
+Notice how we used the `rightAndThen` method to chain the operations. This method enables us to chain operations on the unwrapped `Right` value of the previous operation. If an operation in this flow returns a `Left`, the subsequent `rightAndThen` operations are skipped and the `Left` value is preserved through the rest of the chain.
 
 Finally, we used the `match` method to display a log message based on the result.
 
