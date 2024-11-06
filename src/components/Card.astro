@@ -1,20 +1,24 @@
 ---
-import { CardHeader, CardTitle, Card as ShadcnCard } from '@/components/ui/card'
+import {
+  CardHeader,
+  CardTitle,
+  Card as ShadcnCard,
+} from "@/components/ui/card";
 
 interface Props {
-  className?: string
-  colSpan?: string
-  rowSpan?: string
+  className?: string;
+  colSpan?: string;
+  rowSpan?: string;
 }
 
-const { className, colSpan, rowSpan } = Astro.props
-const hasTitle = Astro.slots.has('title')
+const { className, colSpan, rowSpan } = Astro.props;
+const hasTitle = Astro.slots.has("title");
 ---
 
 <ShadcnCard
   className={`card-animate align-start relative col-span-1 flex h-auto w-full transform flex-col justify-start overflow-hidden rounded-2xl shadow-lg ${
-    colSpan || 'md:col-span-2'
-  } ${rowSpan || ''} ${className || ''}`}
+    colSpan || "md:col-span-2"
+  } ${rowSpan || ""} ${className || ""}`}
 >
   {
     hasTitle && (

@@ -1,21 +1,21 @@
 ---
-import ExperienceItem from '@/components/ExperienceItem.astro'
-import { buttonVariants } from '@/components/ui/button'
-import Layout from '@/layouts/Layout.astro'
-import { cn } from '@/lib/utils'
-import { getCollection } from 'astro:content'
-import { ArrowLeft } from 'lucide-react'
+import ExperienceItem from "@/components/ExperienceItem.astro";
+import { buttonVariants } from "@/components/ui/button";
+import Layout from "@/layouts/Layout.astro";
+import { cn } from "@/lib/utils";
+import { getCollection } from "astro:content";
+import { ArrowLeft } from "lucide-react";
 
-const experiences = (await getCollection('experiences')).sort(
+const experiences = (await getCollection("experiences")).sort(
   (a, b) => b.data.id - a.data.id,
-)
+);
 ---
 
 <Layout title="Simon Haïoun-Viet - Expériences">
   <main class="m-auto min-h-screen max-w-6xl px-5" transition:animate="fade">
     <a
       href="javascript:window.history.back();"
-      class={cn(buttonVariants({ variant: 'outline' }), 'mb-5 gap-1')}
+      class={cn(buttonVariants({ variant: "outline" }), "mb-5 gap-1")}
     >
       <ArrowLeft /> Back
     </a>

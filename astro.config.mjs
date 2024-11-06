@@ -1,9 +1,9 @@
-import { defineConfig } from 'astro/config'
-import react from '@astrojs/react'
+import { defineConfig } from "astro/config";
+import react from "@astrojs/react";
 
-import tailwind from '@astrojs/tailwind'
-import rehypePrettyCode from 'rehype-pretty-code'
-import { transformerCopyButton } from '@rehype-pretty/transformers'
+import tailwind from "@astrojs/tailwind";
+import rehypePrettyCode from "rehype-pretty-code";
+import { transformerCopyButton } from "@rehype-pretty/transformers";
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,10 +19,10 @@ export default defineConfig({
       [
         rehypePrettyCode,
         {
-          theme: 'catppuccin-mocha',
+          theme: "catppuccin-mocha",
           transformers: [
             transformerCopyButton({
-              visibility: 'hover',
+              visibility: "hover",
               feedbackDuration: 2_500,
             }),
           ],
@@ -30,5 +30,5 @@ export default defineConfig({
       ],
     ],
   },
-  site: 'https://www.simon-hv.fr/'
-})
+  site: "https://www.simon-hv.fr/",
+});

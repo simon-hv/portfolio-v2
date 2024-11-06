@@ -33,8 +33,8 @@ Before diving deeper into monads, let's understand what a functor is. A functor 
 **A functor is any type that implements a `map` operation**, allowing us to apply a function to each item inside the container, producing a new container with the transformed values. For example, JavaScript’s Array is often seen as a functor because its `map` method applies a function to each element, returning a new array without altering the original:
 
 ```typescript /map/
-const numbers = [1, 2, 3]
-const doubled = numbers.map((x) => x * 2) // [2, 4, 6]
+const numbers = [1, 2, 3];
+const doubled = numbers.map((x) => x * 2); // [2, 4, 6]
 ```
 
 **A monad is a functor with superpowers**. While a functor lets you transform values with regular functions (`a -> b`), a monad lets you chain operations that themselves return monadic values (`a -> M<b>`). This is done through an additional operation called `flatMap` (or `bind`).
@@ -43,12 +43,12 @@ Here's a quick comparison:
 
 ```typescript showLineNumbers /map/ /flatMap/
 // Functor: transforms a value
-const maybeNumber = Maybe.of(5)
-const doubled = maybeNumber.map((x) => x * 2) // Maybe(10)
+const maybeNumber = Maybe.of(5);
+const doubled = maybeNumber.map((x) => x * 2); // Maybe(10)
 
 // Monad: chains operations that return monadic values
-const maybeUser = Maybe.of({ id: 1 })
-const maybePosts = maybeUser.flatMap((user) => fetchPosts(user.id))
+const maybeUser = Maybe.of({ id: 1 });
+const maybePosts = maybeUser.flatMap((user) => fetchPosts(user.id));
 // fetchPosts returns Maybe<Post[]>
 ```
 
@@ -62,21 +62,21 @@ Recently, I was writing a node.js app that needed to fetch data from a database.
 
 ```typescript
 function getIncidentUpdatedView({ payload }): string | undefined {
-  const workspaceId: string | undefined = getWorkspaceFromTeam(id)
+  const workspaceId: string | undefined = getWorkspaceFromTeam(id);
 
   if (!workspaceId) {
-    console.log('error getting workspace')
-    return
+    console.log("error getting workspace");
+    return;
   }
 
-  const incidents: Incident[] | undefined = getIncidents(workspaceId)
+  const incidents: Incident[] | undefined = getIncidents(workspaceId);
 
   if (!incidents) {
-    console.log('error getting incidents')
-    return
+    console.log("error getting incidents");
+    return;
   }
 
-  return updateView(incidents)
+  return updateView(incidents);
 }
 ```
 
@@ -91,11 +91,11 @@ Here's how the code looks like when using the `Option` monad (for this example, 
 
 ```typescript
 function getIncidentUpdatedView({ payload }): Option<string> {
-  const workspaceId = getWorkspaceFromTeam(id)
-  const incidents = workspaceId.andThen(getIncidents)
-  const updatedView = incidents.andThen(updateView)
+  const workspaceId = getWorkspaceFromTeam(id);
+  const incidents = workspaceId.andThen(getIncidents);
+  const updatedView = incidents.andThen(updateView);
 
-  return updatedView
+  return updatedView;
 }
 ```
 
@@ -103,7 +103,7 @@ Or even simpler:
 
 ```typescript
 function getIncidentUpdatedView({ payload }): Option<string> {
-  return getWorkspaceFromTeam(id).andThen(getIncidents).andThen(updateView)
+  return getWorkspaceFromTeam(id).andThen(getIncidents).andThen(updateView);
 }
 ```
 
@@ -120,13 +120,13 @@ Here's what `getIncidents` looks like:
 
 ```typescript
 function getIncidents(workspaceId: string): Option<Incident[]> {
-  const incidents = fetchIncidents(workspaceId)
+  const incidents = fetchIncidents(workspaceId);
 
   if (incidents) {
-    return Some(incidents)
+    return Some(incidents);
   }
 
-  return None
+  return None;
 }
 ```
 
@@ -136,7 +136,7 @@ Actually, the code above can be improved by using a `from` or `fromNullable` met
 
 ```typescript
 function getIncidents(workspaceId: string): Option<Incident[]> {
-  return Option.fromNullable(fetchIncidents(workspaceId))
+  return Option.fromNullable(fetchIncidents(workspaceId));
 }
 ```
 
@@ -166,10 +166,10 @@ Here's how `getIncidents` might look like:
 function getIncidents(workspaceId: string): Either<Error, Incident[]> {
   return Either.fromNullable(fetchIncidents(workspaceId))
     .mapRight((incidents) => {
-      console.log('incidents fetched', incidents)
-      return incidents
+      console.log("incidents fetched", incidents);
+      return incidents;
     })
-    .mapLeft((_) => new Error('Error fetching incidents'))
+    .mapLeft((_) => new Error("Error fetching incidents"));
 }
 ```
 
@@ -182,16 +182,18 @@ We can then modify our main function `getIncidentUpdatedView` to use the `Either
 
 ```typescript
 function getIncidentUpdatedView(id: string): Either<Error, string> {
-  const result = getWorkspaceFromTeam(id).rightAndThen(getIncidents).rightAndThen(updateView)
+  const result = getWorkspaceFromTeam(id)
+    .rightAndThen(getIncidents)
+    .rightAndThen(updateView);
 
   const message = result.match({
     left: (value) => `error: ${value}`,
     right: (value) => `success: ${value}`,
-  })
+  });
 
-  console.log(message)
+  console.log(message);
 
-  return result
+  return result;
 }
 ```
 
@@ -207,21 +209,27 @@ An example would be:
 
 ```typescript
 const fetchUserById = (id: number): Future<User> =>
-  Future.fromPromise(fetch(`/api/users/${id}`).then((response) => response.json()))
+  Future.fromPromise(
+    fetch(`/api/users/${id}`).then((response) => response.json()),
+  );
 
 const fetchUserPosts = (user: User): Future<Post[]> =>
-  Future.fromPromise(fetch(`/api/users/${user.id}/posts`).then((response) => response.json()))
+  Future.fromPromise(
+    fetch(`/api/users/${user.id}/posts`).then((response) => response.json()),
+  );
 
-const formatPosts = (posts: Post[]): string => posts.map((post) => `${post.title}: ${post.content}`).join('\n')
+const formatPosts = (posts: Post[]): string =>
+  posts.map((post) => `${post.title}: ${post.content}`).join("\n");
 
 // Chain the operations
-const getUserPosts = (userId: number): Future<string> => fetchUserById(userId).flatMap(fetchUserPosts).map(formatPosts)
+const getUserPosts = (userId: number): Future<string> =>
+  fetchUserById(userId).flatMap(fetchUserPosts).map(formatPosts);
 
 // Execute the Future
 getUserPosts(123).fork(
-  (error) => console.error('Something went wrong:', error),
-  (result) => console.log('User posts:', result),
-)
+  (error) => console.error("Something went wrong:", error),
+  (result) => console.log("User posts:", result),
+);
 ```
 
 `fork` is used to execute the `Future` and provide callbacks for handling the result and error.

@@ -1,18 +1,18 @@
 ---
-import Card from '@/components/Card.astro'
-import ExperienceItem from '@/components/ExperienceItem.astro'
-import { Badge } from '@/components/ui/badge'
-import { buttonVariants } from '@/components/ui/button'
-import { CardContent } from '@/components/ui/card'
-import { cn } from '@/lib/utils'
-import { BriefcaseBusiness } from 'lucide-react'
-import { getCollection } from 'astro:content'
+import Card from "@/components/Card.astro";
+import ExperienceItem from "@/components/ExperienceItem.astro";
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import { CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import { BriefcaseBusiness } from "lucide-react";
+import { getCollection } from "astro:content";
 
-const allExperiences = await getCollection('experiences')
+const allExperiences = await getCollection("experiences");
 
 const displayedExperiences = allExperiences
   .sort((a, b) => b.data.id - a.data.id)
-  .slice(0, 3)
+  .slice(0, 3);
 ---
 
 <Card
@@ -43,8 +43,8 @@ const displayedExperiences = allExperiences
     <a
       href="/xp"
       class={cn(
-        buttonVariants({ variant: 'default', size: 'lg' }),
-        'flex gap-2 items-center',
+        buttonVariants({ variant: "default", size: "lg" }),
+        "flex gap-2 items-center",
       )}
     >
       See more <Badge variant="secondary">

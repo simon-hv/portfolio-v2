@@ -1,7 +1,12 @@
 export default {
-  singleQuote: true,
-  semi: false,
-  printWidth: 120,
-  plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
+  plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
   pluginSearchDirs: false,
+  overrides: [
+    {
+      files: "*.astro",
+      options: {
+        parser: "astro",
+      },
+    },
+  ],
 };

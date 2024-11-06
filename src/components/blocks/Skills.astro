@@ -1,29 +1,33 @@
 ---
-import Card from '@/components/Card.astro'
-import { Badge } from '@/components/ui/badge'
-import { CardContent } from '@/components/ui/card'
-import { TestTubeDiagonal } from 'lucide-react'
+import Card from "@/components/Card.astro";
+import { Badge } from "@/components/ui/badge";
+import { CardContent } from "@/components/ui/card";
+import { TestTubeDiagonal } from "lucide-react";
 
 const skills = [
-  'React',
-  'Typescript',
-  'Javascript',
-  'Next',
-  'Node.js',
-  'Angular',
-  'Redux / NgRx',
-  'RxJS',
-  'Nx',
-  'Git',
-  'AWS',
-  'GraphQL',
-  'Docker',
-  'Gitlab CI/CD',
-  'CircleCI',
-]
+  "React",
+  "Typescript",
+  "Javascript",
+  "Next",
+  "Node.js",
+  "Angular",
+  "Redux / NgRx",
+  "RxJS",
+  "Nx",
+  "Git",
+  "AWS",
+  "GraphQL",
+  "Docker",
+  "Gitlab CI/CD",
+  "CircleCI",
+];
 ---
 
-<Card className='order-4 lg:order-3' colSpan="md:col-span-2 lg:col-span-1" rowSpan="row-span-2">
+<Card
+  className="order-4 lg:order-3"
+  colSpan="md:col-span-2 lg:col-span-1"
+  rowSpan="row-span-2"
+>
   <Fragment slot="title">
     <TestTubeDiagonal /> Skills
   </Fragment>

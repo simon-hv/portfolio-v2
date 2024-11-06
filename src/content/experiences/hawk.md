@@ -1,18 +1,18 @@
 ---
 id: 6
-company: 'Hawk'
-companyLogo: '@/assets/hawk.svg'
-duration: 'February 2017 - May 2023'
+company: "Hawk"
+companyLogo: "@/assets/hawk.svg"
+duration: "February 2017 - May 2023"
 stack:
   [
-    'React',
-    'Typescript',
-    'Angular',
-    'Redux / NgRx',
-    'RxJS',
-    'Nx',
-    'Node.js',
-    'AWS',
+    "React",
+    "Typescript",
+    "Angular",
+    "Redux / NgRx",
+    "RxJS",
+    "Nx",
+    "Node.js",
+    "AWS",
   ]
 ---
 

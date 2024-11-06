@@ -1,12 +1,14 @@
 ---
-import Avatar from '@/components/Avatar.astro'
-import { buttonVariants } from '@/components/ui/button'
-import { emailAddress } from '@/constants'
-import { FileText, Mail, Newspaper } from 'lucide-react'
+import Avatar from "@/components/Avatar.astro";
+import { buttonVariants } from "@/components/ui/button";
+import { emailAddress } from "@/constants";
+import { FileText, Mail, Newspaper } from "lucide-react";
 ---
 
 <header class="mb-10 flex justify-center border-b py-4">
-  <div class="flex max-w-6xl flex-grow flex-col items-center gap-5 p-2 sm:flex-row sm:p-4 md:p-2">
+  <div
+    class="flex max-w-6xl flex-grow flex-col items-center gap-5 p-2 sm:flex-row sm:p-4 md:p-2"
+  >
     <a aria-hidden="true" href="/">
       <Avatar />
     </a>
@@ -15,24 +17,40 @@ import { FileText, Mail, Newspaper } from 'lucide-react'
         <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight">
           <a class="no-underline" href="/">Simon Haïoun-Viet</a>
         </h3>
-        <a class="text-center text-sm text-muted-foreground no-underline sm:text-left" href="/">
+        <a
+          class="text-center text-sm text-muted-foreground no-underline sm:text-left"
+          href="/"
+        >
           Senior Software Engineer
         </a>
       </div>
     </div>
 
     <div class="flex justify-end gap-3">
-      <nav aria-label="Main navigation" class="flex flex-col gap-2 sm:flex-row sm:gap-2">
+      <nav
+        aria-label="Main navigation"
+        class="flex flex-col gap-2 sm:flex-row sm:gap-2"
+      >
         <div class="sm:contents">
-          <a class={`w-full ${buttonVariants({ variant: 'default' })}`} href="/blog">
+          <a
+            class={`w-full ${buttonVariants({ variant: "default" })}`}
+            href="/blog"
+          >
             <Newspaper className="mr-2 h-4 w-4" />Blog
           </a>
         </div>
         <div class="grid grid-cols-2 gap-2 sm:contents">
-          <a class={`w-full sm:w-auto ${buttonVariants({ variant: 'secondary' })}`} href={`mailto:${emailAddress}`}>
+          <a
+            class={`w-full sm:w-auto ${buttonVariants({ variant: "secondary" })}`}
+            href={`mailto:${emailAddress}`}
+          >
             <Mail className="mr-2 h-4 w-4" />Contact
           </a>
-          <a class={`w-full sm:w-auto ${buttonVariants({ variant: 'secondary' })}`} href="/resume.pdf" target="_blank">
+          <a
+            class={`w-full sm:w-auto ${buttonVariants({ variant: "secondary" })}`}
+            href="/resume.pdf"
+            target="_blank"
+          >
             <FileText className="mr-2 h-4 w-4" />Resume
           </a>
         </div>

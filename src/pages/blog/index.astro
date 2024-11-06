@@ -1,22 +1,28 @@
 ---
-import Card from '@/components/Card.astro'
-import { CardContent } from '@/components/ui/card'
-import Layout from '@/layouts/Layout.astro'
-import { humanizeDate } from '@/lib/utils'
-import { getCollection } from 'astro:content'
+import Card from "@/components/Card.astro";
+import { CardContent } from "@/components/ui/card";
+import Layout from "@/layouts/Layout.astro";
+import { humanizeDate } from "@/lib/utils";
+import { getCollection } from "astro:content";
 
-const blogPosts = (await getCollection('blog')).sort(
+const blogPosts = (await getCollection("blog")).sort(
   (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
-)
+);
 ---
 
-<Layout description="All articles from my tech blog." title="Blog - Simon Haïoun-Viet">
+<Layout
+  description="All articles from my tech blog."
+  title="Blog - Simon Haïoun-Viet"
+>
   <main class="mx-auto max-w-6xl p-2" transition:animate="fade">
     <Card>
       <Fragment slot="title">👋 Welcome to my blog</Fragment>
 
       <CardContent className="prose prose-invert max-w-none">
-        <p>I write stuff sometimes. Probably about web development, design, and other things.</p>
+        <p>
+          I write stuff sometimes. Probably about web development, design, and
+          other things.
+        </p>
 
         <section aria-labelledby="articles-heading">
           <h2 id="articles-heading">Articles</h2>
@@ -29,10 +35,15 @@ const blogPosts = (await getCollection('blog')).sort(
                       <h4 id={`article-${post.slug}`}>
                         <a href={`/blog/${post.slug}`}>{post.data.title}</a>
                       </h4>
-                      <time datetime={post.data.date.toDateString()} class="text-xs text-muted-foreground/80">
+                      <time
+                        datetime={post.data.date.toDateString()}
+                        class="text-xs text-muted-foreground/80"
+                      >
                         {humanizeDate(post.data.date)}
                       </time>
-                      <p class="mt-2 text-sm text-muted-foreground">{post.data.description}</p>
+                      <p class="mt-2 text-sm text-muted-foreground">
+                        {post.data.description}
+                      </p>
                     </article>
                   </li>
                 ))

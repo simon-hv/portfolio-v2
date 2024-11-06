@@ -1,28 +1,28 @@
 ---
-import Layout from '@/layouts/Layout.astro'
-import { humanizeDate } from '@/lib/utils'
-import { getCollection, type CollectionEntry } from 'astro:content'
+import Layout from "@/layouts/Layout.astro";
+import { humanizeDate } from "@/lib/utils";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
-  const blogPosts = await getCollection('blog')
+  const blogPosts = await getCollection("blog");
   return blogPosts.map((post) => {
-    const { slug } = post
+    const { slug } = post;
 
     return {
       params: { slug },
       props: { ...post, ogImage: `/blog/${slug}/og.png` },
-    }
-  })
+    };
+  });
 }
 
-type Props = CollectionEntry<'blog'> & { ogImage: string }
+type Props = CollectionEntry<"blog"> & { ogImage: string };
 
-const blogPost: Props = Astro.props
-const { Content } = await blogPost.render()
-const { title, description, date } = blogPost.data
+const blogPost: Props = Astro.props;
+const { Content } = await blogPost.render();
+const { title, description, date } = blogPost.data;
 
-const permalink = new URL(Astro.url.pathname, Astro.site).href
-const ogImageURL = new URL(blogPost.ogImage, Astro.site).href
+const permalink = new URL(Astro.url.pathname, Astro.site).href;
+const ogImageURL = new URL(blogPost.ogImage, Astro.site).href;
 ---
 
 <Layout description={description} title={`${title} - Simon Haïoun-Viet`}>

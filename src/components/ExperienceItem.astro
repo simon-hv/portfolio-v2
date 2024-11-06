@@ -1,15 +1,15 @@
 ---
-import { Image } from 'astro:assets'
-import type { CollectionEntry } from 'astro:content'
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
 
 export interface Props {
-  experience: CollectionEntry<'experiences'>
-  isLast?: boolean
+  experience: CollectionEntry<"experiences">;
+  isLast?: boolean;
 }
 
-const { experience, isLast } = Astro.props
-const { company, companyLogo, duration, stack } = experience.data
-const { Content } = await experience.render()
+const { experience, isLast } = Astro.props;
+const { company, companyLogo, duration, stack } = experience.data;
+const { Content } = await experience.render();
 ---
 
 <li class="mt-5">
@@ -40,7 +40,7 @@ const { Content } = await experience.render()
           <p class="text-muted-foreground">
             <span class="font-medium">Tech stack:</span>
             <span class="tracking-wide">
-              {stack.join(', ')}
+              {stack.join(", ")}
             </span>
           </p>
         </p>

@@ -1,10 +1,13 @@
 ---
 export interface Props {
-  text: string
-  classNames?: string
+  text: string;
+  classNames?: string;
 }
 
-const { text, classNames } = Astro.props
+const { text, classNames } = Astro.props;
 ---
 
-<span class={`bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-pink-500 ${classNames}`}>{text}</span>
+<span
+  class={`bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-pink-500 ${classNames}`}
+  >{text}</span
+>
