@@ -1,0 +1,22 @@
+---
+import type { TreeHeading } from "@/lib/headings";
+
+type Props = {
+  heading: TreeHeading;
+};
+
+const { heading } = Astro.props;
+---
+
+<li>
+  <a href={`#${heading.slug}`}>{heading.text}</a>
+  {
+    heading.children.length > 0 && (
+      <ol>
+        {heading.children.map((child) => (
+          <Astro.self heading={child} />
+        ))}
+      </ol>
+    )
+  }
+</li>

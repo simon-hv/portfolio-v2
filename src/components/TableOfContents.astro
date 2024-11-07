@@ -1,0 +1,21 @@
+---
+import { buildHeadingTree } from "@/lib/headings";
+import type { MarkdownHeading } from "astro";
+import RecursiveHeading from "./RecursiveHeading.astro";
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+const tree = buildHeadingTree(headings);
+---
+
+<details>
+  <summary>Table of contents</summary>
+  <nav aria-label="Table Of Contents">
+    <ol>
+      {tree.map((heading) => <RecursiveHeading heading={heading} />)}
+    </ol>
+  </nav>
+</details>
