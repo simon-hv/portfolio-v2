@@ -35,7 +35,7 @@ const formattedDescription = `${description || "Simon Haïoun-Viet, senior front
     <meta name="description" content={formattedDescription} />
     <slot name="head" />
     <title>{title}</title>
-    <ViewTransitions />
+    <ViewTransitions fallback="swap" />
   </head>
   <body>
     <div
