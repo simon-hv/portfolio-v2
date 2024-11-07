@@ -16,7 +16,7 @@ const blogPosts = (await getCollection("blog")).sort(
   title="Blog - Simon Haïoun-Viet"
 >
   <main class="mx-auto max-w-6xl p-2" transition:animate="fade">
-    <Card>
+    <Card id="blog-heading">
       <Fragment slot="title">
         <NewspaperIcon /> Recent articles
       </Fragment>
@@ -27,65 +27,62 @@ const blogPosts = (await getCollection("blog")).sort(
           and other things.
         </p>
 
-        <section aria-labelledby="articles-heading">
-          <h2 id="articles-heading" class="sr-only">Articles</h2>
-          <nav aria-label="Blog posts">
-            <ul class="grid gap-8 px-0 sm:grid-cols-1 lg:grid-cols-2">
-              {
-                blogPosts.map((post, index) => (
-                  <li class="group relative list-none pe-1 ps-1">
-                    <article
-                      aria-labelledby={`article-${post.slug}`}
-                      class={cn(
-                        "flex h-full flex-col gap-2 rounded-lg border-2 border-transparent bg-secondary/30",
-                        "p-6 transition-all duration-300 hover:border-primary/50 hover:bg-secondary/50",
-                        index === 0 && "bg-primary/5",
-                      )}
+        <nav aria-label="Blog posts">
+          <ul class="grid gap-8 px-0 sm:grid-cols-1 lg:grid-cols-2">
+            {
+              blogPosts.map((post, index) => (
+                <li class="group relative list-none pe-1 ps-1">
+                  <article
+                    aria-labelledby={`article-${post.slug}`}
+                    class={cn(
+                      "flex h-full flex-col gap-2 rounded-lg border-2 border-transparent bg-secondary/30",
+                      "p-6 transition-all duration-300 hover:border-primary/50 hover:bg-secondary/50",
+                      index === 0 && "bg-primary/5",
+                    )}
+                  >
+                    <time
+                      datetime={post.data.date.toDateString()}
+                      class="text-xs font-medium text-primary/80"
                     >
-                      <time
-                        datetime={post.data.date.toDateString()}
-                        class="text-xs font-medium text-primary/80"
+                      {humanizeDate(post.data.date)}
+                    </time>
+
+                    {index === 0 && (
+                      <span class="absolute right-5 top-5 rounded-full bg-primary/20 px-2 py-1 text-xs text-primary">
+                        Latest
+                      </span>
+                    )}
+
+                    <h3
+                      id={`article-${post.slug}`}
+                      class="text-xl font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-primary"
+                    >
+                      <a
+                        href={`/blog/${post.slug}`}
+                        class="no-underline after:absolute after:inset-0 after:content-['']"
                       >
-                        {humanizeDate(post.data.date)}
-                      </time>
+                        {post.data.title}
+                      </a>
+                    </h3>
 
-                      {index === 0 && (
-                        <span class="absolute right-5 top-5 rounded-full bg-primary/20 px-2 py-1 text-xs text-primary">
-                          Latest
-                        </span>
-                      )}
+                    <p class="mt-2 line-clamp-2 text-sm text-muted-foreground">
+                      {post.data.description}
+                    </p>
 
-                      <h3
-                        id={`article-${post.slug}`}
-                        class="text-xl font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-primary"
+                    <div class="mt-4 flex items-center text-sm text-muted-foreground/60">
+                      <a
+                        class="no-underline transition-transform duration-300 group-hover:translate-x-1"
+                        href={`/blog/${post.slug}`}
                       >
-                        <a
-                          href={`/blog/${post.slug}`}
-                          class="no-underline after:absolute after:inset-0 after:content-['']"
-                        >
-                          {post.data.title}
-                        </a>
-                      </h3>
-
-                      <p class="mt-2 line-clamp-2 text-sm text-muted-foreground">
-                        {post.data.description}
-                      </p>
-
-                      <div class="mt-4 flex items-center text-sm text-muted-foreground/60">
-                        <a
-                          class="no-underline transition-transform duration-300 group-hover:translate-x-1"
-                          href={`/blog/${post.slug}`}
-                        >
-                          Read article →
-                        </a>
-                      </div>
-                    </article>
-                  </li>
-                ))
-              }
-            </ul>
-          </nav>
-        </section>
+                        Read article →
+                      </a>
+                    </div>
+                  </article>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
       </CardContent>
     </Card>
   </main>

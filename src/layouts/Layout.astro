@@ -10,6 +10,7 @@ interface Props {
 }
 
 const { description, title } = Astro.props;
+const formattedDescription = `${description || "Simon Haïoun-Viet, senior frontend developer."}`;
 ---
 
 <!doctype html>
@@ -31,18 +32,20 @@ const { description, title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/jpeg" href="/favicon.jpeg" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
+    <meta name="description" content={formattedDescription} />
     <slot name="head" />
     <title>{title}</title>
     <ViewTransitions />
   </head>
   <body>
     <div
+      aria-hidden="true"
       class="email-container after:my-O fixed bottom-0 left-2 right-auto z-50 hidden w-10 animate-appear text-sm after:mx-auto after:block after:h-20 after:w-px after:bg-slate-400 after:content-[''] xl:block"
     >
       <a
         class="email-link p-2.5 tracking-widest no-underline hover:animate-heartbeat hover:cursor-pointer hover:text-white"
         href={`mailto:${emailAddress}`}
+        tabindex="-1"
       >
         {emailAddress}
       </a>

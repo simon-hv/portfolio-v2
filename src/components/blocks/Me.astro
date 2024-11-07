@@ -10,9 +10,10 @@ import { Github, Linkedin, Mail } from "lucide-react";
 <Card
   className="order-1"
   colSpan="md:col-span-4 lg:col-span-3"
+  id="about-me-heading"
   rowSpan="md:row-span-4"
 >
-  <Fragment slot="title">Hello 👋</Fragment>
+  <Fragment slot="title"> Hello 👋 </Fragment>
 
   <CardContent className="flex flex-col gap-6 text-justify">
     <div class="prose prose-invert max-w-none">
@@ -45,6 +46,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
 
       <div class="mt-5 flex gap-3">
         <a
+          aria-label="My Linkedin profile"
           href="https://www.linkedin.com/in/simonhaiounviet/"
           target="_blank"
           rel="noopener noreferrer"
@@ -54,6 +56,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
           <Linkedin className="h-4 w-4" />
         </a>
         <a
+          aria-label="Send me an email"
           href={`mailto:${emailAddress}`}
           class={`${buttonVariants({ variant: "outline", size: "icon" })} animate-fadeIn`}
           title="Mail"
@@ -61,6 +64,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
           <Mail className="h-4 w-4" />
         </a>
         <a
+          aria-label="My Github profile"
           href="https://github.com/simon-hv"
           target="_blank"
           rel="noopener noreferrer"

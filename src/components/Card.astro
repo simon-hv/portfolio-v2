@@ -4,31 +4,39 @@ import {
   CardTitle,
   Card as ShadcnCard,
 } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 interface Props {
   className?: string;
   colSpan?: string;
+  id?: string;
   rowSpan?: string;
 }
 
-const { className, colSpan, rowSpan } = Astro.props;
+const { className, colSpan, id, rowSpan } = Astro.props;
 const hasTitle = Astro.slots.has("title");
 ---
 
 <ShadcnCard
-  className={`animate-cardAppear align-start relative col-span-1 flex h-auto w-full transform flex-col justify-start overflow-hidden rounded-2xl opacity-0 shadow-lg ${
-    colSpan || "md:col-span-2"
-  } ${rowSpan || ""} ${className || ""}`}
+  className={cn(
+    "align-start relative col-span-1 flex w-full transform animate-cardAppear",
+    "flex-col justify-start rounded-2xl opacity-0 shadow-lg",
+    colSpan || "md:col-span-full",
+    rowSpan,
+    className,
+  )}
 >
-  {
-    hasTitle && (
-      <CardHeader className="border-b mb-4">
-        <CardTitle className="text-white flex items-center gap-3">
-          <slot name="title" />
-        </CardTitle>
-      </CardHeader>
-    )
-  }
+  <section class="flex flex-grow flex-col" aria-labelledby={id}>
+    {
+      hasTitle && (
+        <CardHeader className="border-b mb-4">
+          <CardTitle className="text-white flex items-center gap-3" id={id}>
+            <slot name="title" />
+          </CardTitle>
+        </CardHeader>
+      )
+    }
 
-  <slot />
+    <slot />
+  </section>
 </ShadcnCard>

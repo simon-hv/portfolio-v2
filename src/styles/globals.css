@@ -90,6 +90,7 @@
   code:not(pre code) {
     @apply text-white;
     @apply break-words;
+    @apply p-0;
   }
   code:not(pre code)::before,
   code:not(pre code)::after {
