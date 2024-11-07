@@ -4,9 +4,13 @@ description: In this article, we'll try to understand what monads are thanks to 
 date: 2024-11-04
 ---
 
+## Monads: The Burrito of Programming
+
 ![Monads meme](@/assets/blog/monads-explained/1.jpg)
 
-As developers, we've all heard about monads here and there. For many of us, our first encounter with monads leaves us with more questions than answers. In this article we'll dive into the world of monads and we'll try to understand them through some examples.
+As developers, we've all heard about monads here and there. You might have heard them described as <a href="https://blog.plover.com/prog/burritos.html" target="_blank">`burritos`</a> or `containers`. 
+
+For many of us, our first encounter with monads leaves us with more questions than answers. In this article we'll dive into the world of monads and we'll try to understand them through some examples.
 
 But never forget the following <a href="https://youtu.be/dkZFtimgAcM?si=nbZMJ_AIF2sRfems&t=49" target="_blank">quote from Douglas Crockford</a>:
 
@@ -81,6 +85,8 @@ function getIncidentUpdatedView({ payload }): string | undefined {
 ```
 
 Notice all those `if` statements checking for `undefined`? While this code works, it's not very elegant and the error handling makes it harder to follow the main logic flow.
+
+### Introducing the Option monad
 
 To improve this, we'll use the `Option` monad (that can be known as `Maybe`).\
 The `Option` monad represents a value that may not be present, which is exactly what we need!
