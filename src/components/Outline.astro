@@ -1,4 +1,6 @@
 ---
+import { cn } from "@/lib/utils";
+
 export interface Props {
   text: string;
   classNames?: string;
@@ -8,6 +10,8 @@ const { text, classNames } = Astro.props;
 ---
 
 <span
-  class={`bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-pink-500 ${classNames}`}
-  >{text}</span
+  class={cn(
+    "bg-clip-text text-transparent bg-gradient-to-r from-red-200 to-yellow-200",
+    classNames,
+  )}>{text}</span
 >

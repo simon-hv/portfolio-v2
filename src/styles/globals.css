@@ -43,7 +43,7 @@
 
     --tw-prose-body: var(--default-foreground-color);
 
-    --card: 230 18% 14%;
+    --card: transparent;
     --card-foreground: var(--default-foreground-color);
 
     --popover: 222.2 84% 4.9%;
