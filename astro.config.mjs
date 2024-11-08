@@ -32,5 +32,5 @@ export default defineConfig({
       ],
     ],
   },
-  site: "https://www.simon-hv.fr/",
+  site: "https://simon-hv.dev/",
 });
