@@ -20,7 +20,7 @@ const blogPosts = (await getCollection("blog"))
   rowSpan="row-span-4"
 >
   <Fragment slot="title">
-    <Newspaper className="animate-pulse" /> Blog
+    <Newspaper className="motion-safe:animate-pulse" /> Blog
   </Fragment>
 
   <CardContent className="flex h-full">

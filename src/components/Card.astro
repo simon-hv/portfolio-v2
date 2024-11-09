@@ -19,8 +19,8 @@ const hasTitle = Astro.slots.has("title");
 
 <ShadcnCard
   className={cn(
-    "align-start relative col-span-1 flex w-full transform animate-cardAppear",
-    "flex-col justify-start rounded-2xl opacity-0 shadow-lg",
+    "align-start relative col-span-1 flex w-full transform motion-safe:animate-cardAppear",
+    "flex-col justify-start rounded-2xl shadow-lg motion-safe:opacity-0",
     colSpan || "md:col-span-full",
     rowSpan,
     className,

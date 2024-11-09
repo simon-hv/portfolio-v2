@@ -130,7 +130,7 @@
   }
 
   /* Delay our 5 cards on the homepage */
-  @for $i from 0 to 5 {
+  @for $i from 1 to 5 {
     .animate-cardAppear:nth-of-type($i) {
       animation-delay: calc(calc($i - 1) * 150ms);
     }

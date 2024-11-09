@@ -50,7 +50,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
           href="https://www.linkedin.com/in/simonhaiounviet/"
           target="_blank"
           rel="noopener noreferrer"
-          class={`${buttonVariants({ variant: "outline", size: "icon" })} animate-fadeIn`}
+          class={`${buttonVariants({ variant: "outline", size: "icon" })} motion-safe:animate-fadeIn`}
           title="Linkedin"
         >
           <Linkedin className="h-4 w-4" />
@@ -58,7 +58,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
         <a
           aria-label="Send me an email"
           href={`mailto:${emailAddress}`}
-          class={`${buttonVariants({ variant: "outline", size: "icon" })} animate-fadeIn`}
+          class={`${buttonVariants({ variant: "outline", size: "icon" })} motion-safe:animate-fadeIn`}
           title="Mail"
         >
           <Mail className="h-4 w-4" />
@@ -68,7 +68,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
           href="https://github.com/simon-hv"
           target="_blank"
           rel="noopener noreferrer"
-          class={`${buttonVariants({ variant: "outline", size: "icon" })} animate-fadeIn`}
+          class={`${buttonVariants({ variant: "outline", size: "icon" })} motion-safe:animate-fadeIn`}
           title="Github"
         >
           <Github className="h-4 w-4" />
