@@ -34,6 +34,7 @@ const blogPosts = (await getCollection("blog"))
                   <div class="flex flex-col gap-1">
                     <a
                       id={`article-${post.slug}`}
+                      data-umami-event={`Post ${post.slug} link`}
                       href={`/blog/${post.slug}`}
                       class="text-sm"
                     >
@@ -53,6 +54,7 @@ const blogPosts = (await getCollection("blog"))
       </nav>
       <a
         class={`${buttonVariants({ variant: "ghost" })} group mt-4 gap-2 p-2 self-start lg:self-center`}
+        data-umami-event="View all articles link"
         href="/blog"
       >
         View all articles

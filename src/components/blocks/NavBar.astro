@@ -34,6 +34,7 @@ import { FileText, Mail, Newspaper } from "lucide-react";
         <div class="sm:contents">
           <a
             class={`w-full ${buttonVariants({ variant: "default" })}`}
+            data-umami-event="Blog link"
             href="/blog"
           >
             <Newspaper className="mr-2 h-4 w-4" />Blog
@@ -42,12 +43,14 @@ import { FileText, Mail, Newspaper } from "lucide-react";
         <div class="grid grid-cols-2 gap-2 sm:contents">
           <a
             class={`w-full sm:w-auto ${buttonVariants({ variant: "secondary" })}`}
+            data-umami-event="Contact link"
             href={`mailto:${emailAddress}`}
           >
             <Mail className="mr-2 h-4 w-4" />Contact
           </a>
           <a
             class={`w-full sm:w-auto ${buttonVariants({ variant: "secondary" })}`}
+            data-umami-event="Resume link"
             href="/resume.pdf"
             target="_blank"
           >
