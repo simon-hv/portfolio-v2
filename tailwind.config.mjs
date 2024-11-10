@@ -70,6 +70,10 @@ export default {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
         },
+        grow: {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" },
+        },
         heartbeat: {
           "0%": { transform: "scale(1)" },
           "50%": { transform: "scale(1.1)" },
@@ -80,6 +84,7 @@ export default {
         appear: "appear 1s ease-in-out both",
         cardAppear: "cardAppear 1s ease-in-out both",
         fadeIn: "fadeIn 1s ease-in-out both",
+        grow: "grow auto linear",
         heartbeat: "heartbeat 1.5s ease-in-out infinite",
       },
       typography: {

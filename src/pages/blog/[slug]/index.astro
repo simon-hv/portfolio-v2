@@ -3,6 +3,7 @@ import TableOfContents from "@/components/TableOfContents.astro";
 import Layout from "@/layouts/Layout.astro";
 import { humanizeDate } from "@/lib/utils";
 import { getCollection, type CollectionEntry } from "astro:content";
+import { ArrowUp } from "lucide-react";
 
 export async function getStaticPaths() {
   const blogPosts = await getCollection("blog");
@@ -42,6 +43,11 @@ const ogImageURL = new URL(blogPost.ogImage, Astro.site).href;
   </Fragment>
 
   <main class="mx-auto max-w-6xl p-2" transition:animate="fade">
+    <div
+      aria-hidden="true"
+      class="scroll-progress fixed left-0 top-0 z-10 h-[3px] w-full origin-left scale-0 bg-gradient-to-r from-purple-600 via-red-500 to-yellow-500 shadow-[0_0_10px_rgba(220,38,38,0.7)] supports-[animation-timeline]:animate-grow supports-[animation-timeline]:[animation-timeline:scroll()]"
+    >
+    </div>
     <article class="prose prose-invert mx-auto">
       <header>
         <p class="text-muted-foreground">{humanizeDate(date)}</p>
@@ -49,6 +55,46 @@ const ogImageURL = new URL(blogPost.ogImage, Astro.site).href;
       </header>
       <TableOfContents headings={headings} />
       <Content />
+      <a
+        aria-label="Scroll to top"
+        class="mx-auto mt-10 block w-max rounded-full bg-secondary p-3 hover:animate-heartbeat hover:bg-primary hover:text-black hover:shadow-xl"
+        href="#topbar"
+        title="Scroll to top"
+      >
+        <ArrowUp />
+      </a>
     </article>
   </main>
 </Layout>
+
+<script>
+  // fallback for browsers that don't support animation-timeline
+  const supportsScrollTimeline = CSS.supports("animation-timeline", "scroll()");
+
+  if (!supportsScrollTimeline) {
+    const updateScrollProgress = () => {
+      const progressBar = document.querySelector(
+        ".scroll-progress",
+      ) as HTMLElement;
+      if (!progressBar) return;
+
+      const scrollProgress =
+        window.scrollY /
+        (document.documentElement.scrollHeight - window.innerHeight);
+
+      progressBar.style.transform = `scaleX(${scrollProgress})`;
+    };
+
+    window.addEventListener("scroll", updateScrollProgress);
+
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        window.removeEventListener("scroll", updateScrollProgress);
+      },
+      { once: true },
+    );
+
+    updateScrollProgress();
+  }
+</script>
