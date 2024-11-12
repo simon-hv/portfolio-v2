@@ -1,6 +1,7 @@
 ---
 import Avatar from "@/components/Avatar.astro";
-import { buttonVariants } from "@/components/ui/button";
+import ResumeDownload from "@/components/ResumeDownload";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { emailAddress } from "@/constants";
 import { FileText, Mail, Newspaper } from "lucide-react";
 ---
@@ -52,14 +53,7 @@ import { FileText, Mail, Newspaper } from "lucide-react";
           >
             <Mail className="mr-2 h-4 w-4" />Contact
           </a>
-          <a
-            class={`w-full sm:w-auto ${buttonVariants({ variant: "secondary" })}`}
-            data-umami-event="Resume link"
-            href="/resume.pdf"
-            target="_blank"
-          >
-            <FileText className="mr-2 h-4 w-4" />Resume
-          </a>
+          <ResumeDownload client:load />
         </div>
       </nav>
     </div>

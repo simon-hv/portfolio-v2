@@ -129,6 +129,15 @@
     @apply cursor-pointer;
   }
 
+  .email-link {
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+  }
+  ::selection {
+    background-color: #fad0c9;
+    color: #4f4f4e;
+  }
+
   /* Delay our 5 cards on the homepage */
   @for $i from 1 to 5 {
     .animate-cardAppear:nth-of-type($i) {
