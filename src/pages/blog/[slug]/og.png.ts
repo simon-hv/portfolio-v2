@@ -1,5 +1,5 @@
 import OgImage from "@/components/og";
-import { toPng } from "@/components/og/createImage";
+import { toPng } from "@/lib/createImage";
 import type { APIRoute, InferGetStaticPropsType } from "astro";
 import { getCollection } from "astro:content";
 

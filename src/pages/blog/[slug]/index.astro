@@ -73,9 +73,8 @@ const ogImageURL = new URL(blogPost.ogImage, Astro.site).href;
 
   if (!supportsScrollTimeline) {
     const updateScrollProgress = () => {
-      const progressBar = document.querySelector(
-        ".scroll-progress",
-      ) as HTMLElement;
+      const progressBar =
+        document.querySelector<HTMLElement>(".scroll-progress");
       if (!progressBar) return;
 
       const scrollProgress =
