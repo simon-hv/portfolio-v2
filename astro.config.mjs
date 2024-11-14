@@ -6,6 +6,8 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
 import { transformerNotationDiff } from "shikiji-transformers";
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -13,6 +15,7 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
+    sitemap(),
   ],
   markdown: {
     syntaxHighlight: false,
