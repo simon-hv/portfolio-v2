@@ -35,9 +35,9 @@ const blogPosts = (await getCollection("blog")).sort(
                   <article
                     aria-labelledby={`article-${post.slug}`}
                     class={cn(
-                      "flex h-full flex-col gap-2 rounded-lg border-2 border-transparent bg-secondary/30",
+                      "flex h-full flex-col gap-2 rounded-lg border-2 border-transparent bg-primary/5",
                       "p-6 transition-all duration-300 hover:border-primary/50 hover:bg-secondary/50",
-                      index === 0 && "bg-primary/5",
+                      index === 0 && "bg-secondary/30",
                     )}
                   >
                     <time

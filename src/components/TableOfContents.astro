@@ -14,8 +14,8 @@ const tree = buildHeadingTree(headings);
 <details>
   <summary>Table of contents</summary>
   <nav aria-label="Table Of Contents">
-    <ol>
+    <ul>
       {tree.map((heading) => <RecursiveHeading heading={heading} />)}
-    </ol>
+    </ul>
   </nav>
 </details>

@@ -12,11 +12,11 @@ const { heading } = Astro.props;
   <a href={`#${heading.slug}`}>{heading.text}</a>
   {
     heading.children.length > 0 && (
-      <ol>
+      <ul>
         {heading.children.map((child) => (
           <Astro.self heading={child} />
         ))}
-      </ol>
+      </ul>
     )
   }
 </li>

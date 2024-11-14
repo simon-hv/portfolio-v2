@@ -26,7 +26,7 @@ const blogPosts = (await getCollection("blog"))
   <CardContent className="flex h-full">
     <div class="prose prose-invert flex max-w-none flex-col justify-between">
       <nav aria-label="Blog posts">
-        <ul class="mt-0 space-y-4 p-0">
+        <ul class="mt-0 space-y-8 p-0">
           {
             blogPosts.map((post) => (
               <li>
@@ -34,6 +34,7 @@ const blogPosts = (await getCollection("blog"))
                   <div class="flex flex-col gap-1">
                     <a
                       id={`article-${post.slug}`}
+                      class="text-sm no-underline"
                       data-umami-event={`Post ${post.slug} link`}
                       href={`/blog/${post.slug}`}
                       class="text-sm"
