@@ -8,7 +8,7 @@ date: 2024-11-04
 
 ![Monads meme](@/assets/blog/monads-explained/1.jpg)
 
-As developers, we've all heard about monads here and there. You might have heard them described as <a href="https://blog.plover.com/prog/burritos.html" target="_blank">`burritos`</a> or `containers`. 
+As developers, we've all heard about monads here and there. You might have heard them described as <a href="https://blog.plover.com/prog/burritos.html" target="_blank">`burritos`</a> or `containers`.
 
 For many of us, our first encounter with monads leaves us with more questions than answers. In this article we'll dive into the world of monads and we'll try to understand them through some examples.
 
@@ -117,7 +117,8 @@ Well, this is more readable, right? We're simply chaining operations using `andT
 
 We can remove the `if` statements because the `Option` monad will handle these edge cases for us. How? Let's see!
 
-We modified our `getWorkspaceFromTeam` and `getIncidents` functions to return an `Option<string>` instead of `string | undefined`. `Option` can hold two possible values:
+We modified our `getWorkspaceFromTeam` and `getIncidents` functions to return an `Option<string>` instead of `string | undefined`.\
+The `Option` type can hold two possible values:
 
 - `Some(value)`: the value is present
 - `None`: the value is not present
