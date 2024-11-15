@@ -90,8 +90,9 @@ export default {
       typography: {
         DEFAULT: {
           css: {
-            color: "hsl(var(--default-color))",
             maxWidth: "70ch",
+            "--tw-prose-invert-code": "hsl(var(--inline-code-foreground))",
+            "--tw-prose-invert-body": "hsl(var(--default-foreground-color))",
           },
         },
       },
