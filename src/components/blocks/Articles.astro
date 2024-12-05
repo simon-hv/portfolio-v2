@@ -30,13 +30,13 @@ const blogPosts = (await getCollection("blog"))
           {
             blogPosts.map((post) => (
               <li>
-                <article aria-labelledby={`article-${post.slug}`}>
+                <article aria-labelledby={`article-${post.id}`}>
                   <div class="flex flex-col gap-1">
                     <a
-                      id={`article-${post.slug}`}
+                      id={`article-${post.id}`}
                       class="text-sm no-underline"
-                      data-umami-event={`Post ${post.slug} link`}
-                      href={`/blog/${post.slug}`}
+                      data-umami-event={`Post ${post.id} link`}
+                      href={`/blog/${post.id}`}
                       class="text-sm"
                     >
                       {post.data.title}

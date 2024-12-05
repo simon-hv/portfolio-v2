@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
 
 export interface Props {
   experience: CollectionEntry<"experiences">;
@@ -9,7 +10,7 @@ export interface Props {
 
 const { experience, isLast } = Astro.props;
 const { company, companyLogo, duration, stack } = experience.data;
-const { Content } = await experience.render();
+const { Content } = await render(experience);
 ---
 
 <li class="mt-5">

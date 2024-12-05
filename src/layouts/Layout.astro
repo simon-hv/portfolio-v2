@@ -1,8 +1,8 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import NavBar from "@/components/blocks/NavBar.astro";
 import { emailAddress } from "@/constants";
 import "@/styles/globals.css";
-import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   description?: string;
@@ -29,7 +29,7 @@ const formattedDescription = `${description || "Simon Haïoun-Viet, senior front
     <meta name="description" content={formattedDescription} />
     <slot name="head" />
     <title>{title}</title>
-    <ViewTransitions fallback="swap" />
+    <ClientRouter fallback="swap" />
   </head>
   <body>
     <div

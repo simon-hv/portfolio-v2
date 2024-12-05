@@ -33,7 +33,7 @@ const blogPosts = (await getCollection("blog")).sort(
               blogPosts.map((post, index) => (
                 <li class="group relative list-none pe-1 ps-1">
                   <article
-                    aria-labelledby={`article-${post.slug}`}
+                    aria-labelledby={`article-${post.id}`}
                     class={cn(
                       "flex h-full flex-col rounded-lg border-2 border-transparent bg-primary/5",
                       "p-6 transition-all duration-300 hover:border-primary/50 hover:bg-secondary/50",
@@ -55,11 +55,11 @@ const blogPosts = (await getCollection("blog")).sort(
                       )}
 
                       <h3
-                        id={`article-${post.slug}`}
+                        id={`article-${post.id}`}
                         class="text-xl font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-primary"
                       >
                         <a
-                          href={`/blog/${post.slug}`}
+                          href={`/blog/${post.id}`}
                           class="no-underline after:absolute after:inset-0 after:content-['']"
                         >
                           {post.data.title}
@@ -74,7 +74,7 @@ const blogPosts = (await getCollection("blog")).sort(
                     <div class="mt-4 flex items-center text-sm text-muted-foreground/60">
                       <a
                         class="no-underline transition-transform duration-300 group-hover:translate-x-1"
-                        href={`/blog/${post.slug}`}
+                        href={`/blog/${post.id}`}
                       >
                         Read article →
                       </a>

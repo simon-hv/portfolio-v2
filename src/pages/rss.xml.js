@@ -12,7 +12,7 @@ export async function GET(context) {
       "Frontend dev sharing insights on web development, UI/UX, and software engineering",
     site: context.site,
     items: blogPosts.map((post) => ({
-      link: `/blog/${post.slug}`,
+      link: `/blog/${post.id}`,
       title: post.data.title,
       pubDate: new Date(post.data.date),
       ...post.data,

@@ -1,4 +1,5 @@
 ---
+import { render } from "astro:content";
 import TableOfContents from "@/components/TableOfContents.astro";
 import Layout from "@/layouts/Layout.astro";
 import { humanizeDate } from "@/lib/utils";
@@ -8,11 +9,11 @@ import { ArrowUp } from "lucide-react";
 export async function getStaticPaths() {
   const blogPosts = await getCollection("blog");
   return blogPosts.map((post) => {
-    const { slug } = post;
+    const { id } = post;
 
     return {
-      params: { slug },
-      props: { ...post, ogImage: `/blog/${slug}/og.png` },
+      params: { id },
+      props: { ...post, ogImage: `/blog/${id}/og.png` },
     };
   });
 }
@@ -20,7 +21,7 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"blog"> & { ogImage: string };
 
 const blogPost: Props = Astro.props;
-const { Content, headings } = await blogPost.render();
+const { Content, headings } = await render(blogPost);
 const { title, description, date } = blogPost.data;
 
 const permalink = new URL(Astro.url.pathname, Astro.site).href;
