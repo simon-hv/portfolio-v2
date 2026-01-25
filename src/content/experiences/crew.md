@@ -1,9 +1,9 @@
 ---
-id: 8
-company: "Welcome to the Jungle"
-companyLogo: "@/assets/welcome.png"
-duration: "June 2023 - March 2025"
-stack: ["React", "Typescript", "Node.js", "GraphQL", "AWS"]
+id: 9
+company: "Crew"
+companyLogo: "@/assets/crew.png"
+duration: "March 2025 - Present"
+stack: ["Next.js", "React", "Typescript", "Node.js"]
 ---
 
 Development of the main website and the ATS (Applicant Tracking System) for Welcome to The Jungle.\
