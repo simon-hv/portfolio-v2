@@ -1,91 +1,63 @@
 ---
-import Card from "@/components/Card.astro";
-import { CardContent } from "@/components/ui/card";
+import FeaturedPostCard from "@/components/blog/FeaturedPostCard.astro";
+import PostList from "@/components/blog/PostList.astro";
 import Layout from "@/layouts/Layout.astro";
-import { cn, humanizeDate } from "@/lib/utils";
 import { getCollection } from "astro:content";
-import { NewspaperIcon } from "lucide-react";
 
-const blogPosts = (await getCollection("blog")).sort(
-  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
-);
+const allPosts = (await getCollection("blog"))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const featuredPost = allPosts.find((p) => p.data.featured);
+const regularPosts = allPosts.filter((p) => !p.data.featured);
+
+const allTags = [...new Set(allPosts.flatMap((p) => p.data.tags))].sort();
 ---
 
 <Layout
-  description="All articles from my tech blog."
+  description="Articles about web development."
   title="Blog - Simon Haïoun-Viet"
 >
-  <main class="mx-auto max-w-6xl p-2" transition:animate="fade">
-    <Card id="blog-heading">
-      <Fragment slot="title">
-        <NewspaperIcon /> Recent articles
-      </Fragment>
+  <main class="mx-auto max-w-2xl px-6 py-16">
+    <header class="mb-12">
+      <h1 class="mb-4 text-3xl font-semibold tracking-tight">Blog</h1>
+      Web development, thoughts, and everything in between.
+    </header>
 
-      <CardContent className="prose prose-invert max-w-none">
-        <p>
-          👋 I write stuff sometimes. Probably about web development, design,
-          and other things.
-        </p>
+    {
+      featuredPost && (
+        <section class="mb-12">
+          <h2 class="mb-6 text-sm font-medium uppercase tracking-wider text-muted-foreground">
+            Featured
+          </h2>
+          <FeaturedPostCard post={featuredPost} />
+        </section>
+      )
+    }
 
-        <nav aria-label="Blog posts">
-          <ul class="grid gap-8 px-0 sm:grid-cols-1 lg:grid-cols-2">
-            {
-              blogPosts.map((post, index) => (
-                <li class="group relative list-none pe-1 ps-1">
-                  <article
-                    aria-labelledby={`article-${post.id}`}
-                    class={cn(
-                      "flex h-full flex-col rounded-lg border-2 border-transparent bg-primary/5",
-                      "p-6 transition-all duration-300 hover:border-primary/50 hover:bg-secondary/50",
-                      index === 0 && "bg-secondary/30",
-                    )}
-                  >
-                    <div class="flex flex-grow flex-col gap-2">
-                      <time
-                        datetime={post.data.date.toDateString()}
-                        class="text-xs font-medium text-primary/80"
-                      >
-                        {humanizeDate(post.data.date)}
-                      </time>
-
-                      {index === 0 && (
-                        <span class="absolute right-5 top-5 rounded-full bg-primary/20 px-2 py-1 text-xs text-primary">
-                          Latest
-                        </span>
-                      )}
-
-                      <h3
-                        id={`article-${post.id}`}
-                        class="text-xl font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-primary"
-                      >
-                        <a
-                          href={`/blog/${post.id}`}
-                          class="no-underline after:absolute after:inset-0 after:content-['']"
-                        >
-                          {post.data.title}
-                        </a>
-                      </h3>
-
-                      <p class="mt-2 line-clamp-2 text-sm text-muted-foreground">
-                        {post.data.description}
-                      </p>
-                    </div>
-
-                    <div class="mt-4 flex items-center text-sm text-muted-foreground/60">
-                      <a
-                        class="no-underline transition-transform duration-300 group-hover:translate-x-1"
-                        href={`/blog/${post.id}`}
-                      >
-                        Read article →
-                      </a>
-                    </div>
-                  </article>
-                </li>
-              ))
-            }
-          </ul>
+    {
+      allTags.length > 0 && (
+        <nav class="mb-8 flex flex-wrap gap-2" aria-label="Filter by tag">
+          <a
+            href="/blog"
+            class="rounded bg-accent px-3 py-1 text-sm text-accent-foreground no-underline"
+          >
+            All
+          </a>
+          {allTags.map((tag) => (
+            <a
+              href={`/blog/tag/${tag}`}
+              class="rounded bg-secondary/50 px-3 py-1 text-sm text-muted-foreground no-underline transition-colors hover:bg-secondary hover:text-foreground"
+            >
+              {tag}
+            </a>
+          ))}
         </nav>
-      </CardContent>
-    </Card>
+      )
+    }
+
+    <section>
+      <PostList posts={regularPosts} />
+    </section>
   </main>
 </Layout>

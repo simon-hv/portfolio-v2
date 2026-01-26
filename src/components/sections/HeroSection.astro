@@ -1,0 +1,61 @@
+---
+import { emailAddress } from "@/constants";
+import { Github, Linkedin, Mail } from "lucide-react";
+import ResumeDownload from "@/components/ResumeDownload";
+---
+
+<section class="mb-20 motion-safe:animate-fadeIn">
+  <h1 class="mb-4 text-4xl font-semibold tracking-tight">Simon Haïoun-Viet</h1>
+  <p class="mb-6 text-xl text-muted-foreground">Product Engineer</p>
+
+  <div class="mb-8 max-w-xl space-y-4 text-foreground/90">
+    <p>
+      Web developer since 2015, focused on React. Based in Montpellier, France,
+      currently working remotely for
+      <a href="https://crew.work/" target="_blank" rel="noopener noreferrer"
+        >Crew</a
+      > (YC S21).
+    </p>
+    <p>
+      I build web applications with JavaScript and TypeScript, from frontend
+      frameworks to backend services with Node.js (Express, Fastify), and handle
+      infrastructure with Terraform on AWS and GCP.
+    </p>
+  </div>
+
+  <div
+    class="flex flex-wrap items-center justify-center gap-5 sm:justify-start"
+  >
+    <nav class="flex gap-5" aria-label="Social links">
+      <a
+        href="https://github.com/simon-hv"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-2 text-muted-foreground no-underline transition-colors hover:text-foreground"
+      >
+        <Github className="h-4 w-4" />
+        GitHub
+      </a>
+      <a
+        href="https://www.linkedin.com/in/simonhaiounviet/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-2 text-muted-foreground no-underline transition-colors hover:text-foreground"
+      >
+        <Linkedin className="h-4 w-4" />
+        LinkedIn
+      </a>
+      <a
+        href={`mailto:${emailAddress}`}
+        class="flex items-center gap-2 text-muted-foreground no-underline transition-colors hover:text-foreground"
+      >
+        <Mail className="h-4 w-4" />
+        Email
+      </a>
+    </nav>
+
+    <span class="hidden text-border sm:block">|</span>
+
+    <ResumeDownload client:load />
+  </div>
+</section>

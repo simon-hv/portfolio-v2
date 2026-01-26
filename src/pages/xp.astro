@@ -1,31 +1,30 @@
 ---
 import ExperienceItem from "@/components/ExperienceItem.astro";
-import { buttonVariants } from "@/components/ui/button";
 import Layout from "@/layouts/Layout.astro";
-import { cn } from "@/lib/utils";
 import { getCollection } from "astro:content";
-import { ArrowLeft } from "lucide-react";
 
 const experiences = (await getCollection("experiences")).sort(
   (a, b) => b.data.id - a.data.id,
 );
 ---
 
-<Layout title="Simon Haïoun-Viet - Expériences">
-  <main class="m-auto min-h-screen max-w-6xl px-5" transition:animate="fade">
-    <a
-      href="javascript:window.history.back();"
-      class={cn(buttonVariants({ variant: "outline" }), "mb-5 gap-1")}
-    >
-      <ArrowLeft /> Back
-    </a>
-    <ul role="list">
+<Layout title="Experience - Simon Haïoun-Viet">
+  <main class="mx-auto max-w-2xl px-6 py-16">
+    <header class="mb-12">
+      <a
+        href="/"
+        class="mb-8 inline-block text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
+      >
+        &larr; Back home
+      </a>
+      <h1 class="mb-4 text-3xl font-semibold tracking-tight">Experience</h1>
+      <p class="text-muted-foreground">My professional journey so far.</p>
+    </header>
+
+    <ul class="space-y-8 border-l border-border pl-6">
       {
-        experiences.map((experience, idx) => (
-          <ExperienceItem
-            experience={experience}
-            isLast={idx === experiences.length - 1}
-          />
+        experiences.map((experience) => (
+          <ExperienceItem experience={experience} />
         ))
       }
     </ul>

@@ -2,6 +2,8 @@
 title: Monads explained (maybe)
 description: In this article, we'll try to understand what monads are thanks to some examples.
 date: 2024-11-04
+tags: ["typescript", "functional-programming"]
+featured: true
 ---
 
 ## Monads: The Burrito of Programming

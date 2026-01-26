@@ -1,20 +1,14 @@
 ---
-import Articles from "@/components/blocks/Articles.astro";
-import Education from "@/components/blocks/Education.astro";
-import Experiences from "@/components/blocks/Experiences.astro";
-import Me from "@/components/blocks/Me.astro";
-import Skills from "@/components/blocks/Skills.astro";
+import ExperienceTimeline from "@/components/sections/ExperienceTimeline.astro";
+import HeroSection from "@/components/sections/HeroSection.astro";
+import RecentPosts from "@/components/sections/RecentPosts.astro";
 import Layout from "@/layouts/Layout.astro";
 ---
 
-<Layout title="Simon Haïoun-Viet - Portfolio">
-  <main
-    class="lg:grid-rows-fr relative m-auto grid w-full max-w-6xl gap-2 overflow-hidden p-2 sm:gap-2 sm:p-4 md:grid-cols-4 md:gap-3 md:p-2 lg:gap-4"
-  >
-    <Me />
-    <Articles />
-    <Skills />
-    <Experiences />
-    <Education />
+<Layout title="Simon Haïoun-Viet">
+  <main class="mx-auto max-w-2xl px-6 py-16">
+    <HeroSection />
+    <RecentPosts />
+    <ExperienceTimeline />
   </main>
 </Layout>

@@ -1,10 +1,10 @@
 ---
 import { render } from "astro:content";
+import TagList from "@/components/blog/TagList.astro";
 import TableOfContents from "@/components/TableOfContents.astro";
 import Layout from "@/layouts/Layout.astro";
 import { humanizeDate } from "@/lib/utils";
 import { getCollection, type CollectionEntry } from "astro:content";
-import { ArrowUp } from "lucide-react";
 
 export async function getStaticPaths() {
   const blogPosts = await getCollection("blog");
@@ -22,7 +22,7 @@ type Props = CollectionEntry<"blog"> & { ogImage: string };
 
 const blogPost: Props = Astro.props;
 const { Content, headings } = await render(blogPost);
-const { title, description, date } = blogPost.data;
+const { title, description, date, tags } = blogPost.data;
 
 const permalink = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageURL = new URL(blogPost.ogImage, Astro.site).href;
@@ -43,58 +43,129 @@ const ogImageURL = new URL(blogPost.ogImage, Astro.site).href;
     <meta property="twitter:image" content={ogImageURL} />
   </Fragment>
 
-  <main class="mx-auto max-w-6xl p-2" transition:animate="fade">
-    <div
-      aria-hidden="true"
-      class="scroll-progress fixed left-0 top-0 z-10 h-[3px] w-full origin-left scale-0 bg-gradient-to-r from-purple-600 via-red-500 to-yellow-500 shadow-[0_0_10px_rgba(220,38,38,0.7)] supports-[animation-timeline]:animate-grow supports-[animation-timeline]:[animation-timeline:scroll()]"
-    >
-    </div>
-    <article class="prose prose-invert mx-auto">
-      <header>
-        <p class="text-muted-foreground">{humanizeDate(date)}</p>
-        <h1>{title}</h1>
-      </header>
-      <TableOfContents headings={headings} />
-      <Content />
-      <a
-        aria-label="Scroll to top"
-        class="mx-auto mt-10 block w-max rounded-full bg-secondary p-3 hover:animate-heartbeat hover:bg-primary hover:text-black hover:shadow-xl"
-        href="#topbar"
-        title="Scroll to top"
-      >
-        <ArrowUp />
-      </a>
+  <main class="mx-auto max-w-4xl px-6 py-16">
+    <article class="lg:grid lg:grid-cols-[1fr_200px] lg:gap-12">
+      <div class="prose prose-invert prose-lg max-w-none">
+        <header class="not-prose mb-12">
+          <a
+            href="/blog"
+            class="mb-8 inline-block text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
+          >
+            &larr; Back to blog
+          </a>
+          <time
+            datetime={date.toISOString()}
+            class="block text-sm text-muted-foreground"
+          >
+            {humanizeDate(date)}
+          </time>
+          <h1 class="mb-4 mt-2 text-3xl font-semibold tracking-tight">
+            {title}
+          </h1>
+          <TagList tags={tags} />
+        </header>
+
+        <div class="lg:hidden">
+          <TableOfContents headings={headings} />
+        </div>
+
+        <Content />
+      </div>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <TableOfContents headings={headings} />
+        </div>
+      </aside>
     </article>
   </main>
 </Layout>
 
 <script>
-  // fallback for browsers that don't support animation-timeline
-  const supportsScrollTimeline = CSS.supports("animation-timeline", "scroll()");
+  const SCROLL_OFFSET_PX = 100;
+  const BOTTOM_THRESHOLD_PX = 50;
+  const ACTIVE_CLASS = "text-foreground";
+  const INACTIVE_CLASS = "text-muted-foreground";
 
-  if (!supportsScrollTimeline) {
-    const updateScrollProgress = () => {
-      const progressBar =
-        document.querySelector<HTMLElement>(".scroll-progress");
-      if (!progressBar) return;
+  function initScrollSpy() {
+    const tocLinks = document.querySelectorAll<HTMLAnchorElement>(
+      'aside nav a[href^="#"]'
+    );
+    if (tocLinks.length === 0) return;
 
-      const scrollProgress =
-        window.scrollY /
-        (document.documentElement.scrollHeight - window.innerHeight);
+    const linksByHeadingId = new Map<string, HTMLAnchorElement>();
+    const headings: HTMLElement[] = [];
 
-      progressBar.style.transform = `scaleX(${scrollProgress})`;
+    for (const link of tocLinks) {
+      const id = link.getAttribute("href")?.slice(1);
+      if (!id) continue;
+
+      const heading = document.getElementById(id);
+      if (!heading) continue;
+
+      linksByHeadingId.set(id, link);
+      headings.push(heading);
+    }
+
+    if (headings.length === 0) return;
+
+    let currentActiveId: string | null = null;
+
+    const setActiveLink = (id: string) => {
+      if (id === currentActiveId) return;
+
+      if (currentActiveId) {
+        const prevLink = linksByHeadingId.get(currentActiveId);
+        prevLink?.classList.replace(ACTIVE_CLASS, INACTIVE_CLASS);
+      }
+
+      const nextLink = linksByHeadingId.get(id);
+      nextLink?.classList.replace(INACTIVE_CLASS, ACTIVE_CLASS);
+      currentActiveId = id;
     };
 
-    window.addEventListener("scroll", updateScrollProgress);
+    const getActiveHeadingId = (): string => {
+      const isAtBottom =
+        window.innerHeight + window.scrollY >=
+        document.body.scrollHeight - BOTTOM_THRESHOLD_PX;
+
+      if (isAtBottom) {
+        return headings[headings.length - 1].id;
+      }
+
+      let activeHeading = headings[0];
+      for (const heading of headings) {
+        if (heading.getBoundingClientRect().top <= SCROLL_OFFSET_PX) {
+          activeHeading = heading;
+        } else {
+          break;
+        }
+      }
+
+      return activeHeading.id;
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+
+      requestAnimationFrame(() => {
+        setActiveLink(getActiveHeadingId());
+        ticking = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    setActiveLink(getActiveHeadingId());
 
     document.addEventListener(
       "astro:before-swap",
-      () => {
-        window.removeEventListener("scroll", updateScrollProgress);
-      },
-      { once: true },
+      () => window.removeEventListener("scroll", onScroll),
+      { once: true }
     );
-
-    updateScrollProgress();
   }
+
+  initScrollSpy();
+  document.addEventListener("astro:after-swap", initScrollSpy);
 </script>

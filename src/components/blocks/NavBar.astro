@@ -1,61 +1,41 @@
 ---
-import Avatar from "@/components/Avatar.astro";
-import ResumeDownload from "@/components/ResumeDownload";
-import { buttonVariants } from "@/components/ui/button";
 import { emailAddress } from "@/constants";
-import { Mail, Newspaper } from "lucide-react";
 ---
 
 <header
   aria-label="Menu bar"
-  class="mb-10 flex justify-center border-b py-4"
+  class="border-b border-border"
   id="topbar"
 >
-  <div
-    class="flex max-w-6xl flex-grow flex-col items-center gap-5 p-2 sm:flex-row sm:p-4 md:p-2"
-  >
-    <a aria-label="Go to homepage" href="/">
-      <Avatar />
+  <div class="mx-auto flex max-w-2xl items-center justify-between px-6 py-4">
+    <a
+      href="/"
+      class="font-medium text-foreground no-underline transition-colors hover:text-muted-foreground"
+    >
+      Simon Haïoun-Viet
     </a>
-    <div class="flex flex-grow flex-row items-center gap-2">
-      <div class="flex flex-col">
-        <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight">
-          <a class="no-underline" href="/">Simon Haïoun-Viet</a>
-        </h3>
-        <a
-          class="text-center text-sm text-muted-foreground no-underline sm:text-left"
-          href="/"
-        >
-          Senior Software Engineer
-        </a>
-      </div>
-    </div>
 
-    <div class="flex justify-end gap-3">
-      <nav
-        aria-label="Main navigation"
-        class="flex flex-col gap-2 sm:flex-row sm:gap-2"
+    <nav aria-label="Main navigation" class="flex items-center gap-6">
+      <a
+        href="/blog"
+        class="text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
+        data-umami-event="Blog link"
       >
-        <div class="sm:contents">
-          <a
-            class={`w-full ${buttonVariants({ variant: "default" })}`}
-            data-umami-event="Blog link"
-            href="/blog"
-          >
-            <Newspaper className="mr-2 h-4 w-4" />Blog
-          </a>
-        </div>
-        <div class="grid grid-cols-2 gap-2 sm:contents">
-          <a
-            class={`w-full sm:w-auto ${buttonVariants({ variant: "secondary" })}`}
-            data-umami-event="Contact link"
-            href={`mailto:${emailAddress}`}
-          >
-            <Mail className="mr-2 h-4 w-4" />Contact
-          </a>
-          <ResumeDownload client:load />
-        </div>
-      </nav>
-    </div>
+        Blog
+      </a>
+      <a
+        href="/xp"
+        class="text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
+      >
+        Experience
+      </a>
+      <a
+        href={`mailto:${emailAddress}`}
+        class="text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
+        data-umami-event="Contact link"
+      >
+        Contact
+      </a>
+    </nav>
   </div>
 </header>

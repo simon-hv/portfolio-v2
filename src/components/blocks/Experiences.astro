@@ -30,12 +30,9 @@ const displayedExperiences = allExperiences
   >
     <ul role="list">
       {
-        displayedExperiences.map((experience, idx) => (
+        displayedExperiences.map((experience) => (
           <>
-            <ExperienceItem
-              experience={experience}
-              isLast={idx === displayedExperiences.length - 1}
-            />
+            <ExperienceItem experience={experience} />
           </>
         ))
       }

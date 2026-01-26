@@ -2,6 +2,7 @@
 title: Three Game-Changing JavaScript Proposals You Should Know About
 description: A technical deep dive into three major JavaScript proposals currently in the TC39 pipeline, with practical examples and implementation details.
 date: 2024-11-14
+tags: ["javascript", "ecmascript"]
 ---
 
 JavaScript is evolving, and the future looks exciting! While you're writing your everyday `if` statements and wrestling with Date objects, the TC39 members are cooking up some game-changing features that could revolutionize how we write JavaScript. From elegant pattern matching to intuitive date handling, let's dive into three proposals that might just make your developer life a whole lot better.

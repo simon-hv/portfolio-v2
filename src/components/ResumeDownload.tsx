@@ -17,9 +17,9 @@ export default function ResumeDownload() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem className="cursor-pointer">
+        <DropdownMenuItem asChild>
           <a
-            className="w-full text-foreground no-underline"
+            className="cursor-pointer no-underline"
             data-umami-event="English resume link"
             href="/resume.pdf"
             target="_blank"
@@ -27,9 +27,9 @@ export default function ResumeDownload() {
             🇬🇧 English
           </a>
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem asChild>
           <a
-            className="w-full text-foreground no-underline"
+            className="cursor-pointer no-underline"
             data-umami-event="French resume link"
             href="/cv.pdf"
             target="_blank"
