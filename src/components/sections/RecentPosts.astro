@@ -10,9 +10,9 @@ const posts = (await getCollection("blog"))
 
 <section class="mb-20">
   <h2
-    class="mb-8 text-sm font-medium uppercase tracking-wider text-muted-foreground"
+    class="mb-8 text-xs font-semibold uppercase tracking-widest text-muted-foreground"
   >
-    Recent Writing
+    <span class="mr-2 text-accent">//</span>Recent Writing
   </h2>
 
   <ul class="divide-y divide-border">
@@ -34,7 +34,7 @@ const posts = (await getCollection("blog"))
 
   <a
     href="/blog"
-    class="mt-6 inline-block animate-pulse text-sm no-underline transition-colors"
+    class="mt-6 inline-block text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
   >
     View all posts &rarr;
   </a>

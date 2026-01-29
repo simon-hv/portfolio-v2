@@ -43,13 +43,13 @@ const ogImageURL = new URL(blogPost.ogImage, Astro.site).href;
     <meta property="twitter:image" content={ogImageURL} />
   </Fragment>
 
-  <main class="mx-auto max-w-4xl px-6 py-16">
+  <main id="main-content" class="mx-auto max-w-4xl px-6 py-16">
     <article class="lg:grid lg:grid-cols-[1fr_200px] lg:gap-12">
       <div class="prose prose-invert prose-lg max-w-none">
         <header class="not-prose mb-12">
           <a
             href="/blog"
-            class="mb-8 inline-block text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
+            class="mb-4 inline-block text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
           >
             &larr; Back to blog
           </a>
@@ -59,7 +59,7 @@ const ogImageURL = new URL(blogPost.ogImage, Astro.site).href;
           >
             {humanizeDate(date)}
           </time>
-          <h1 class="mb-4 mt-2 text-3xl font-semibold tracking-tight">
+          <h1 class="mb-4 mt-2 text-4xl font-bold tracking-tighter">
             {title}
           </h1>
           <TagList tags={tags} />
