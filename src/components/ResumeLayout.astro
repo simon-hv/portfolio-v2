@@ -1,0 +1,359 @@
+---
+import "@fontsource-variable/inter";
+import "@/styles/globals.css";
+import type { ResumeData } from "@/data/resume/types";
+
+interface Props {
+  data: ResumeData;
+}
+
+const { data } = Astro.props;
+const altLang = data.lang === "fr" ? "en" : "fr";
+const altLangLabel = data.lang === "fr" ? "EN" : "FR";
+---
+
+<!doctype html>
+<html lang={data.lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{data.meta.title}</title>
+    <style>
+      :root {
+        /* Sidebar (dark) */
+        --resume-sidebar-bg: #0f1215;
+        --resume-sidebar-border: #3f4d5a;
+        --resume-sidebar-heading: #879aab;
+        --resume-sidebar-icon: #a5b3c0;
+        --resume-sidebar-text: #e1e6ea;
+        --resume-sidebar-text-secondary: #c3cdd5;
+
+        /* Main content (light) */
+        --resume-main-heading: #151a1e;
+        --resume-main-text: #2a343c;
+        --resume-main-text-muted: #546778;
+        --resume-main-accent: #698196;
+      }
+
+      @page {
+        size: 210mm 297mm;
+        margin: 0;
+      }
+
+      @media print {
+        html {
+          font-size: 16px;
+        }
+
+        html,
+        body {
+          width: 210mm;
+          height: 297mm;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        body {
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+
+        .no-print {
+          display: none !important;
+        }
+
+        .resume-container {
+          width: 210mm !important;
+          height: 297mm !important;
+          margin: 0 !important;
+          box-shadow: none;
+        }
+
+        .resume-sidebar {
+          height: 297mm !important;
+        }
+      }
+
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--resume-main-accent);
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+  <body class="bg-zinc-200 font-sans text-zinc-800 antialiased">
+    <!-- Print button -->
+    <div class="no-print fixed right-4 top-4 z-50 flex gap-2">
+      <a
+        href={`/${altLang}/resume`}
+        class="rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm font-medium text-zinc-700 shadow-lg hover:bg-zinc-50"
+      >
+        {altLangLabel}
+      </a>
+      <button
+        onclick="window.print()"
+        class="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white shadow-lg hover:bg-zinc-700"
+      >
+        {data.ui.exportPdf}
+      </button>
+      <a
+        href="/"
+        class="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 shadow-lg hover:bg-zinc-50"
+      >
+        {data.ui.back}
+      </a>
+    </div>
+
+    <!-- Resume container -->
+    <div
+      class="resume-container mx-auto my-8 grid h-[297mm] w-[210mm] grid-cols-[70mm_1fr] overflow-hidden bg-white shadow-xl print:my-0 print:shadow-none"
+    >
+      <!-- Sidebar -->
+      <aside class="resume-sidebar bg-[var(--resume-sidebar-bg)] p-7 text-white">
+        <!-- Photo -->
+        <div class="mb-8 flex justify-center">
+          <img
+            src="/avatar.jpeg"
+            alt={data.header.name}
+            class="h-32 w-32 rounded-full border-4 border-[var(--resume-sidebar-border)] object-cover"
+          />
+        </div>
+
+        <!-- Contact -->
+        <section class="mb-8">
+          <h2
+            class="mb-4 text-xs font-bold uppercase tracking-widest text-[var(--resume-sidebar-heading)]"
+          >
+            {data.contact.title}
+          </h2>
+          <div class="space-y-3 text-sm">
+            <div class="flex items-start gap-3">
+              <svg
+                class="mt-0.5 h-4 w-4 shrink-0 text-[var(--resume-sidebar-icon)]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <span class="text-[var(--resume-sidebar-text)]">{data.contact.location}</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg
+                class="mt-0.5 h-4 w-4 shrink-0 text-[var(--resume-sidebar-icon)]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+              <a
+                href={`mailto:${data.contact.email}`}
+                class="text-[var(--resume-sidebar-text)] hover:text-white"
+              >
+                {data.contact.email}
+              </a>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg
+                class="mt-0.5 h-4 w-4 shrink-0 text-[var(--resume-sidebar-icon)]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                ></path>
+              </svg>
+              <span class="text-[var(--resume-sidebar-text)]">{data.contact.phone}</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg
+                class="mt-0.5 h-4 w-4 shrink-0 text-[var(--resume-sidebar-icon)]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                ></path>
+              </svg>
+              <a
+                href={`https://${data.contact.portfolio}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[var(--resume-sidebar-text)] hover:text-white"
+              >
+                {data.contact.portfolio}
+              </a>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg
+                class="mt-0.5 h-4 w-4 shrink-0 text-[var(--resume-sidebar-icon)]"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                ></path>
+              </svg>
+              <a
+                href={`https://linkedin.com/in/${data.contact.linkedin}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[var(--resume-sidebar-text)] hover:text-white"
+              >
+                {data.contact.linkedin}
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="mb-8">
+          <h2
+            class="mb-4 text-xs font-bold uppercase tracking-widest text-[var(--resume-sidebar-heading)]"
+          >
+            {data.skills.title}
+          </h2>
+          <div class="space-y-4">
+            {
+              data.skills.categories.map((cat) => (
+                <div>
+                  <h3 class="mb-1.5 text-xs font-semibold text-[var(--resume-sidebar-text-secondary)]">
+                    {cat.label}
+                  </h3>
+                  <p class="text-sm leading-relaxed text-[var(--resume-sidebar-text)]">
+                    {cat.items.join(", ")}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Languages -->
+        <section class="mb-8">
+          <h2
+            class="mb-4 text-xs font-bold uppercase tracking-widest text-[var(--resume-sidebar-heading)]"
+          >
+            {data.languages.title}
+          </h2>
+          <div class="space-y-2 text-sm">
+            {
+              data.languages.items.map((lang) => (
+                <div class="flex justify-between">
+                  <span class="text-[var(--resume-sidebar-text)]">{lang.name}</span>
+                  <span class="text-[var(--resume-sidebar-icon)]">{lang.level}</span>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Education -->
+        <section>
+          <h2
+            class="mb-4 text-xs font-bold uppercase tracking-widest text-[var(--resume-sidebar-heading)]"
+          >
+            {data.education.title}
+          </h2>
+          <div class="space-y-4 text-sm">
+            {
+              data.education.items.map((edu) => (
+                <div>
+                  <p class="font-semibold text-white">{edu.degree}</p>
+                  <p class="text-[var(--resume-sidebar-text-secondary)]">{edu.school}</p>
+                  <p class="mt-1 text-xs text-[var(--resume-sidebar-icon)]">{edu.period}</p>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+      </aside>
+
+      <!-- Main content -->
+      <main class="p-7">
+        <!-- Header -->
+        <header class="mb-6">
+          <h1 class="text-3xl font-bold text-[var(--resume-main-heading)]">{data.header.name}</h1>
+          <p class="mt-1 text-lg font-medium leading-normal text-[var(--resume-main-text-muted)]">
+            {data.header.role}
+          </p>
+          <p class="mt-3 text-sm leading-relaxed text-[var(--resume-main-text)]">
+            {data.header.summary}
+          </p>
+        </header>
+
+        <!-- Experience -->
+        <section>
+          <h2
+            class="mb-5 border-b-2 border-[var(--resume-main-accent)] pb-2 text-sm font-bold uppercase tracking-widest text-[var(--resume-main-heading)]"
+          >
+            {data.experience.title}
+          </h2>
+
+          <div class="space-y-6">
+            {
+              data.experience.items.map((exp) => (
+                <article>
+                  <div class="flex items-start justify-between">
+                    <div>
+                      <h3 class="text-base font-bold text-[var(--resume-main-heading)]">
+                        {exp.role}
+                      </h3>
+                      <p class="text-sm font-medium text-[var(--resume-main-text-muted)]">
+                        {exp.company}
+                      </p>
+                    </div>
+                    <span class="text-xs font-medium text-[var(--resume-main-text-muted)]">
+                      {exp.period}
+                    </span>
+                  </div>
+                  <p
+                    class="mt-2 text-sm text-[var(--resume-main-text)]"
+                    set:html={exp.description}
+                  />
+                  <ul class="mt-2 space-y-1 text-sm text-[var(--resume-main-text)]">
+                    {exp.achievements.map((achievement) => (
+                      <li>• {achievement}</li>
+                    ))}
+                  </ul>
+                  <p class="mt-1.5 text-sm text-[var(--resume-main-text)]">
+                    <strong>Stack :</strong> {exp.stack}
+                  </p>
+                </article>
+              ))
+            }
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
