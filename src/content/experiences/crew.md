@@ -23,6 +23,7 @@ stack:
 
 Product Engineer at a YC-backed (S21) startup building a CRM for recruitment agencies. Working end-to-end in a 3-person team: full-stack development, product research, user interviews, infrastructure, and support.
 
+- **Sole frontend developer** in the team: owned all user-facing development (landing page, product features) using Next.js 15 and shadcn
 - **Built an AI-powered semantic search system** using pgvector embeddings, now used daily by all recruiters to source candidates for open positions
 - **Developed an AI notetaker** that joins recruiter calls, generates structured summaries, and auto-fills CRM fields, fully replacing manual note-taking
 - **Architected AI workflows** using Mastra and AI SDK for automated data extraction and CRM enrichment
