@@ -23,6 +23,7 @@ export default function ResumeDownload() {
             data-umami-event="English resume link"
             href="/resume.pdf"
             target="_blank"
+            rel="noopener noreferrer"
           >
             🇬🇧 English
           </a>
@@ -33,6 +34,7 @@ export default function ResumeDownload() {
             data-umami-event="French resume link"
             href="/cv.pdf"
             target="_blank"
+            rel="noopener noreferrer"
           >
             🇫🇷 French
           </a>

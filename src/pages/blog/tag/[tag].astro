@@ -28,7 +28,7 @@ const allTags = [...new Set(allPosts.flatMap((p) => p.data.tags))].sort();
   description={`Articles tagged with ${tag}`}
   title={`${tag} - Blog - Simon Haïoun-Viet`}
 >
-  <main class="mx-auto max-w-2xl px-6 py-16">
+  <main id="main-content" class="mx-auto max-w-2xl px-6 py-16">
     <header class="mb-12">
       <a
         href="/blog"
@@ -36,7 +36,7 @@ const allTags = [...new Set(allPosts.flatMap((p) => p.data.tags))].sort();
       >
         &larr; All posts
       </a>
-      <h1 class="mb-4 text-3xl font-semibold tracking-tight">
+      <h1 class="mb-4 text-4xl font-bold tracking-tighter">
         Tagged: {tag}
       </h1>
       <p class="text-muted-foreground">

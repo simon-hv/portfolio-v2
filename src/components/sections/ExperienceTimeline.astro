@@ -16,16 +16,16 @@ const experiencesWithContent = await Promise.all(
 
 <section>
   <h2
-    class="mb-8 text-sm font-medium uppercase tracking-wider text-muted-foreground"
+    class="mb-8 text-xs font-semibold uppercase tracking-widest text-muted-foreground"
   >
-    Experience
+    <span class="mr-2 text-accent">//</span>Experience
   </h2>
 
-  <div class="space-y-8 border-l border-border pl-6">
+  <div class="space-y-8 border-l border-border pl-4 sm:pl-6">
     {
       experiencesWithContent.map(({ data, Content }) => (
         <div class="relative">
-          <div class="absolute left-[calc(-1.5rem-0.5px)] top-4 h-2 w-2 -translate-x-1/2 rounded-full bg-muted-foreground" />
+          <div class="absolute left-[calc(-1rem-0.5px)] top-4 h-2 w-2 -translate-x-1/2 rounded-full bg-muted-foreground sm:left-[calc(-1.5rem-0.5px)]" />
 
           <div class="flex items-start gap-4">
             <span class="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-md bg-secondary">

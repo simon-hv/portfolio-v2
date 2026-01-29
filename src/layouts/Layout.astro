@@ -15,7 +15,7 @@ const formattedDescription = `${description || "Simon Haïoun-Viet, senior front
 ---
 
 <!doctype html>
-<html class="dark font-sans leading-relaxed motion-safe:scroll-smooth" lang="en">
+<html class="dark font-sans leading-relaxed antialiased motion-safe:scroll-smooth" lang="en">
   <head>
     <script
       is:inline
@@ -33,6 +33,9 @@ const formattedDescription = `${description || "Simon Haïoun-Viet, senior front
     <ClientRouter fallback="swap" />
   </head>
   <body>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-foreground">
+      Skip to content
+    </a>
     <NavBar />
     <slot />
   </body>

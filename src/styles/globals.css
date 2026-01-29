@@ -4,35 +4,35 @@
 
 @layer base {
   .dark {
-    --background: 240 10% 6%;
-    --foreground: 0 0% 85%;
+    --background: 220 8% 8%;
+    --foreground: 0 0% 92%;
 
-    --card: 240 6% 10%;
-    --card-foreground: 0 0% 85%;
+    --card: 30 4% 11%;
+    --card-foreground: 0 0% 92%;
 
-    --popover: 240 10% 8%;
-    --popover-foreground: 0 0% 85%;
+    --popover: 30 4% 10%;
+    --popover-foreground: 0 0% 92%;
 
     --primary: 0 0% 100%;
-    --primary-foreground: 240 10% 6%;
+    --primary-foreground: 30 8% 8%;
 
-    --secondary: 240 5% 16%;
-    --secondary-foreground: 0 0% 85%;
+    --secondary: 30 3% 16%;
+    --secondary-foreground: 0 0% 92%;
 
-    --muted: 240 5% 20%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 30 3% 20%;
+    --muted-foreground: 30 5% 50%;
 
-    --inline-code-foreground: 210 100% 70%;
+    --inline-code-foreground: 35 95% 65%;
 
-    --accent: 210 100% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 35 95% 60%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 5% 18%;
-    --input: 240 5% 16%;
-    --ring: 210 100% 60%;
+    --border: 30 4% 18%;
+    --input: 30 3% 16%;
+    --ring: 35 95% 60%;
 
     --radius: 0.5rem;
   }
@@ -49,7 +49,7 @@
   a {
     @apply text-foreground;
     @apply underline decoration-muted-foreground/50 underline-offset-2;
-    @apply transition-colors;
+    @apply transition-colors duration-150;
   }
   a:hover {
     @apply text-accent decoration-accent;
@@ -72,12 +72,12 @@
   }
 
   [data-highlighted-line] {
-    @apply bg-zinc-600/30;
-    @apply border-l-blue-400;
+    @apply bg-amber-900/20;
+    @apply border-l-amber-500;
   }
   [data-highlighted-chars] {
-    @apply rounded bg-zinc-600/50;
-    box-shadow: 0 0 0 4px rgb(82 82 91 / 0.5);
+    @apply rounded bg-amber-800/40;
+    box-shadow: 0 0 0 4px rgb(120 80 30 / 0.3);
   }
   code,
   pre {
@@ -88,8 +88,17 @@
     @apply cursor-pointer;
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    scroll-margin-top: 5rem;
+  }
+
   ::selection {
-    background-color: hsl(210 100% 60% / 0.3);
+    background-color: hsl(35 95% 60% / 0.3);
     color: hsl(0 0% 100%);
   }
 }

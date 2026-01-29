@@ -9,19 +9,19 @@ const experiences = (await getCollection("experiences")).sort(
 ---
 
 <Layout title="Experience - Simon Haïoun-Viet">
-  <main class="mx-auto max-w-2xl px-6 py-16">
+  <main id="main-content" class="mx-auto max-w-2xl px-6 py-16">
     <header class="mb-12">
       <a
         href="/"
-        class="mb-8 inline-block text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
+        class="mb-4 inline-block text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
       >
         &larr; Back home
       </a>
-      <h1 class="mb-4 text-3xl font-semibold tracking-tight">Experience</h1>
+      <h1 class="mb-4 text-4xl font-bold tracking-tighter">Experience</h1>
       <p class="text-muted-foreground">My professional journey so far.</p>
     </header>
 
-    <ul class="space-y-8 border-l border-border pl-6">
+    <ul class="space-y-8 border-l border-border pl-4 sm:pl-6">
       {
         experiences.map((experience) => (
           <ExperienceItem experience={experience} />
