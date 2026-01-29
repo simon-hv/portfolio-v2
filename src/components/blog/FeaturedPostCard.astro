@@ -1,0 +1,30 @@
+---
+import { humanizeDate } from "@/lib/utils";
+import type { CollectionEntry } from "astro:content";
+import TagList from "./TagList.astro";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+---
+
+<article class="rounded-lg border border-border bg-card/50 p-6">
+  <time
+    datetime={post.data.date.toISOString()}
+    class="text-sm text-muted-foreground"
+  >
+    {humanizeDate(post.data.date)}
+  </time>
+  <h3 class="mb-3 mt-2 text-2xl font-semibold">
+    <a
+      href={`/blog/${post.id}`}
+      class="no-underline transition-colors hover:text-accent"
+    >
+      {post.data.title}
+    </a>
+  </h3>
+  <p class="mb-4 text-muted-foreground">{post.data.description}</p>
+  <TagList tags={post.data.tags} />
+</article>

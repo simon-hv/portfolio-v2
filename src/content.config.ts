@@ -7,6 +7,9 @@ const blogCollection = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.date(),
+    tags: z.array(z.string()).default([]),
+    featured: z.boolean().default(false),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -16,6 +19,7 @@ const experienceCollection = defineCollection({
     z.object({
       id: z.number(),
       company: z.string(),
+      title: z.string().optional(),
       companyLogo: image(),
       duration: z.string(),
       stack: z.array(z.string()),

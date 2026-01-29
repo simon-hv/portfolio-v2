@@ -54,45 +54,41 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
+        sans: ["Inter Variable", "system-ui", "sans-serif"],
         mono: ["Red Hat Mono Variable", "monospace"],
       },
       keyframes: {
-        appear: {
-          "0%": { opacity: 0, transform: "translateY(400px)" },
-          "100%": { opacity: 1, transform: "translateY(0)" },
-        },
-        cardAppear: {
-          "0%": { transform: "translateY(20px)", opacity: 0 },
-          "50%": { transform: "translateY(-10px)", opacity: 0.8 },
-          "100%": { transform: "translateY(0)", opacity: 1 },
-        },
         fadeIn: {
-          "0%": { opacity: 0 },
-          "100%": { opacity: 1 },
-        },
-        grow: {
-          "0%": { transform: "scaleX(0)" },
-          "100%": { transform: "scaleX(1)" },
-        },
-        heartbeat: {
-          "0%": { transform: "scale(1)" },
-          "50%": { transform: "scale(1.1)" },
-          "100%": { transform: "scale(1)" },
+          "0%": { opacity: 0, transform: "translateY(10px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
         },
       },
       animation: {
-        appear: "appear 1s ease-in-out both",
-        cardAppear: "cardAppear 1s ease-in-out both",
-        fadeIn: "fadeIn 1s ease-in-out both",
-        grow: "grow auto linear",
-        heartbeat: "heartbeat 1.5s ease-in-out infinite",
+        fadeIn: "fadeIn 0.5s ease-out both",
       },
       typography: {
         DEFAULT: {
           css: {
-            maxWidth: "70ch",
+            maxWidth: "65ch",
+            fontSize: "1.125rem",
+            lineHeight: "1.75",
             "--tw-prose-invert-code": "hsl(var(--inline-code-foreground))",
-            "--tw-prose-invert-body": "hsl(var(--default-foreground-color))",
+            "--tw-prose-invert-body": "hsl(var(--foreground))",
+            h1: {
+              fontWeight: "600",
+              letterSpacing: "-0.025em",
+            },
+            h2: {
+              fontWeight: "600",
+              letterSpacing: "-0.025em",
+            },
+            h3: {
+              fontWeight: "600",
+            },
+            p: {
+              marginTop: "1.5em",
+              marginBottom: "1.5em",
+            },
           },
         },
       },

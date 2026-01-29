@@ -1,0 +1,75 @@
+---
+import PostList from "@/components/blog/PostList.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  const tags = [...new Set(posts.flatMap((p) => p.data.tags))];
+
+  return tags.map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: posts
+        .filter((p) => !p.data.draft && p.data.tags.includes(tag))
+        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+
+const allPosts = await getCollection("blog");
+const allTags = [...new Set(allPosts.flatMap((p) => p.data.tags))].sort();
+---
+
+<Layout
+  description={`Articles tagged with ${tag}`}
+  title={`${tag} - Blog - Simon Haïoun-Viet`}
+>
+  <main id="main-content" class="mx-auto max-w-2xl px-6 py-16">
+    <header class="mb-12">
+      <a
+        href="/blog"
+        class="mb-4 inline-block text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
+      >
+        &larr; All posts
+      </a>
+      <h1 class="mb-4 text-4xl font-bold tracking-tighter">
+        Tagged: {tag}
+      </h1>
+      <p class="text-muted-foreground">
+        {posts.length} post{posts.length !== 1 ? "s" : ""} with this tag.
+      </p>
+    </header>
+
+    <nav class="mb-8 flex flex-wrap gap-2" aria-label="Filter by tag">
+      <a
+        href="/blog"
+        class="rounded bg-secondary/50 px-3 py-1 text-sm text-muted-foreground no-underline transition-colors hover:bg-secondary hover:text-foreground"
+      >
+        All
+      </a>
+      {
+        allTags.map((t) => (
+          <a
+            href={`/blog/tag/${t}`}
+            class:list={[
+              "rounded px-3 py-1 text-sm no-underline transition-colors",
+              t === tag
+                ? "bg-accent text-accent-foreground hover:text-accent-foreground"
+                : "bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground",
+            ]}
+          >
+            {t}
+          </a>
+        ))
+      }
+    </nav>
+
+    <section>
+      <PostList posts={posts} />
+    </section>
+  </main>
+</Layout>

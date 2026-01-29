@@ -11,11 +11,17 @@ const { headings } = Astro.props;
 const tree = buildHeadingTree(headings);
 ---
 
-<details>
-  <summary>Table of contents</summary>
-  <nav aria-label="Table Of Contents">
-    <ul>
-      {tree.map((heading) => <RecursiveHeading heading={heading} />)}
-    </ul>
-  </nav>
-</details>
+{
+  headings.length > 0 && (
+    <nav class="text-sm" aria-label="Table of contents">
+      <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+        <span class="mr-2 text-accent">//</span>On this page
+      </h2>
+      <ul class="space-y-2 text-muted-foreground">
+        {tree.map((heading) => (
+          <RecursiveHeading heading={heading} />
+        ))}
+      </ul>
+    </nav>
+  )
+}

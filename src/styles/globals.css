@@ -4,37 +4,35 @@
 
 @layer base {
   .dark {
-    --default-foreground-color: 216 12% 85%;
+    --background: 220 8% 8%;
+    --foreground: 0 0% 92%;
 
-    --background: 233.33 12.68% 13.92%;
-    --foreground: var(--default-foreground-color);
+    --card: 30 4% 11%;
+    --card-foreground: 0 0% 92%;
 
-    --card: transparent;
-    --card-foreground: var(--default-foreground-color);
+    --popover: 30 4% 10%;
+    --popover-foreground: 0 0% 92%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 30 8% 8%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 30 3% 16%;
+    --secondary-foreground: 0 0% 92%;
 
-    --secondary: 215 25% 27%;
-    --secondary-foreground: 210 40% 98%;
+    --muted: 30 3% 20%;
+    --muted-foreground: 30 5% 50%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --inline-code-foreground: 35 95% 65%;
 
-    --inline-code-foreground: 220 90% 70.4%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 35 95% 60%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 20.6% 18%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 30 4% 18%;
+    --input: 30 3% 16%;
+    --ring: 35 95% 60%;
 
     --radius: 0.5rem;
   }
@@ -49,12 +47,12 @@
   }
 
   a {
-    @apply text-white;
-    @apply underline;
-    @apply font-semibold;
+    @apply text-foreground;
+    @apply underline decoration-muted-foreground/50 underline-offset-2;
+    @apply transition-colors duration-150;
   }
   a:hover {
-    @apply text-slate-300;
+    @apply text-accent decoration-accent;
   }
 
   code:not(pre code) {
@@ -74,15 +72,12 @@
   }
 
   [data-highlighted-line] {
-    @apply bg-zinc-600/30;
-    @apply border-l-blue-400;
+    @apply bg-amber-900/20;
+    @apply border-l-amber-500;
   }
   [data-highlighted-chars] {
-    @apply rounded bg-zinc-600/50;
-    box-shadow: 0 0 0 4px rgb(82 82 91 / 0.5);
-  }
-  pre {
-    box-shadow: 0px 0px 16px rgba(100, 151, 177, 0.3);
+    @apply rounded bg-amber-800/40;
+    box-shadow: 0 0 0 4px rgb(120 80 30 / 0.3);
   }
   code,
   pre {
@@ -93,19 +88,17 @@
     @apply cursor-pointer;
   }
 
-  .email-link {
-    -webkit-writing-mode: vertical-rl;
-    writing-mode: vertical-rl;
-  }
-  ::selection {
-    background-color: #fad0c9;
-    color: #4f4f4e;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    scroll-margin-top: 5rem;
   }
 
-  /* Delay our 5 cards on the homepage */
-  @for $i from 1 to 5 {
-    .animate-cardAppear:nth-of-type($i) {
-      animation-delay: calc(calc($i - 1) * 150ms);
-    }
+  ::selection {
+    background-color: hsl(35 95% 60% / 0.3);
+    color: hsl(0 0% 100%);
   }
 }

@@ -1,21 +1,27 @@
 ---
 id: 6
 company: "Hawk"
+title: "Frontend Developer → Tech Lead"
 companyLogo: "@/assets/hawk.svg"
 duration: "February 2017 - May 2023"
 stack:
   [
     "React",
-    "Typescript",
+    "TypeScript",
     "Angular",
     "Redux / NgRx",
     "RxJS",
     "Nx",
     "Node.js",
     "AWS",
+    "Terraform",
   ]
 ---
 
-Development of a programmatic web platform (real-time automated bidding system in the advertising industry).\
-I had the opportunity to work on projects from scratch as well as maintain legacy projects.\
-In my role as Tech Lead, I collaborated with the team to establish and maintain development best practices across our projects.
+Frontend Developer, then Tech Lead (last 2 years) on a programmatic advertising platform (real-time bidding system).
+
+- **Led the migration of the core platform** from AngularJS to Angular 2+, coordinating with the team to modernize the codebase
+- **Built a React application from scratch** for advertisers to create and manage ad creatives
+- **Developed Node.js APIs** to support new platform features
+- **Terraformed AWS infrastructure** improving deployment automation and reliability
+- **Established frontend best practices** as Tech Lead: code review standards, testing strategies, and DX improvements

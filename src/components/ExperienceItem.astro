@@ -5,48 +5,59 @@ import { render } from "astro:content";
 
 export interface Props {
   experience: CollectionEntry<"experiences">;
-  isLast?: boolean;
 }
 
-const { experience, isLast } = Astro.props;
-const { company, companyLogo, duration, stack } = experience.data;
+const { experience } = Astro.props;
+const { company, title, companyLogo, duration, stack } = experience.data;
 const { Content } = await render(experience);
 ---
 
-<li class="mt-5">
-  <div class="relative pb-8">
-    {
-      !isLast && (
-        <span
-          class="absolute left-4 top-4 -ml-px h-full w-0.5 bg-gray-200"
-          aria-hidden="true"
+<li class="relative">
+  <div
+    class="absolute left-[calc(-1rem-0.5px)] top-4 h-2 w-2 -translate-x-1/2 rounded-full bg-muted-foreground sm:left-[calc(-1.5rem-0.5px)]"
+  >
+  </div>
+
+  <div class="flex items-start gap-4">
+    <div class="shrink-0">
+      <span
+        class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-md bg-secondary"
+      >
+        <Image
+          src={companyLogo}
+          alt={company}
+          width={32}
+          height={32}
+          class="h-8 w-8 object-contain"
         />
-      )
-    }
-    <div class="relative flex space-x-6">
-      <div>
-        <span
-          class="flex h-8 w-8 items-center justify-center rounded-full bg-white ring-8 ring-white"
-        >
-          <Image src={companyLogo} alt={company} width={32} height={32} />
-        </span>
-      </div>
-      <div class="flex-1 space-y-2 text-left">
-        <div class="flex flex-col justify-between sm:flex-row sm:items-center">
-          <h1 class="text-2xl font-bold text-white">{company}</h1>
-          <p class="text-sm text-muted-foreground sm:text-white">
-            {duration}
-          </p>
+      </span>
+    </div>
+
+    <div class="flex-1">
+      <div
+        class="mb-1 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div>
+          <h2 class="font-semibold">{company}</h2>
+          {title && <p class="text-sm text-muted-foreground">{title}</p>}
         </div>
-        <p>
-          <Content />
-          <p class="text-muted-foreground">
-            <span class="font-medium">Tech stack:</span>
-            <span class="tracking-wide">
-              {stack.join(", ")}
+        <span class="text-sm text-muted-foreground">{duration}</span>
+      </div>
+
+      <div
+        class="prose prose-sm prose-invert mb-2 max-w-none text-foreground/90"
+      >
+        <Content />
+      </div>
+
+      <div class="flex flex-wrap gap-2">
+        {
+          stack.map((tech) => (
+            <span class="rounded bg-secondary/50 px-2 py-0.5 text-xs text-foreground/90">
+              {tech}
             </span>
-          </p>
-        </p>
+          ))
+        }
       </div>
     </div>
   </div>

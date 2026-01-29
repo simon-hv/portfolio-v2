@@ -1,9 +1,10 @@
 ---
 id: 2
 company: "Self-Employed"
+title: "Freelance Web Developer"
 companyLogo: "@/assets/ae.png"
 duration: "2016"
-stack: ["Wordpress"]
+stack: ["WordPress"]
 ---
 
-Development of a website for an association specializing in continuing education for employees in the hospital sector, social and local structures.
+**Built a website for a healthcare training organization** specializing in continuing education for hospital, social services, and local government employees.

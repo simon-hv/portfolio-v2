@@ -1,7 +1,8 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import NavBar from "@/components/blocks/NavBar.astro";
-import { emailAddress } from "@/constants";
+import "@fontsource-variable/inter";
+import "@fontsource-variable/red-hat-mono";
 import "@/styles/globals.css";
 
 interface Props {
@@ -14,7 +15,7 @@ const formattedDescription = `${description || "Simon Haïoun-Viet, senior front
 ---
 
 <!doctype html>
-<html class="dark font-mono leading-7 motion-safe:scroll-smooth" lang="en">
+<html class="dark font-sans leading-relaxed antialiased motion-safe:scroll-smooth" lang="en">
   <head>
     <script
       is:inline
@@ -32,18 +33,9 @@ const formattedDescription = `${description || "Simon Haïoun-Viet, senior front
     <ClientRouter fallback="swap" />
   </head>
   <body>
-    <div
-      aria-hidden="true"
-      class="email-container after:my-O fixed bottom-0 left-2 right-auto z-50 hidden w-10 text-sm after:mx-auto after:block after:h-20 after:w-px after:bg-slate-400 after:content-[''] motion-safe:animate-appear xl:block"
-    >
-      <a
-        class="email-link p-2.5 tracking-widest no-underline hover:animate-heartbeat hover:cursor-pointer hover:text-white"
-        href={`mailto:${emailAddress}`}
-        tabindex="-1"
-      >
-        {emailAddress}
-      </a>
-    </div>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-foreground">
+      Skip to content
+    </a>
     <NavBar />
     <slot />
   </body>
