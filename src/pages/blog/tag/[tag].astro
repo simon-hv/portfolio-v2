@@ -58,7 +58,7 @@ const allTags = [...new Set(allPosts.flatMap((p) => p.data.tags))].sort();
             class:list={[
               "rounded px-3 py-1 text-sm no-underline transition-colors",
               t === tag
-                ? "bg-accent text-accent-foreground"
+                ? "bg-accent text-accent-foreground hover:text-accent-foreground"
                 : "bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground",
             ]}
           >

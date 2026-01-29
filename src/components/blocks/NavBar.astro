@@ -4,15 +4,21 @@ import { emailAddress } from "@/constants";
 
 <header
   aria-label="Menu bar"
-  class="border-b border-border"
+  class="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm"
   id="topbar"
 >
   <div class="mx-auto flex max-w-2xl items-center justify-between px-6 py-4">
     <a
       href="/"
-      class="font-medium text-foreground no-underline transition-colors hover:text-muted-foreground"
+      class="flex items-center gap-2 font-medium text-foreground no-underline transition-colors hover:text-muted-foreground"
     >
-      Simon Haïoun-Viet
+      <img
+        src="/avatar.jpeg"
+        alt="Simon Haïoun-Viet"
+        class="size-8 rounded-full object-cover"
+      />
+      <span class="sm:hidden">Simon</span>
+      <span class="hidden sm:inline">Simon Haïoun-Viet</span>
     </a>
 
     <nav aria-label="Main navigation" class="flex items-center gap-6">

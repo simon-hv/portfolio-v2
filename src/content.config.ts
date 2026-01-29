@@ -19,6 +19,7 @@ const experienceCollection = defineCollection({
     z.object({
       id: z.number(),
       company: z.string(),
+      title: z.string().optional(),
       companyLogo: image(),
       duration: z.string(),
       stack: z.array(z.string()),

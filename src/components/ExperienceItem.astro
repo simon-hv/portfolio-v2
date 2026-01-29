@@ -8,18 +8,18 @@ export interface Props {
 }
 
 const { experience } = Astro.props;
-const { company, companyLogo, duration, stack } = experience.data;
+const { company, title, companyLogo, duration, stack } = experience.data;
 const { Content } = await render(experience);
 ---
 
 <li class="relative">
   <div
-    class="absolute -left-6 top-4 h-2 w-2 -translate-x-1/2 rounded-full bg-muted-foreground"
+    class="absolute left-[calc(-1.5rem-0.5px)] top-4 h-2 w-2 -translate-x-1/2 rounded-full bg-muted-foreground"
   >
   </div>
 
   <div class="flex items-start gap-4">
-    <div class="hidden shrink-0 sm:block">
+    <div class="shrink-0">
       <span
         class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-md bg-secondary"
       >
@@ -37,7 +37,10 @@ const { Content } = await render(experience);
       <div
         class="mb-1 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between"
       >
-        <h2 class="font-semibold">{company}</h2>
+        <div>
+          <h2 class="font-semibold">{company}</h2>
+          {title && <p class="text-sm text-muted-foreground">{title}</p>}
+        </div>
         <span class="text-sm text-muted-foreground">{duration}</span>
       </div>
 
