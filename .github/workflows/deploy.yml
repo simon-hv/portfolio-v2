@@ -1,0 +1,44 @@
+name: Deploy to Bunny
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Deploy to Bunny
+        uses: R-J-dev/bunny-deploy@v2.1.1
+        with:
+          storage-zone-name: ${{ secrets.BUNNY_STORAGE_ZONE_NAME }}
+          storage-zone-password: ${{ secrets.BUNNY_STORAGE_ZONE_PASSWORD }}
+          storage-endpoint: "https://storage.bunnycdn.com"
+          directory-to-upload: "./dist"
+          concurrency: "50"
+          enable-delete-action: true
+          enable-purge-pull-zone: true
+          access-key: ${{ secrets.BUNNY_ACCESS_KEY }}
+          pull-zone-id: ${{ secrets.BUNNY_PULL_ZONE_ID }}
+          replication-timeout: "15000"
