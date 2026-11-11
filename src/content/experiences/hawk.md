@@ -4,6 +4,7 @@ company: "Hawk"
 title: "Frontend Developer → Tech Lead"
 companyLogo: "@/assets/hawk.svg"
 duration: "February 2017 - May 2023"
+summary: "Programmatic advertising platform (real-time bidding). Led the AngularJS to Angular migration, built a React app for ad creatives, Node.js APIs and AWS infrastructure with Terraform. Tech lead for the last 2 years."
 stack:
   [
     "React",

@@ -2,25 +2,29 @@
 import SectionHeading from "@/components/SectionHeading.astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import { ArrowRight, GraduationCap } from "lucide-react";
+import { ArrowRight, ArrowUpRight, GraduationCap } from "lucide-react";
 
 const experiences = (await getCollection("experiences"))
   .sort((a, b) => b.data.id - a.data.id)
   .slice(0, 4);
 
 const rows = [
-  ...experiences.map(({ data }) => ({
+  ...experiences.map(({ id, data }) => ({
+    href: `/xp#${id}`,
     period: data.duration.replace(" - ", " — "),
     title: data.title ?? data.company,
     subtitle: data.company,
     logo: data.companyLogo,
+    summary: data.summary,
   })),
   {
     period: "Education",
-    title: "Polytech Montpellier",
-    subtitle:
-      "Engineering degree in Computer Science, after a two-year degree at IUT Montpellier",
+    href: undefined,
+    title: "Engineering degree in Computer Science",
+    subtitle: "Polytech Montpellier",
     logo: undefined,
+    summary:
+      "Computer Science and Management, after a two-year degree in Computer Science at IUT Montpellier.",
   },
 ];
 ---
@@ -38,7 +42,7 @@ const rows = [
   <div class="flex flex-col items-start gap-8">
     <ol class="w-full">
       {
-        rows.map(({ period, title, subtitle, logo }, i) => (
+        rows.map(({ href, period, title, subtitle, logo, summary }, i) => (
           <li
             class="reveal grid gap-x-8 gap-y-3 border-t border-border py-6 sm:grid-cols-[13rem_minmax(0,1fr)]"
             style={`--i: ${i}`}
@@ -64,14 +68,32 @@ const rows = [
                 )}
               </span>
               <div class="flex min-w-0 flex-col gap-1">
-                <span class="text-[1.0625rem] font-semibold leading-6">
-                  {title}
-                </span>
+                {href ? (
+                  <a
+                    href={href}
+                    class="group inline-flex items-center gap-1.5 self-start text-[1.0625rem] font-semibold leading-6 text-foreground no-underline hover:text-accent"
+                  >
+                    {title}
+                    <ArrowUpRight
+                      className="size-4 shrink-0 text-muted-foreground transition-[transform,color] duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+                      strokeWidth={1.6}
+                    />
+                  </a>
+                ) : (
+                  <span class="text-[1.0625rem] font-semibold leading-6">
+                    {title}
+                  </span>
+                )}
                 <span class="text-[0.9375rem] text-muted-foreground">
                   {subtitle}
                 </span>
               </div>
             </div>
+            {summary && (
+              <p class="max-w-[36rem] text-[0.9375rem] leading-relaxed text-foreground/80 sm:col-start-2 sm:pl-14">
+                {summary}
+              </p>
+            )}
           </li>
         ))
       }

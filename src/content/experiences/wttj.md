@@ -4,6 +4,7 @@ company: "Welcome to the Jungle"
 title: "Frontend Developer"
 companyLogo: "@/assets/welcome.png"
 duration: "June 2023 - March 2025"
+summary: "Front end of the main website and ATS of France's leading job board (2M+ monthly visitors). Led the homepage and job page redesigns and contributed to the Welcome UI design system."
 stack: ["React", "TypeScript", "Node.js", "GraphQL", "AWS", "Docker"]
 ---
 

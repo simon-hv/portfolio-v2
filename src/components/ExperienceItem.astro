@@ -13,7 +13,7 @@ const { company, title, companyLogo, duration, stack } = experience.data;
 const { Content } = await render(experience);
 ---
 
-<li class="relative">
+<li class="relative scroll-mt-24" id={experience.id}>
   <div
     class="absolute left-[calc(-1rem-0.5px)] top-4 h-2 w-2 -translate-x-1/2 rounded-full bg-muted-foreground sm:left-[calc(-1.5rem-0.5px)]"
   >

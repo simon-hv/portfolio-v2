@@ -4,6 +4,7 @@ company: "Crew"
 title: "Product Engineer"
 companyLogo: "@/assets/crew.png"
 duration: "March 2025 - Present"
+summary: "Fullstack in a 3-person team at a YC-backed CRM for recruitment agencies. I built the Fastify API, semantic search on pgvector, Mastra ingestion workflows and an AI notetaker, plus the Next.js front end."
 stack:
   [
     "TypeScript",
