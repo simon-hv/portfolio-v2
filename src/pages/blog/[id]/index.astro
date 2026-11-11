@@ -45,7 +45,7 @@ const ogImageURL = new URL(blogPost.ogImage, Astro.site).href;
 
   <main id="main-content" class="mx-auto max-w-4xl px-6 py-16">
     <article class="lg:grid lg:grid-cols-[1fr_200px] lg:gap-12">
-      <div class="prose prose-invert prose-lg max-w-none">
+      <div class="prose prose-lg prose-invert max-w-none">
         <header class="not-prose mb-12">
           <a
             href="/blog"
@@ -59,7 +59,9 @@ const ogImageURL = new URL(blogPost.ogImage, Astro.site).href;
           >
             {humanizeDate(date)}
           </time>
-          <h1 class="mb-4 mt-2 text-4xl font-bold tracking-tighter">
+          <h1
+            class="mb-4 mt-2 font-display text-4xl font-semibold tracking-[-0.03em]"
+          >
             {title}
           </h1>
           <TagList tags={tags} />
@@ -89,7 +91,7 @@ const ogImageURL = new URL(blogPost.ogImage, Astro.site).href;
 
   function initScrollSpy() {
     const tocLinks = document.querySelectorAll<HTMLAnchorElement>(
-      'aside nav a[href^="#"]'
+      'aside nav a[href^="#"]',
     );
     if (tocLinks.length === 0) return;
 
@@ -162,7 +164,7 @@ const ogImageURL = new URL(blogPost.ogImage, Astro.site).href;
     document.addEventListener(
       "astro:before-swap",
       () => window.removeEventListener("scroll", onScroll),
-      { once: true }
+      { once: true },
     );
   }
 

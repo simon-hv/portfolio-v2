@@ -1,4 +1,5 @@
 ---
+import TechTag from "@/components/TechTag.astro";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
@@ -21,7 +22,7 @@ const { Content } = await render(experience);
   <div class="flex items-start gap-4">
     <div class="shrink-0">
       <span
-        class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-md bg-secondary"
+        class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-md border border-border bg-secondary"
       >
         <Image
           src={companyLogo}
@@ -41,7 +42,7 @@ const { Content } = await render(experience);
           <h2 class="font-semibold">{company}</h2>
           {title && <p class="text-sm text-muted-foreground">{title}</p>}
         </div>
-        <span class="text-sm text-muted-foreground">{duration}</span>
+        <span class="shrink-0 text-sm text-muted-foreground">{duration}</span>
       </div>
 
       <div
@@ -50,14 +51,8 @@ const { Content } = await render(experience);
         <Content />
       </div>
 
-      <div class="flex flex-wrap gap-2">
-        {
-          stack.map((tech) => (
-            <span class="rounded bg-secondary/50 px-2 py-0.5 text-xs text-foreground/90">
-              {tech}
-            </span>
-          ))
-        }
+      <div class="flex flex-wrap gap-1.5">
+        {stack.map((tech) => <TechTag>{tech}</TechTag>)}
       </div>
     </div>
   </div>

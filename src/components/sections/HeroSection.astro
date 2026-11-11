@@ -1,61 +1,129 @@
 ---
 import { emailAddress } from "@/constants";
-import { Github, Linkedin, Mail } from "lucide-react";
 import ResumeDownload from "@/components/ResumeDownload";
+import { Github, Linkedin, Mail } from "lucide-react";
+
+const headline = [
+  { text: "Product", class: "" },
+  { text: "engineer", class: "" },
+  { text: "/", class: "font-normal text-accent" },
+  { text: "fullstack", class: "text-faint" },
+  { text: "dev", class: "text-faint" },
+];
+
+const socials = [
+  { label: "GitHub", href: "https://github.com/simon-hv", icon: Github },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/simonhaiounviet/",
+    icon: Linkedin,
+  },
+  { label: "Email", href: `mailto:${emailAddress}`, icon: Mail },
+];
+
+const statLabel =
+  "font-mono text-xs uppercase leading-none tracking-[0.06em] text-muted-foreground";
+const statValue =
+  "font-display text-[2.5rem] font-medium leading-none tracking-[-0.03em]";
 ---
 
-<section class="mb-20 motion-safe:animate-fadeIn">
-  <h1 class="mb-2 text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">Simon Haïoun-Viet</h1>
-  <p class="mb-8 text-lg text-muted-foreground">Product Engineer</p>
-
-  <div class="mb-8 max-w-xl space-y-4 text-foreground/80">
-    <p>
-      Web developer since 2015, focused on React. Based in Montpellier, France,
-      currently working remotely for
-      <a href="https://crew.work/" target="_blank" rel="noopener noreferrer"
-        >Crew</a
-      > (YC S21).
+<section class="flex flex-col gap-14 pb-20 pt-16 sm:gap-16 sm:pb-24 sm:pt-24">
+  <div class="flex flex-col gap-8">
+    <h1
+      class="font-display text-[clamp(3rem,8.6vw,7.75rem)] font-medium leading-[0.98] tracking-[-0.05em]"
+    >
+      {
+        headline.map((word, i) => (
+          <>
+            <span class="rise">
+              <span class={word.class} style={`--i: ${i}`}>
+                {word.text}
+              </span>
+            </span>{" "}
+          </>
+        ))
+      }
+    </h1>
+    <p
+      class="fade-up max-w-[37.5rem] text-lg leading-relaxed text-muted-foreground sm:text-[1.1875rem]"
+      style="--i: 5"
+    >
+      Developer for more than 10 years. I design and build web products
+      end-to-end, from the interface to the infrastructure, with a real taste
+      for applied AI when it serves the user.
     </p>
-    <p>
-      I build web applications with JavaScript and TypeScript, from frontend
-      frameworks to backend services with Node.js (Express, Fastify), and handle
-      infrastructure with Terraform on AWS and GCP.
-    </p>
+    <div class="fade-up" style="--i: 6">
+      <ResumeDownload
+        client:idle
+        label="Download resume"
+        iconClassName="size-[1.125rem]"
+        className="h-14 rounded-xl border border-border-strong px-7 font-medium text-foreground transition-colors hover:bg-secondary"
+      />
+    </div>
   </div>
 
   <div
-    class="flex flex-wrap items-center justify-center gap-4 sm:justify-start sm:gap-5"
+    class="fade-up flex flex-wrap items-center justify-between gap-x-12 gap-y-8 border-t border-border pt-8"
+    style="--i: 7"
   >
-    <nav class="flex flex-wrap gap-4 sm:gap-5" aria-label="Social links">
-      <a
-        href="https://github.com/simon-hv"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex items-center gap-2 text-muted-foreground no-underline transition-colors hover:text-foreground"
-      >
-        <Github className="h-4 w-4" />
-        GitHub
-      </a>
-      <a
-        href="https://www.linkedin.com/in/simonhaiounviet/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex items-center gap-2 text-muted-foreground no-underline transition-colors hover:text-foreground"
-      >
-        <Linkedin className="h-4 w-4" />
-        LinkedIn
-      </a>
-      <a
-        href={`mailto:${emailAddress}`}
-        class="flex items-center gap-2 text-muted-foreground no-underline transition-colors hover:text-foreground"
-      >
-        <Mail className="h-4 w-4" />
-        Email
-      </a>
-    </nav>
+    <div
+      class="flex w-full max-w-[23.75rem] items-center gap-4 rounded-[1.25rem] border border-border bg-card p-3.5 pr-4"
+    >
+      <img
+        src="/avatar.jpeg"
+        alt="Simon Haïoun-Viet"
+        width="72"
+        height="72"
+        class="size-[4.5rem] shrink-0 rounded-[0.875rem] object-cover"
+      />
+      <div class="flex min-w-0 flex-col gap-1.5">
+        <div class="flex flex-col gap-0.5">
+          <span
+            class="font-display text-[1.1875rem] font-semibold leading-tight tracking-[-0.01em]"
+          >
+            Simon Haïoun-Viet
+          </span>
+          <span class="text-[0.8125rem] text-muted-foreground">
+            Product Engineer at
+            <a
+              href="https://www.ycombinator.com/companies/crew"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-muted-foreground">Crew</a
+            > (YC S21)
+          </span>
+        </div>
+        <div class="-ml-2.5 flex gap-0.5">
+          {
+            socials.map(({ label, href, icon: Icon }) => (
+              <a
+                href={href}
+                aria-label={label}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  href.startsWith("http") ? "noopener noreferrer" : undefined
+                }
+                class="flex h-9 w-10 items-center justify-center rounded-[0.625rem] text-foreground/80 no-underline transition-colors hover:bg-secondary hover:text-foreground"
+              >
+                <Icon className="size-[1.0625rem]" strokeWidth={1.6} />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
 
-    <span class="hidden text-border sm:block">|</span>
-
-    <ResumeDownload client:load />
+    <dl class="flex flex-wrap gap-x-14 gap-y-8">
+      <div class="flex flex-col-reverse gap-3">
+        <dt class={statLabel}>Years of experience</dt>
+        <dd class={statValue}>10<span class="text-accent">+</span></dd>
+      </div>
+      <div class="flex flex-col-reverse gap-3">
+        <dt class={statLabel}>Montpellier, France</dt>
+        <dd class:list={[statValue, "flex items-center gap-3"]}>
+          <span class="pulse-dot size-2.5 rounded-full bg-accent"></span>Remote
+        </dd>
+      </div>
+    </dl>
   </div>
 </section>

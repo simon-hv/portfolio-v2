@@ -26,12 +26,12 @@ export const resumeFr: ResumeData = {
       },
       {
         label: "Backend",
-        items: ["Node.js", "Express", "Fastify", "GraphQL", "PostgreSQL"],
+        items: ["Node.js", "Fastify", "Express", "GraphQL", "PostgreSQL"],
       },
       { label: "Infra", items: ["AWS", "GCP", "Terraform", "Docker", "CI/CD"] },
       {
         label: "IA",
-        items: ["LLM/RAG", "Embeddings", "pgvector", "Mastra", "AI SDK"],
+        items: ["LLM/RAG", "Agents IA", "pgvector", "Mastra", "AI SDK"],
       },
     ],
   },
@@ -59,9 +59,9 @@ export const resumeFr: ResumeData = {
   },
   header: {
     name: "Simon Haïoun-Viet",
-    role: "Product Engineer · Senior Frontend Developer",
+    role: "Senior Fullstack Developer · Product Engineer",
     summary:
-      "10 ans d'expérience en développement web. Spécialisé frontend, polyvalent sur toute la stack.",
+      "10 ans de développement web, principalement en TypeScript, React et Node.js. Actuellement chez Crew (YC S21), où je travaille sur toute la stack, y compris sur le développement de features IA.",
   },
   experience: {
     title: "Expérience",
@@ -71,11 +71,11 @@ export const resumeFr: ResumeData = {
         company: "Crew",
         period: "Mars 2025 - Présent",
         description:
-          "Startup <strong>YC-backed (S21)</strong>, early stage. CRM pour agences de recrutement.<br />Polyvalent : frontend, backend, infrastructure, IA, user research.",
+          "Startup <strong>YC-backed (S21)</strong>, early stage. CRM pour agences de recrutement.",
         achievements: [
-          "Seul dév frontend de l'équipe, en charge de toute l'UI (Next.js 15) et de la recherche produit",
-          "Features IA : RAG pipeline (pgvector), notetaker avec résumés automatiques, enrichissement CRM (Mastra)",
-          "API Node.js/Fastify from scratch, infra GCP terraformée, observabilité Datadog",
+          "Features de bout en bout : recherche utilisateur, UI (Next.js 15), API, mise en production",
+          "Features IA : RAG pipeline (pgvector), notetaker avec résumés automatiques, agents d'enrichissement CRM (Mastra)",
+          "API Node.js/Fastify from scratch, infra GCP avec Terraform, observabilité Datadog",
         ],
         stack:
           "Next.js, React, TypeScript, Node.js, Fastify, PostgreSQL, pgvector",
@@ -99,15 +99,15 @@ export const resumeFr: ResumeData = {
         description:
           "DSP (publicité programmatique), <strong>6 ans</strong> dont 2 en tant que Tech Lead.",
         achievements: [
-          "Migration AngularJS vers Angular 2+",
+          "Pilotage de la migration AngularJS vers Angular 2+",
           "Application React pour création de créatives publicitaires",
           "APIs Node.js, infrastructure AWS/Terraform",
-          "Encadrement technique, code review, testing",
+          "Mentoring, code reviews, pratiques de test",
         ],
         stack: "Angular, React, TypeScript, Redux, RxJS, Node.js, AWS",
       },
       {
-        role: "Web Developer",
+        role: "Fullstack Developer",
         company: "CGI",
         period: "Fév. 2015 - Fév. 2017",
         description:

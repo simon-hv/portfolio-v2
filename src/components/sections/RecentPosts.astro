@@ -1,41 +1,60 @@
 ---
-import { humanizeDate } from "@/lib/utils";
+import SectionHeading from "@/components/SectionHeading.astro";
 import { getCollection } from "astro:content";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 const posts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 4);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en", { year: "numeric", month: "short" });
 ---
 
-<section class="mb-20">
-  <h2
-    class="mb-8 text-xs font-semibold uppercase tracking-widest text-muted-foreground"
-  >
-    <span class="mr-2 text-accent">//</span>Recent Writing
-  </h2>
+<section
+  id="writing"
+  class="grid scroll-mt-20 gap-12 border-t border-border py-20 sm:py-24 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]"
+>
+  <div class="reveal">
+    <SectionHeading index="04" label="Writing">
+      Notes along<br />the way.
+    </SectionHeading>
+  </div>
 
-  <ul class="divide-y divide-border">
-    {
-      posts.map((post) => (
-        <li class="py-4 first:pt-0 last:pb-0">
-          <a href={`/blog/${post.id}`} class="group block no-underline">
-            <span class="mb-1 block font-medium text-foreground transition-colors group-hover:text-accent">
-              {post.data.title}
-            </span>
-            <span class="text-sm text-muted-foreground">
-              {humanizeDate(post.data.date)}
-            </span>
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-
-  <a
-    href="/blog"
-    class="mt-6 inline-block text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
-  >
-    View all posts &rarr;
-  </a>
+  <div class="flex flex-col items-start gap-8">
+    <ul class="w-full">
+      {
+        posts.map((post, i) => (
+          <li class="reveal" style={`--i: ${i}`}>
+            <a
+              href={`/blog/${post.id}`}
+              class="group grid items-baseline gap-x-8 gap-y-2 border-t border-border py-6 text-foreground no-underline hover:text-foreground sm:grid-cols-[13rem_minmax(0,1fr)_auto]"
+            >
+              <span class="font-mono text-[0.8125rem] text-muted-foreground">
+                {formatDate(post.data.date)}
+              </span>
+              <span class="text-[1.0625rem] font-semibold">
+                {post.data.title}
+              </span>
+              <ArrowUpRight
+                className="hidden size-5 self-center text-muted-foreground transition-[transform,color] duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent sm:block"
+                strokeWidth={1.6}
+              />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <a
+      href="/blog"
+      class="reveal group inline-flex items-center gap-2 text-[0.9375rem] text-muted-foreground no-underline hover:text-foreground"
+    >
+      See all posts
+      <ArrowRight
+        className="size-4 transition-transform duration-300 ease-out group-hover:translate-x-1"
+        strokeWidth={1.6}
+      />
+    </a>
+  </div>
 </section>

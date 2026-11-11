@@ -1,8 +1,10 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import Footer from "@/components/blocks/Footer.astro";
 import NavBar from "@/components/blocks/NavBar.astro";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/red-hat-mono";
+import "@fontsource-variable/space-grotesk";
 import "@/styles/globals.css";
 
 interface Props {
@@ -11,11 +13,11 @@ interface Props {
 }
 
 const { description, title } = Astro.props;
-const formattedDescription = `${description || "Simon Haïoun-Viet, senior frontend developer."}`;
+const formattedDescription = `${description || "Simon Haïoun-Viet, fullstack developer and product engineer. TypeScript, React, Node.js and AI features."}`;
 ---
 
 <!doctype html>
-<html class="dark font-sans leading-relaxed antialiased motion-safe:scroll-smooth" lang="en">
+<html class="dark font-sans leading-relaxed antialiased" lang="en">
   <head>
     <script
       is:inline
@@ -23,6 +25,12 @@ const formattedDescription = `${description || "Simon Haïoun-Viet, senior front
       defer
       src="https://cloud.umami.is/script.js"
       data-website-id="90a107de-7eb5-4506-a79d-038a9bc587ed"></script>
+    <script is:inline>
+      // Lets CSS hide .reveal elements only when JS can reveal them again.
+      const markJs = () => document.documentElement.classList.add("js");
+      markJs();
+      document.addEventListener("astro:after-swap", markJs);
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/jpeg" href="/favicon.jpeg" />
@@ -33,10 +41,32 @@ const formattedDescription = `${description || "Simon Haïoun-Viet, senior front
     <ClientRouter fallback="swap" />
   </head>
   <body>
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-foreground">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-foreground"
+    >
       Skip to content
     </a>
     <NavBar />
     <slot />
+    <Footer />
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        },
+        { rootMargin: "0px 0px -8% 0px" },
+      );
+
+      document.addEventListener("astro:page-load", () => {
+        document
+          .querySelectorAll(".reveal:not(.is-visible)")
+          .forEach((el) => observer.observe(el));
+      });
+    </script>
   </body>
 </html>

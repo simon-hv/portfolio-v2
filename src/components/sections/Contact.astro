@@ -1,0 +1,41 @@
+---
+import ResumeDownload from "@/components/ResumeDownload";
+import { emailAddress } from "@/constants";
+import { ArrowRight } from "lucide-react";
+---
+
+<section
+  id="contact"
+  class="flex scroll-mt-20 flex-col items-start gap-10 border-t border-border pb-20 pt-24 sm:pb-24 sm:pt-[7.5rem]"
+>
+  <span
+    class="reveal font-mono text-xs uppercase tracking-[0.06em] text-accent"
+  >
+    06 — Contact
+  </span>
+  <h2
+    class="reveal max-w-[56rem] font-display text-[clamp(2.75rem,7vw,6rem)] font-bold leading-[0.95] tracking-[-0.045em]"
+    style="--i: 1"
+  >
+    Let's build something <span class="text-faint">useful.</span>
+  </h2>
+  <div class="reveal flex flex-wrap gap-3" style="--i: 2">
+    <a
+      href={`mailto:${emailAddress}`}
+      data-umami-event="Contact link"
+      class="group flex h-14 items-center gap-2.5 rounded-xl bg-accent px-7 font-semibold text-accent-foreground no-underline transition-[filter] duration-300 hover:text-accent-foreground hover:brightness-110"
+    >
+      {emailAddress}
+      <ArrowRight
+        className="size-[1.125rem] transition-transform duration-300 ease-out group-hover:translate-x-1"
+        strokeWidth={1.8}
+      />
+    </a>
+    <ResumeDownload
+      client:visible
+      label="Download resume"
+      iconClassName="size-[1.125rem]"
+      className="h-14 rounded-xl border border-border-strong px-7 font-medium text-foreground transition-colors hover:bg-secondary"
+    />
+  </div>
+</section>

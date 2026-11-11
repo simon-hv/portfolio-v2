@@ -1,0 +1,19 @@
+---
+interface Props {
+  index: string;
+  label: string;
+}
+
+const { index, label } = Astro.props;
+---
+
+<div class="flex flex-col gap-3">
+  <span class="font-mono text-xs uppercase tracking-[0.06em] text-accent">
+    {index} — {label}
+  </span>
+  <h2
+    class="font-display text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.05] tracking-[-0.03em]"
+  >
+    <slot />
+  </h2>
+</div>

@@ -18,10 +18,16 @@ const allTags = [...new Set(allPosts.flatMap((p) => p.data.tags))].sort();
   description="Articles about web development."
   title="Blog - Simon Haïoun-Viet"
 >
-  <main id="main-content" class="mx-auto max-w-2xl px-6 py-16">
+  <main id="main-content" class="mx-auto max-w-3xl px-6 py-16">
     <header class="mb-12">
-      <h1 class="mb-4 text-4xl font-bold tracking-tighter">Blog</h1>
-      <p class="text-muted-foreground">Web development, thoughts, and everything in between.</p>
+      <h1
+        class="mb-4 font-display text-4xl font-semibold tracking-[-0.03em] sm:text-5xl"
+      >
+        Blog
+      </h1>
+      <p class="text-muted-foreground">
+        Web development, thoughts, and everything in between.
+      </p>
     </header>
 
     {

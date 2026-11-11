@@ -1,14 +1,22 @@
 ---
+import Contact from "@/components/sections/Contact.astro";
 import ExperienceTimeline from "@/components/sections/ExperienceTimeline.astro";
 import HeroSection from "@/components/sections/HeroSection.astro";
+import Interests from "@/components/sections/Interests.astro";
 import RecentPosts from "@/components/sections/RecentPosts.astro";
+import SelectedWork from "@/components/sections/SelectedWork.astro";
+import WhatIDo from "@/components/sections/WhatIDo.astro";
 import Layout from "@/layouts/Layout.astro";
 ---
 
-<Layout title="Simon Haïoun-Viet">
-  <main id="main-content" class="mx-auto max-w-2xl px-6 py-10 sm:py-16">
+<Layout title="Simon Haïoun-Viet · Product Engineer & Fullstack Developer">
+  <main id="main-content" class="mx-auto max-w-[73.75rem] px-6">
     <HeroSection />
-    <RecentPosts />
+    <WhatIDo />
+    <SelectedWork />
     <ExperienceTimeline />
+    <RecentPosts />
+    <Interests />
+    <Contact />
   </main>
 </Layout>

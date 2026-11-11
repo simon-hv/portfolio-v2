@@ -4,35 +4,37 @@
 
 @layer base {
   .dark {
-    --background: 220 8% 8%;
-    --foreground: 0 0% 92%;
+    --background: 60 3% 6%;
+    --foreground: 60 12% 92%;
 
-    --card: 30 4% 11%;
-    --card-foreground: 0 0% 92%;
+    --card: 60 2% 9%;
+    --card-foreground: 60 12% 92%;
 
-    --popover: 30 4% 10%;
+    --popover: 60 2% 9%;
     --popover-foreground: 0 0% 92%;
 
     --primary: 0 0% 100%;
     --primary-foreground: 30 8% 8%;
 
-    --secondary: 30 3% 16%;
+    --secondary: 60 3% 15%;
     --secondary-foreground: 0 0% 92%;
 
-    --muted: 30 3% 20%;
-    --muted-foreground: 30 5% 50%;
+    --muted: 60 3% 18%;
+    --muted-foreground: 60 3% 59%;
+    --faint: 60 3% 40%;
 
     --inline-code-foreground: 35 95% 65%;
 
-    --accent: 35 95% 60%;
-    --accent-foreground: 0 0% 8%;
+    --accent: 16 100% 60%;
+    --accent-foreground: 60 3% 8%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 4% 18%;
+    --border: 60 2% 16%;
+    --border-strong: 60 4% 22%;
     --input: 30 3% 16%;
-    --ring: 35 95% 60%;
+    --ring: 16 100% 60%;
 
     --radius: 0.5rem;
   }
@@ -43,7 +45,7 @@
     @apply border-border;
   }
   body {
-    @apply mb-10 bg-background text-foreground;
+    @apply bg-background text-foreground;
   }
 
   a {
@@ -98,7 +100,85 @@
   }
 
   ::selection {
-    background-color: hsl(35 95% 60% / 0.3);
+    background-color: hsl(var(--accent) / 0.3);
     color: hsl(0 0% 100%);
+  }
+}
+
+/* Motion: everything below is skipped when the user prefers reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  /* Scroll reveal, toggled by the IntersectionObserver in Layout.astro. */
+  html.js .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  html.js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Hero headline: each word slides up from behind a mask. */
+  .rise > span {
+    animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--i, 0) * 90ms + 80ms);
+  }
+  .fade-up {
+    animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--i, 0) * 90ms + 80ms);
+  }
+  .pulse-dot::after {
+    animation: pulse-dot 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  }
+}
+
+.rise {
+  display: inline-block;
+  overflow: hidden;
+  /* Room inside the mask for descenders and glyphs that overhang their box
+     (the slash), cancelled by negative margins so the layout is unchanged. */
+  padding: 0.1em 0.08em 0.14em;
+  margin: -0.1em -0.08em -0.14em;
+  vertical-align: bottom;
+}
+.rise > span {
+  display: inline-block;
+}
+
+.pulse-dot {
+  position: relative;
+}
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: inherit;
+  opacity: 0;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(115%);
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+@keyframes pulse-dot {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(2.6);
   }
 }

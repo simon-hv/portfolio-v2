@@ -13,7 +13,11 @@ export default {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
+        border: {
+          DEFAULT: "hsl(var(--border))",
+          strong: "hsl(var(--border-strong))",
+        },
+        faint: "hsl(var(--faint))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
@@ -55,6 +59,7 @@ export default {
       },
       fontFamily: {
         sans: ["Inter Variable", "system-ui", "sans-serif"],
+        display: ["Space Grotesk Variable", "Inter Variable", "sans-serif"],
         mono: ["Red Hat Mono Variable", "monospace"],
       },
       keyframes: {

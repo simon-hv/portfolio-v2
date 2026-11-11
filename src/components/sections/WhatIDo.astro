@@ -1,0 +1,70 @@
+---
+import SectionHeading from "@/components/SectionHeading.astro";
+import { Cpu, PanelsTopLeft, Server } from "lucide-react";
+
+const areas = [
+  {
+    icon: Server,
+    title: "Back-end & cloud",
+    description:
+      "Typed Node.js APIs built from scratch, and the cloud infrastructure behind them, defined in Terraform.",
+    stack: ["Node.js", "Fastify", "PostgreSQL", "Terraform", "GCP", "AWS"],
+  },
+  {
+    icon: PanelsTopLeft,
+    title: "Product & interfaces",
+    description:
+      "Fast, accessible interfaces, designed with the people who use them.",
+    stack: ["React", "Next.js", "TypeScript"],
+  },
+  {
+    icon: Cpu,
+    title: "Applied AI",
+    description:
+      "Semantic search, RAG and ingestion workflows built into the product, where they really add something.",
+    stack: ["pgvector", "Mastra", "AI SDK", "RAG"],
+  },
+];
+---
+
+<section
+  id="expertise"
+  class="flex scroll-mt-20 flex-col gap-12 border-t border-border py-20 sm:py-24"
+>
+  <div class="reveal">
+    <SectionHeading index="01" label="Expertise">
+      From product to infra.
+    </SectionHeading>
+  </div>
+
+  <!--
+    From md up, each card is a subgrid spanning the same 4 rows (icon, title,
+    description, stack), so every row lines up across cards whatever the
+    text length.
+  -->
+  <ul class="grid gap-4 md:grid-cols-3 md:gap-y-0">
+    {
+      areas.map(({ icon: Icon, title, description, stack }, i) => (
+        <li
+          class="reveal flex flex-col rounded-[1.25rem] border border-border bg-card p-7 transition-colors duration-300 hover:border-border-strong sm:p-8 md:row-span-4 md:grid md:grid-rows-subgrid"
+          style={`--i: ${i}`}
+        >
+          <Icon className="size-7 text-accent" strokeWidth={1.6} />
+          <h3 class="mt-12 font-display text-[1.625rem] font-semibold leading-[1.1] tracking-[-0.02em]">
+            {title}
+          </h3>
+          <p class="mt-3.5 text-[0.9375rem] leading-[1.55] text-muted-foreground">
+            {description}
+          </p>
+          <ul class="mt-6 flex flex-wrap content-start gap-1.5 font-mono text-xs text-foreground/80">
+            {stack.map((tech) => (
+              <li class="rounded-full border border-border-strong px-2.5 py-1">
+                {tech}
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))
+    }
+  </ul>
+</section>

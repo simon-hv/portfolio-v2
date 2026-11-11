@@ -9,7 +9,7 @@ export async function GET(context) {
   return rss({
     title: "Blog - Simon Haïoun-Viet",
     description:
-      "Frontend dev sharing insights on web development, UI/UX, and software engineering",
+      "Fullstack dev sharing insights on web development, TypeScript, and software engineering",
     site: context.site,
     items: blogPosts.map((post) => ({
       link: `/blog/${post.id}`,

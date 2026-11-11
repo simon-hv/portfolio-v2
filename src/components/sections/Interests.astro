@@ -1,0 +1,47 @@
+---
+import SectionHeading from "@/components/SectionHeading.astro";
+
+const interests = [
+  {
+    label: "Home automation",
+    text: "I tinker with Home Assistant at home. Connected devices are not new to me: in 2016 I built a web app to manage Arduino sensors for Fruition Sciences.",
+  },
+  {
+    label: "Energy",
+    text: "Energy is a subject I follow closely, especially renewables: solar panels, home batteries and so on. Early in my career I worked on the customer portal of EDF, France's largest electricity company.",
+  },
+  {
+    label: "Sport",
+    text: "Trail running, hiking with the occasional bivouac, and tennis.",
+  },
+];
+---
+
+<section
+  id="beyond"
+  class="grid scroll-mt-20 gap-12 border-t border-border py-20 sm:py-24 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]"
+>
+  <div class="reveal">
+    <SectionHeading index="05" label="Beyond work">
+      Off the clock.
+    </SectionHeading>
+  </div>
+
+  <dl>
+    {
+      interests.map(({ label, text }, i) => (
+        <div
+          class="reveal grid gap-x-8 gap-y-2 border-t border-border py-6 sm:grid-cols-[13rem_minmax(0,1fr)]"
+          style={`--i: ${i}`}
+        >
+          <dt class="font-mono text-[0.8125rem] leading-[1.625rem] text-muted-foreground">
+            {label}
+          </dt>
+          <dd class="max-w-[36rem] text-[0.9375rem] leading-relaxed text-foreground/80">
+            {text}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>

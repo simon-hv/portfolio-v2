@@ -1,48 +1,51 @@
 ---
-import { emailAddress } from "@/constants";
+import ResumeDownload from "@/components/ResumeDownload";
+
+const linkClass =
+  "flex min-h-11 items-center whitespace-nowrap px-2 text-sm min-[400px]:px-2.5 text-muted-foreground no-underline transition-colors hover:text-foreground md:px-3.5";
 ---
 
 <header
   aria-label="Menu bar"
-  class="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm"
+  class="sticky top-0 z-50 border-b border-border/70 bg-background/80 backdrop-blur-md"
   id="topbar"
 >
-  <div class="mx-auto flex max-w-2xl items-center justify-between px-6 py-4">
+  <div
+    class="mx-auto flex max-w-[73.75rem] items-center justify-between gap-2 px-6 py-2.5 sm:gap-3"
+  >
     <a
       href="/"
-      class="flex items-center gap-2 font-medium text-foreground no-underline transition-colors hover:text-muted-foreground"
+      class="flex min-h-11 shrink-0 items-center gap-3 text-[0.9375rem] font-medium text-foreground no-underline hover:text-foreground"
     >
       <img
         src="/avatar.jpeg"
         alt="Simon Haïoun-Viet"
         width="32"
         height="32"
-        class="size-8 rounded-full object-cover"
+        class="size-8 rounded-lg border border-border-strong object-cover"
       />
-      <span class="sm:hidden">Simon</span>
       <span class="hidden sm:inline">Simon Haïoun-Viet</span>
     </a>
 
-    <nav aria-label="Main navigation" class="flex items-center gap-4 sm:gap-6">
+    <nav
+      aria-label="Main navigation"
+      class="flex items-center min-[400px]:gap-1"
+    >
+      <a href="/#work" class:list={[linkClass, "hidden md:flex"]}>Work</a>
+      <a href="/#experience" class={linkClass}>Experience</a>
+      <a href="/blog" class={linkClass} data-umami-event="Blog link">Blog</a>
+      <ResumeDownload
+        client:idle
+        align="end"
+        iconClassName="size-3.5"
+        className="hidden min-h-11 px-3.5 text-sm text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
+      />
       <a
-        href="/blog"
-        class="text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
-        data-umami-event="Blog link"
-      >
-        Blog
-      </a>
-      <a
-        href="/xp"
-        class="text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
-      >
-        Experience
-      </a>
-      <a
-        href={`mailto:${emailAddress}`}
-        class="text-sm text-muted-foreground no-underline transition-colors hover:text-foreground"
+        href="/#contact"
+        class="ml-1 flex min-h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[0.625rem] border border-border-strong px-3 text-sm text-foreground no-underline transition-colors hover:border-muted-foreground hover:text-foreground min-[400px]:ml-2 min-[400px]:gap-2 min-[400px]:px-4"
         data-umami-event="Contact link"
       >
-        Contact
+        <span class="size-[7px] rounded-full bg-accent"></span>Contact
       </a>
     </nav>
   </div>
